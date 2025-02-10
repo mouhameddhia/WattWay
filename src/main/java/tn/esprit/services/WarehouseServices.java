@@ -20,7 +20,6 @@ public class WarehouseServices implements Iservice<Warehouse> {
     //CRUD
 
 
-
     @Override
     public void add(Warehouse warehouse) throws SQLException {
         String query="INSERT INTO `warehouse`(`city`, `street`, `postalCode`, `capacityWarehouse`) VALUES ('"+warehouse.getCity()+"','"+warehouse.getStreet()+"'" +
