@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.CreateOrderController" spacing="10">
+    <!-- Title for the create order form -->
+    <Label text="Create New Order" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+    <!-- Supplier Input Field -->
+    <Label text="Supplier:" />
+    <TextField fx:id="supplierField" promptText="Enter supplier name" />
+
+    <!-- Date Input Field (DD/MM/YYYY format) -->
+    <Label text="Date (DD/MM/YYYY):" />
+    <TextField fx:id="dateField" promptText="Enter order date" />
+
+    <!-- Status Input Field (with a default prompt text) -->
+    <Label text="Status:" />
+    <TextField fx:id="statusField" promptText="Default: pending" />
+
+    <!-- Section for Adding Items (Item fields and button) -->
+    <Label text="Add Items" style="-fx-font-size: 14px; -fx-font-weight: bold;" />
+    <HBox spacing="5">
+        <TextField fx:id="itemNameField" promptText="Item Name" />
+        <TextField fx:id="itemCategoryField" promptText="Category" />
+        <TextField fx:id="itemQuantityField" promptText="Quantity" />
+        <TextField fx:id="itemPriceField" promptText="Price" />
+        <!-- Button to Add New Item -->
+        <Button text="Add Item" onAction="#addItem" />
+    </HBox>
+
+    <!-- Table to Display Added Items -->
+    <TableView fx:id="itemsTableView" prefHeight="150">
+        <columns>
+            <!-- Column for Item Name -->
+            <TableColumn fx:id="itemNameColumn" text="Item Name" />
+            <!-- Column for Item Category -->
+            <TableColumn fx:id="itemCategoryColumn" text="Category" />
+            <!-- Column for Item Quantity -->
+            <TableColumn fx:id="itemQuantityColumn" text="Quantity" />
+            <!-- Column for Item Price -->
+            <TableColumn fx:id="itemPriceColumn" text="Price" />
+        </columns>
+    </TableView>
+
+    <!-- Buttons for Editing and Deleting Selected Item -->
+    <HBox spacing="10">
+        <!-- Delete Item Button (Initially hidden) -->
+        <Button fx:id="deleteItemButton" text="Delete Item" onAction="#deleteSelectedItem" visible="false" />
+        <!-- Edit Item Button (Initially hidden) -->
+        <Button fx:id="updateItemButton" text="Edit Item" onAction="#editSelectedItem" visible="false" />
+    </HBox>
+
+    <!-- Save Order Button -->
+    <Button text="Save Order" onAction="#saveOrder" />
+
+</VBox>

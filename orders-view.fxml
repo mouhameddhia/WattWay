@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.geometry.Pos?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controllers.OrderController" fx:id="anchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="gradient-pane" stylesheets="@styles.css" >
+    <VBox fx:id="sidebar" prefWidth="200.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <Label styleClass="menu-label" text="Menu" />
+        <Button styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Home icon -->
+            </graphic>
+            <text>Dashboard</text>
+        </Button>
+        <Button styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Wrench icon -->
+            </graphic>
+            <text>Mechanic</text>
+        </Button>
+        <Button styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Money icon -->
+            </graphic>
+            <text>Billing</text>
+        </Button>
+        <Button styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Warehouse icon -->
+            </graphic>
+            <text>Warehouse</text>
+        </Button>
+        <Button styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Users icon -->
+            </graphic>
+            <text>Users</text>
+        </Button>
+        <Button styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Shopping Cart icon -->
+            </graphic>
+            <text>Orders</text>
+        </Button>
+
+    </VBox>
+
+
+
+    <VBox xmlns:fx="http://javafx.com/fxml/1" spacing="20" alignment="TOP_LEFT" layoutX="350.0" layoutY="20.0">
+
+        <!-- Left side: TableView to display the list of orders -->
+        <VBox spacing="10" alignment="CENTER_LEFT" >
+            <!-- Title for orders section -->
+            <Label text="List of Orders" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <!-- TableView for orders -->
+            <TableView fx:id="ordersTableView" styleClass="orders-table" prefHeight="300" prefWidth="850">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="Order ID" prefWidth="100"/>
+                    <TableColumn fx:id="supplierColumn" text="Supplier" prefWidth="100"/>
+                    <TableColumn fx:id="dateColumn" text="Date" prefWidth="100"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="100"/>
+                    <TableColumn fx:id="totalAmountColumn" text="Total Amount" prefWidth="100"/>
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="200"/>
+
+                </columns>
+            </TableView>
+
+            <!-- Button to create a new order, placed at the bottom -->
+            <Button text="Create Order" onAction="#createOrder" prefWidth="500" alignment="CENTER" />
+        </VBox>
+
+        <!-- Right side: TableView to display the items for the selected order -->
+        <VBox spacing="10" alignment="CENTER_LEFT">
+            <!-- Title for items section -->
+            <Label text="Items for Selected Order" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+
+            <!-- TableView for items -->
+            <TableView fx:id="itemsTableView" styleClass="items-table" prefHeight="300" prefWidth="850">
+                <columns>
+                    <TableColumn fx:id="itemIdColumn" text="Item ID" prefWidth="100"/>
+                    <TableColumn fx:id="itemNameColumn" text="Item Name" prefWidth="100"/>
+                    <TableColumn fx:id="itemQuantityColumn" text="Quantity" prefWidth="100"/>
+                    <TableColumn fx:id="itemPriceColumn" text="Price per Unit" prefWidth="100"/>
+                    <TableColumn fx:id="itemCategoryColumn" text="Category" prefWidth="100"/>
+                </columns>
+            </TableView>
+        </VBox>
+
+    </VBox>
+</AnchorPane>
