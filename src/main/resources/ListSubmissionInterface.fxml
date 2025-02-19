@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox prefHeight="447.0" prefWidth="798.0" spacing="15" stylesheets="@submissions.css" styleClass="vbox" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListSubmissionController">    <padding>
+        <Insets bottom="15" left="15" right="15" top="15" />
+    </padding>
+
+    <HBox alignment="CENTER_LEFT" prefHeight="93.0" prefWidth="768.0" spacing="15" style="-fx-background-color: white; -fx-padding: 12; -fx-background-radius: 8;">
+        <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="User ID:" />
+        <TextField fx:id="userIdField" promptText="Enter user ID" style="-fx-pref-width: 200; -fx-padding: 5; -fx-font-size: 14px;" />
+        <Button onAction="#handleLoadSubmissions" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" text="Load Submissions" />
+        <Button text="Add Submission" onAction="#handleAddSubmission"
+                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;" />
+
+    </HBox>
+
+    <ScrollPane fitToWidth="true" style="-fx-background: transparent;">
+        <FlowPane fx:id="submissionsContainer" hgap="20" style="-fx-padding: 10;" vgap="20" />
+    </ScrollPane>
+</VBox>

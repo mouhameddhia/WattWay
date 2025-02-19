@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1452.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListSubResController">
+
+    <children>
+        <!-- Header Section -->
+        <VBox layoutX="50.0" layoutY="20.0" spacing="20">
+            <HBox alignment="CENTER_LEFT" spacing="50">
+                <VBox>
+                    <Text fx:id="totalSubmissions" strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+                        <font>
+                            <Font size="24.0" />
+                        </font>
+                    </Text>
+                    <Label text="Total Submissions" />
+                </VBox>
+
+                <Pane fx:id="news_pane" prefHeight="60.0" prefWidth="611.0">
+                    <Text fx:id="scrolling_text" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to the Submissions and Responses Dashboard!" />
+                </Pane>
+            </HBox>
+        </VBox>
+
+        <!-- Submissions Section -->
+        <VBox layoutX="50.0" layoutY="120.0" prefHeight="288.0" prefWidth="1341.0" spacing="10">
+            <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Submissions" />
+            <TableView fx:id="submission_table" prefHeight="250.0" prefWidth="1259.0">
+                <columns>
+                    <TableColumn fx:id="idSubmissionColumn" prefWidth="80.0" style="-fx-alignment: CENTER;" text="ID" />
+                    <TableColumn fx:id="descriptionColumn" prefWidth="250.0" style="-fx-alignment: CENTER;" text="Description" />
+                    <TableColumn fx:id="statusColumn" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Status" />
+                    <TableColumn fx:id="urgencyLevelColumn" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Urgency Level" />
+                    <TableColumn fx:id="dateSubmissionColumn" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Date" />
+                    <TableColumn fx:id="idCarColumn" prefWidth="80.0" style="-fx-alignment: CENTER;" text="Car ID" />
+                    <TableColumn fx:id="idUserColumn" prefWidth="80.0" style="-fx-alignment: CENTER;" text="User ID" />
+                    <TableColumn fx:id="deleteSubmissionColumn" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Actions" />
+                    <TableColumn fx:id="addResponseColumn" prefWidth="100.0" style="-fx-alignment: CENTER;" text="Add Response" />
+                </columns>
+            </TableView>
+        </VBox>
+
+        <!-- Responses Section -->
+        <VBox layoutX="50.0" layoutY="420.0" spacing="10">
+            <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Responses" />
+            <TableView fx:id="response_table" prefHeight="250.0" prefWidth="894.0">
+                <columns>
+                    <TableColumn fx:id="idResponseColumn" prefWidth="80.0" style="-fx-alignment: CENTER;" text="ID" />
+                    <TableColumn fx:id="messageColumn" prefWidth="250.0" style="-fx-alignment: CENTER;" text="Message" />
+                    <TableColumn fx:id="dateResponseColumn" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Date" />
+                    <TableColumn fx:id="typeResponseColumn" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Type" />
+                    <TableColumn fx:id="actionsColumn" prefWidth="120.0" style="-fx-alignment: CENTER;" text="Actions" />
+                </columns>
+            </TableView>
+        </VBox>
+    </children>
+</AnchorPane>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="686.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.Controllers.AddResponseController">
+
+    <children>
+        <Button layoutX="161.0" layoutY="568.0" mnemonicParsing="false"
+                onAction="#addResponse" text="Add Response" />
+
+        <TextField fx:id="messageField" layoutX="209.0" layoutY="178.0" />
+        <Label layoutX="218.0" layoutY="141.0" text="Message" />
+
+        <Button layoutX="362.0" layoutY="568.0" mnemonicParsing="false"
+                onAction="#nextP" text="Next" />
+
+        <Label layoutX="221.0" layoutY="222.0" text="Response Date" />
+        <DatePicker fx:id="datePicker" layoutX="206.0" layoutY="251.0" />
+
+        <Label layoutX="221.0" layoutY="284.0" text="Response Type" />
+        <ComboBox fx:id="typeComboBox" layoutX="225.0" layoutY="307.0" prefWidth="150.0" />
+
+        <Label layoutX="221.0" layoutY="350.0" text="User ID" />
+        <TextField fx:id="userIdField" layoutX="221.0" layoutY="373.0" />
+
+        <!-- Add this near other fields -->
+        <Label layoutX="221.0" layoutY="475.0" text="Submission ID" />
+        <TextField fx:id="submissionIdField" layoutX="225.0" layoutY="498.0" disable="true" />
+    </children>
+</AnchorPane>

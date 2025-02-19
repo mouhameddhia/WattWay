@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="705.0" prefWidth="600.0" styleClass="root" stylesheets="@addSubmission.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateSubmissionController">
+    <children>
+        <VBox prefHeight="556.0" prefWidth="500.0" spacing="20.0" styleClass="form-container" AnchorPane.leftAnchor="50" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="50">
+            <children>
+                <!-- Header -->
+                <Label styleClass="form-header" text="Update Submission" />
+
+                <!-- Description -->
+                <VBox styleClass="input-group">
+                    <Label styleClass="field-label" text="Description:" />
+                    <TextField fx:id="descriptionField" styleClass="text-field" />
+                </VBox>
+
+                   <!-- Date of Submission -->
+                <VBox styleClass="input-group">
+                    <Label styleClass="field-label" text="Date Submission:" />
+                    <DatePicker fx:id="dateSubmissionField" styleClass="date-picker" />
+                </VBox>
+
+                <!-- ID of Car -->
+                <VBox styleClass="input-group">
+                    <Label styleClass="field-label" text="Car ID:" />
+                    <TextField fx:id="carIdField" styleClass="text-field" />
+                </VBox>
+
+                <!-- ID of User -->
+                <VBox styleClass="input-group">
+                    <Label styleClass="field-label" text="User ID:" />
+                    <TextField fx:id="userIdField" styleClass="text-field" />
+                </VBox>
+
+                <!-- Status -->
+                <VBox prefHeight="48.0" prefWidth="315.0" styleClass="input-group">
+   
+                   <!-- Urgency Level -->
+                   <VBox prefHeight="84.0" prefWidth="280.0" styleClass="input-group">
+                       <Label fx:id="uu" styleClass="field-label" />
+                       <ComboBox fx:id="urgencyComboBox" styleClass="combo-box" />
+      
+                      <!-- Update Button -->
+                      <Button onAction="#handleUpdateSubmission" styleClass="submit-button" text="Update Submission" />
+                       <ComboBox fx:id="statusComboBox" styleClass="combo-box" />
+                   </VBox>
+                    <Label fx:id="ss" styleClass="field-label" />
+                </VBox>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

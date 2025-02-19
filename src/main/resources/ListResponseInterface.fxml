@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="686.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/23.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="tn.esprit.Controllers.ListResponseController">
+
+    <children>
+        <!-- Total Responses Counter -->
+        <Text fx:id="totalResponses" layoutX="270.0" layoutY="50.0"
+              strokeType="OUTSIDE" strokeWidth="0.0" text="0">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </Text>
+        <Label layoutX="270.0" layoutY="80.0" text="Total Responses" />
+
+        <!-- Scrolling News Ticker -->
+        <Pane fx:id="news_pane" layoutX="50.0" layoutY="100.0"
+              prefHeight="60.0" prefWidth="700.0">
+            <children>
+                <Text fx:id="scrolling_text" layoutY="30.0"
+                      strokeType="OUTSIDE" strokeWidth="0.0"
+                      text="Latest Response Updates"/>
+            </children>
+        </Pane>
+
+        <!-- Response Table -->
+        <VBox fx:id="response_box" layoutX="50.0" layoutY="180.0"
+              prefHeight="400.0" prefWidth="1100.0">
+            <children>
+                <Label text="Responses:"
+                       style="-fx-font-size: 18; -fx-font-weight: bold; -fx-text-fill: black;"/>
+
+                <TableView fx:id="response_table" prefHeight="350.0" prefWidth="1100.0">
+                    <columns>
+                        <TableColumn fx:id="idResponseColumn" text="ID" prefWidth="100.0"/>
+                        <TableColumn fx:id="messageColumn" text="Message" prefWidth="300.0"/>
+                        <TableColumn fx:id="dateResponseColumn" text="Date" prefWidth="200.0"/>
+                        <TableColumn fx:id="typeResponseColumn" text="Type" prefWidth="150.0"/>
+                        <TableColumn fx:id="idUserColumn" text="User ID" prefWidth="100.0"/>
+                        <TableColumn fx:id="idSubmissionColumn" text="Submission ID" prefWidth="150.0"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </children>
+</AnchorPane>

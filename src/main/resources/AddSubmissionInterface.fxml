@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane stylesheets="@addSubmission.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddSubmissionController">
+   <VBox alignment="CENTER" maxWidth="600" spacing="20" styleClass="form-container" AnchorPane.bottomAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20" AnchorPane.topAnchor="20">
+
+      <Label styleClass="form-header" text="New Submission" />
+
+      <!-- Keep styles for description field -->
+      <VBox>
+         <Label text="Description" />
+         <TextField fx:id="descriptionid" promptText="Enter your submission details..." styleClass="text-field, description-field" />
+      </VBox>
+
+      <HBox spacing="20">
+         <VBox HBox.hgrow="ALWAYS">
+            <Label text="Submission Date" />
+            <DatePicker fx:id="dateid" prefWidth="412.0" />
+         </VBox>
+
+         <VBox HBox.hgrow="ALWAYS">
+            <Label text="Car ID" />
+            <TextField fx:id="carid" prefWidth="214.0" promptText="Enter car ID" />
+         </VBox>
+      </HBox>
+
+      <HBox spacing="20">
+         <VBox HBox.hgrow="ALWAYS">
+            <Label text="User ID" />
+            <TextField fx:id="userid" promptText="Enter user ID" />
+         </VBox>
+
+         <VBox HBox.hgrow="ALWAYS">
+            <Label fx:id="st" text="Status" />
+            <ComboBox fx:id="statusid" prefWidth="343.0" />
+         </VBox>
+      </HBox>
+
+      <VBox>
+         <Label fx:id="ur" text="Urgency Level" />
+         <ComboBox fx:id="urgencyLevelid" prefWidth="Infinity" />
+      </VBox>
+
+      <!-- Keep styles for submit button -->
+      <Button fx:id="submitButton" maxWidth="200" onAction="#handleSubmit" styleClass="submit-button" text="Submit" />
+   </VBox>
+</AnchorPane>

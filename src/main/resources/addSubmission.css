@@ -1,0 +1,71 @@
+.root {
+    -fx-background-color: #f0f2f5;
+}
+
+.form-container {
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.form-header {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1a237e;
+    -fx-padding: 0 0 20 0;
+}
+
+.field-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.input-group {
+    -fx-min-width: 250;
+}
+
+.description-field {
+    -fx-pref-height: 100;
+    -fx-font-size: 14px;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+    -fx-padding: 10;
+}
+
+.description-field:focused {
+    -fx-border-color: #2196F3;
+    -fx-background-color: white;
+}
+
+.text-field, .combo-box, .date-picker {
+    -fx-pref-height: 35;
+    -fx-font-size: 14px;
+    -fx-background-color: #f8f9fa;
+    -fx-background-radius: 5;
+    -fx-border-color: #dee2e6;
+    -fx-border-radius: 5;
+}
+
+.text-field:focused, .combo-box:focused, .date-picker:focused {
+    -fx-border-color: #2196F3;
+    -fx-background-color: white;
+}
+
+.submit-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-padding: 12 30;
+    -fx-background-radius: 5;
+    -fx-cursor: hand;
+    -fx-min-width: 150;
+}
+
+.submit-button:hover {
+    -fx-background-color: #1976D2;
+} 
