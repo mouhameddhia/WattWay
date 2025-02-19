@@ -1,26 +1,26 @@
 package tn.esprit.entities;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Assignment {
     private int idAssignment;
     private String descriptionAssignment;
     private String statusAssignment;
     private int idUser;
-    private int idMechanic;
+    private List<Mechanic> mechanics;
 
-    // Constructor
-    public Assignment(int idAssignment, String descriptionAssignment, String statusAssignment, int idUser, int idMechanic) {
+    public Assignment(int idAssignment, String descriptionAssignment, String statusAssignment, int idUser) {
         this.idAssignment = idAssignment;
         this.descriptionAssignment = descriptionAssignment;
         this.statusAssignment = statusAssignment;
         this.idUser = idUser;
-        this.idMechanic = idMechanic;
+        this.mechanics = new ArrayList<>();
     }
 
-    // Default Constructor
     public Assignment() {
+        this.mechanics = new ArrayList<>();
     }
 
-    // Getters and Setters
     public int getIdAssignment() {
         return idAssignment;
     }
@@ -53,14 +53,17 @@ public class Assignment {
         this.idUser = idUser;
     }
 
-    public int getIdMechanic() {
-        return idMechanic;
+    public List<Mechanic> getMechanics() {
+        return mechanics;
     }
 
-    public void setIdMechanic(int idMechanic) {
-        this.idMechanic = idMechanic;
+    public void addMechanic(Mechanic mechanic) {
+        this.mechanics.add(mechanic);
     }
-
+    public void setMechanics(List<Mechanic> mechanics) {
+        this.mechanics = mechanics;
+    }
+    /*
     // toString method
     @Override
     public String toString() {
@@ -71,4 +74,5 @@ public class Assignment {
                 ", idUser=" + idUser +
                 ", idMechanic=" + idMechanic;
     }
+    */
 }

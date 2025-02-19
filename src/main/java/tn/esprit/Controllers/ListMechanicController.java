@@ -111,7 +111,7 @@ public class ListMechanicController {
     @FXML
     private void addMechanic() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/views/addMechanic.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/AddMechanic.fxml"));
             Parent root = loader.load();
             Stage stage = new Stage();
             stage.setTitle("Add Mechanic");
@@ -132,5 +132,18 @@ public class ListMechanicController {
     private void refreshMechanicsTable() throws SQLException {
         ObservableList<Mechanic> updatedMechanics = FXCollections.observableArrayList(mechanicServices.returnList());
         mechanicsTableView.setItems(updatedMechanics);
+    }
+    @FXML
+    private void switchToAssignments() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListAssignmentInterface.fxml"));
+            Parent root = loader.load();
+
+            Stage stage = (Stage) mechanicsTableView.getScene().getWindow(); // Get the current window
+            stage.setScene(new Scene(root));
+            stage.setTitle("List of Assignments");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

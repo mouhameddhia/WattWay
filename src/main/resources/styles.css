@@ -1,0 +1,44 @@
+/* Gradient Background */
+.gradient-pane {
+    -fx-background-color: linear-gradient(to bottom, #3C39D9, #0A1F44, #81CCC4);
+}
+
+/* Sidebar */
+.sidebar {
+    -fx-background-color: #1A186C;
+    -fx-padding: 20px 10px;
+    -fx-spacing: 15px;
+}
+
+/* Sidebar Buttons */
+.menu-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 12px;
+    -fx-border-width: 0;
+    -fx-cursor: hand;
+}
+
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.menu-button-active {
+    -fx-background-color: #0A1F44;
+    -fx-text-fill: white;
+    -fx-padding: 12px;
+}
+
+/* Table Styling */
+.admin-table {
+    -fx-background-color: linear-gradient(to bottom, #020024 25%, #131654 64%);
+    -fx-background-radius: 17.16px;
+}
+
+/* Table Headers */
+.table-header {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
