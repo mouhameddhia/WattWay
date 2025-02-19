@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
+
 <VBox prefHeight="447.0" prefWidth="798.0" spacing="15" stylesheets="@submissions.css" styleClass="vbox" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListSubmissionController">    <padding>
         <Insets bottom="15" left="15" right="15" top="15" />
     </padding>

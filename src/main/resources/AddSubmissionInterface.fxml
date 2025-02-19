@@ -38,6 +38,7 @@
             <TextField fx:id="userid" promptText="Enter user ID" />
          </VBox>
 
+
          <VBox HBox.hgrow="ALWAYS">
             <Label fx:id="st" text="Status" />
             <ComboBox fx:id="statusid" prefWidth="343.0" />

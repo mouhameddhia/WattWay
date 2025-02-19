@@ -12,6 +12,7 @@ public class Response {
 
 
 
+
     public enum TYPERESPONSE {ACKNOWLEDGMENT, RESOLUTION, CLARIFICATIONREQUEST}
 
 

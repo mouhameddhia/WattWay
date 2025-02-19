@@ -48,6 +48,7 @@ public class Submission {
         LOW,MEDIUM,HIGH
     }
 
+
     public Submission(String description, Date dateSubmission, int idCar, int idUser) {
         this.description = description;
         this.dateSubmission = dateSubmission;

@@ -48,6 +48,7 @@ public class AddResponseController {
 
                 rs.add(response);
 
+
                 showAlert(Alert.AlertType.INFORMATION, "Success",
                         "Response added successfully!");
                 clearFields();

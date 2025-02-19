@@ -64,6 +64,7 @@ public class ListSubResController {
         responseService = new ResponseServices();
         //urgencyLevelid.setVisible(false);
 
+
         initializeColumns();
         loadData();
         setupScrollingText();

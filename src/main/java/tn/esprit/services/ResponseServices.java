@@ -68,6 +68,8 @@ public class ResponseServices implements IService<Response> {
                 }
             }
 
+
+
         } catch (SQLException e) {
             System.out.println("❌ Error while deleting response: " + e.getMessage());
         }

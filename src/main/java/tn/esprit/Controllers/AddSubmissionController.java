@@ -34,6 +34,7 @@ public class AddSubmissionController {
         statusid.setValue(STATUS.PENDING);
         statusid.setDisable(true);
 
+
         urgencyLevelid.getItems().add(URGENCYLEVEL.MEDIUM);
         urgencyLevelid.setValue(URGENCYLEVEL.MEDIUM);
         urgencyLevelid.setDisable(true);

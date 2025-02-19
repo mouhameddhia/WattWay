@@ -12,7 +12,6 @@ public class MyDatabase {
 
 
 
-
     private MyDatabase() {
         try {
             con = DriverManager.getConnection(URL,USERNAME,PWD);

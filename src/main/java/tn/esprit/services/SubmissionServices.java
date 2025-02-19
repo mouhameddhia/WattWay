@@ -104,6 +104,7 @@ public class SubmissionServices implements IService<Submission> {
                     status = Submission.STATUS.PENDING; // Default value
                 }
 
+
                 // Convert urgencyLevel string to URGENCYLEVEL enum
                 Submission.URGENCYLEVEL urgencyLevel;
                 try {

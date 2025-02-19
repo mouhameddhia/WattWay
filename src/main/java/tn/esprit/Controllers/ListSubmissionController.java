@@ -201,6 +201,7 @@ public class ListSubmissionController {
         }
     }
 
+
     private void handleDeleteSubmission(Submission submission) {
         submissionServices.delete(submission);
         showAlert("Success", "Submission deleted successfully.");

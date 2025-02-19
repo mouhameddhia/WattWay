@@ -24,6 +24,7 @@
         <Label layoutX="221.0" layoutY="222.0" text="Response Date" />
         <DatePicker fx:id="datePicker" layoutX="206.0" layoutY="251.0" />
 
+
         <Label layoutX="221.0" layoutY="284.0" text="Response Type" />
         <ComboBox fx:id="typeComboBox" layoutX="225.0" layoutY="307.0" prefWidth="150.0" />
 

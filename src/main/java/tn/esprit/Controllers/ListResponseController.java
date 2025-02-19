@@ -77,6 +77,7 @@ public class ListResponseController {
             idUserColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
             idSubmissionColumn.setCellValueFactory(new PropertyValueFactory<>("idSubmission"));
 
+
             // Add data to TableView
             response_table.setItems(observableList);
 

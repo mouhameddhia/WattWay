@@ -50,6 +50,7 @@
     -fx-border-radius: 5;
 }
 
+
 .text-field:focused, .combo-box:focused, .date-picker:focused {
     -fx-border-color: #2196F3;
     -fx-background-color: white;
