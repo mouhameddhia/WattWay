@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListAssignmentController" spacing="20" alignment="TOP_LEFT">
+    <VBox spacing="10">
+        <Label text="List of Assignments" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+        <TableView fx:id="assignmentsTableView" prefHeight="300" prefWidth="650">
+            <columns>
+                <TableColumn fx:id="idAssignmentColumn" text="Assignment ID" />
+                <TableColumn fx:id="descriptionAssignmentColumn" text="Description" />
+                <TableColumn fx:id="statusAssignmentColumn" text="Status" />
+                <TableColumn fx:id="idUserColumn" text="User ID" />
+                <TableColumn fx:id="idMechanicColumn" text="Mechanic ID" />
+                <TableColumn fx:id="actionColumn" text="Actions"/>
+            </columns>
+        </TableView>
+        <Button text="Add Assignment" onAction="#addAssignment" prefWidth="500" />
+    </VBox>
+</HBox>

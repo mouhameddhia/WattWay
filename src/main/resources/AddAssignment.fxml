@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddAssignmentController" spacing="15" alignment="CENTER">
+    <Label text="Add Assignment" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <Label text="Description:" />
+    <TextField fx:id="descriptionAssignmentField" promptText="Enter assignment description" />
+
+    <Label text="Status:" />
+    <TextField fx:id="statusAssignmentField" promptText="Enter assignment status" />
+
+    <Label text="User ID:" />
+    <TextField fx:id="idUserField" promptText="Enter user ID" />
+
+    <Label text="Mechanic ID:" />
+    <TextField fx:id="idMechanicField" promptText="Enter mechanic ID" />
+
+    <Button fx:id="saveButton" text="Save" onAction="#saveAssignment" />
+    <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" />
+</VBox>

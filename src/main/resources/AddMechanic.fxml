@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddMechanicController" spacing="15" alignment="CENTER">
+    <Label text="Add Mechanic" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+
+    <Label text="Mechanic Name:" />
+    <TextField fx:id="nameMechanicField" promptText="Enter mechanic name" />
+
+    <Label text="Speciality:" />
+    <TextField fx:id="specialityMechanicField" promptText="Enter mechanic speciality" />
+
+    <Button fx:id="saveButton" text="Save" onAction="#saveMechanic" />
+    <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" />
+</VBox>

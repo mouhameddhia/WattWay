@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+
+<HBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListMechanicController"  spacing="20" alignment="TOP_LEFT">
+   <VBox spacing="10">
+      <Label text="List of Mechanics" style="-fx-font-size: 16px; -fx-font-weight: bold;" />
+      <TableView fx:id="mechanicsTableView" prefHeight="300" prefWidth="550">
+         <columns>
+            <TableColumn fx:id="idMechanicColumn" text="Mechanic ID" />
+            <TableColumn fx:id="nameMechanicColumn" text="Name" />
+            <TableColumn fx:id="specialityMechanicColumn" text="Speciality" />
+            <TableColumn fx:id="actionColumn" text="Actions"/>
+         </columns>
+      </TableView>
+      <Button text="Add Mechanic" onAction="#addMechanic" prefWidth="500" />
+   </VBox>
+</HBox>
