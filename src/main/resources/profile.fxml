@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.controller.ProfileController">
+    <children>
+        <Label text="Profile Page" layoutX="14.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+        <VBox layoutX="14.0" layoutY="50.0" spacing="10">
+            <Label text="Email:" />
+            <Label fx:id="emailLabel" style="-fx-font-weight: bold;" />
+            <Label text="First Name:" />
+            <Label fx:id="firstNameLabel" style="-fx-font-weight: bold;" />
+            <Label text="Last Name:" />
+            <Label fx:id="lastNameLabel" style="-fx-font-weight: bold;" />
+            <Label text="Phone Number:" />
+            <Label fx:id="phoneNumberLabel" style="-fx-font-weight: bold;" />
+            <Label text="Payment Details:" />
+            <Label fx:id="paymentDetailsLabel" style="-fx-font-weight: bold;" />
+            <Label text="Address:" />
+            <Label fx:id="addressLabel" style="-fx-font-weight: bold;" />
+
+            <!-- Buttons for editing and deleting -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="Edit Profile" onAction="#handleEditProfile" />
+                <Button text="Delete Account" onAction="#handleDeleteProfile" />
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>

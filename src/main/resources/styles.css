@@ -1,0 +1,199 @@
+/* styles.css */
+
+/* General Styles */
+.title {
+    -fx-font-size: 24px;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: lightgray;
+}
+
+/* Feedback Navigation Buttons */
+Button {
+    -fx-background-color: #1E3A8A;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-padding: 5px 10px;
+    -fx-background-radius: 5px;
+}
+
+Button:hover {
+    -fx-background-color: #2563EB;
+}
+
+/* Feedback Container */
+#feedbackContainer {
+    -fx-background-color: #111827;
+    -fx-padding: 15px;
+    -fx-border-radius: 10px;
+}
+
+/* Give Feedback Button */
+#giveFeedbackButton {
+    -fx-background-color: linear-gradient(to right, #3b82f6, #9333ea);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 20px;
+}
+
+#giveFeedbackButton:hover {
+    -fx-background-color: linear-gradient(to right, #6366f1, #a855f7);
+}
+
+
+
+
+
+
+/* Gradient for AnchorPane */
+.gradient-pane {
+    -fx-background-color: linear-gradient(
+            to bottom, /* Direction of the gradient */
+            #3C39D9 0%, /* Color at 0% */
+            #0A1F44 59%, /* Color at 59% */
+            #81CCC4 100% /* Color at 100% */
+    );
+}
+
+
+/* Gradient for Admin and Client Tables */
+
+
+/* Apply gradient background to the entire table */
+.admin-table, .client-table {
+    -fx-background-color: linear-gradient(
+            to bottom, /* Direction of the gradient */
+            #020024 25%, /* Color at 25% */
+            #131654 64% /* Color at 64% */
+    );
+    -fx-padding: 10px; /* Add padding */
+    -fx-background-radius: 17.16px;
+}
+
+/* Table header style */
+/* Table header style */
+.table-header {
+    -fx-background-color: transparent; /* Transparent background to match the table's gradient */
+    -fx-text-fill: #ffffff; /* White text for header titles */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center; /* Center-align header text */
+    -fx-border-width: 0; /* Remove any border from the header */
+}
+
+/* Remove default border and background for table header */
+/* Apply the same gradient to the table header */
+.table-view .column-header-background {
+    -fx-background-color: linear-gradient(
+            to bottom, /* Direction of the gradient */
+            #020024 25%, /* Color at 25% */
+            #131654 64% /* Color at 64% */
+    );
+    -fx-background-radius: 17.16px; /* Match table's border radius */
+    -fx-border-width: 0; /* Remove unwanted borders */
+}
+
+/* Style the header text */
+.table-view .column-header .label {
+    -fx-text-fill: white; /* Set title text to white */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+/* Remove any borders between header cells */
+.table-view .column-header {
+    -fx-border-width: 0;
+    -fx-background-color: transparent; /* Ensure it blends with the gradient */
+}
+
+
+/* Table row style */
+.table-row-cell {
+    -fx-background-color: transparent; /* Make rows transparent */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 12px;
+    -fx-padding: 10px; /* Padding inside each row */
+    -fx-border-color: transparent; /* Remove border on all sides */
+    -fx-border-width: 0; /* No borders on the sides */
+}
+
+
+/* Apply thin white border between rows */
+
+/* Make the rows transparent with the gradient background */
+.table-row-cell:odd {
+    -fx-background-color: transparent; /* No alternating row colors */
+}
+
+.table-row-cell:even {
+    -fx-background-color: transparent; /* No alternating row colors */
+}
+
+/* Hover effect for rows */
+.table-row-cell:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white overlay on hover */
+}
+
+/* Selected row style */
+.table-row-cell:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.15); /* Slight white overlay for selected rows */
+}
+
+/* Table cell style */
+.table-cell {
+    -fx-background-color: transparent; /* Transparent background for cells */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 12px;
+    -fx-alignment: center; /* Center-align cell text */
+    -fx-border-width: 0; /* Remove cell borders */
+    -fx-border-color: transparent; /* Ensure cell borders are transparent */
+}
+
+/* Load FontAwesome */
+@font-face {
+    src: url('fonts/fontawesome-webfont.ttf');
+}
+
+/* Icon class */
+.icon {
+    -fx-font-family: FontAwesome;
+    -fx-font-size: 14px;
+    -fx-text-fill: #ffffff; /* White icons */
+}
+/* Sidebar style */
+.sidebar {
+    -fx-background-color: #1A186C; /* Blue background */
+    -fx-padding: 20px 10px;
+    -fx-spacing: 10px; /* Space between buttons */
+}
+
+/* Menu label style */
+.menu-label {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-padding: 10px 0 20px 10px; /* Top, Right, Bottom, Left */
+}
+
+/* Button style */
+.menu-button {
+    -fx-background-color: transparent; /* Transparent background */
+    -fx-text-fill: #ffffff; /* White text */
+    -fx-font-size: 14px;
+    -fx-alignment: baseline-left; /* Align text to the left */
+    -fx-padding: 10px 0 10px 10px;
+    -fx-border-width: 0;
+    -fx-cursor: hand; /* Change cursor to hand on hover */
+}
+
+/* Button hover effect */
+.menu-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Slight white overlay on hover */
+    -fx-text-fill: #ffffff; /* White text on hover */
+}

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Pos?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="tn.esprit.controller.ProfileUpdateController">
+    <children>
+        <VBox spacing="15" alignment="CENTER" AnchorPane.topAnchor="20" AnchorPane.leftAnchor="20" AnchorPane.rightAnchor="20">
+            <Label text="Edit Profile" style="-fx-font-size: 24px; -fx-font-weight: bold;" />
+
+            <!-- Email Field -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Email:" minWidth="120"/>
+                <TextField fx:id="emailField" prefWidth="300"/>
+            </HBox>
+
+            <!-- First Name Field -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="First Name:" minWidth="120"/>
+                <TextField fx:id="firstNameField" prefWidth="300"/>
+            </HBox>
+
+            <!-- Last Name Field -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Last Name:" minWidth="120"/>
+                <TextField fx:id="lastNameField" prefWidth="300"/>
+            </HBox>
+
+            <!-- Phone Number Field -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Phone Number:" minWidth="120"/>
+                <TextField fx:id="phoneNumberField" prefWidth="300"/>
+            </HBox>
+
+            <!-- Payment Details ComboBox -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Payment Details:" minWidth="120"/>
+                <ComboBox fx:id="paymentDetailsComboBox" prefWidth="300"/>
+            </HBox>
+
+            <!-- Address Field -->
+            <HBox spacing="10" alignment="CENTER_LEFT">
+                <Label text="Address:" minWidth="120"/>
+                <TextField fx:id="addressField" prefWidth="300"/>
+            </HBox>
+
+            <!-- Buttons -->
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="Save" onAction="#handleSaveProfile"/>
+                <Button text="Cancel" onAction="#handleCancel"/>
+            </HBox>
+        </VBox>
+    </children>
+</AnchorPane>
