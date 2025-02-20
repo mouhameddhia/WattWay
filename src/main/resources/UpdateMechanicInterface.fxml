@@ -1,18 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateMechanicController" spacing="15" alignment="CENTER">
-    <Label text="Update Mechanic" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateMechanicController"
+            stylesheets="@styles.css" styleClass="gradient-pane">
 
-    <Label text="Mechanic Name:" />
-    <TextField fx:id="nameMechanicField" promptText="Enter mechanic name" />
+    <VBox spacing="15" alignment="CENTER" prefWidth="450" prefHeight="400" styleClass="form-container"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
-    <Label text="Speciality:" />
-    <TextField fx:id="specialityMechanicField" promptText="Enter mechanic speciality" />
+        <Label text="Update Mechanic" styleClass="form-title" />
 
-    <Button fx:id="saveButton" text="Save" onAction="#saveMechanic" />
-    <Button fx:id="cancelButton"  text="Cancel" onAction="#cancel" />
-</VBox>
+        <Label text="Mechanic Name:" styleClass="form-label"/>
+        <TextField fx:id="nameMechanicField" promptText="Enter mechanic name" styleClass="form-input"/>
+
+        <Label text="Speciality:" styleClass="form-label"/>
+        <TextField fx:id="specialityMechanicField" promptText="Enter mechanic speciality" styleClass="form-input"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="saveButton" text="Save" onAction="#saveMechanic" styleClass="primary-button"/>
+            <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" styleClass="secondary-button"/>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

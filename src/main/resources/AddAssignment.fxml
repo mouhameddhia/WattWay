@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 
-<?import javafx.scene.control.ComboBox?>
-<?import javafx.scene.control.ListView?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddAssignmentController" spacing="15" alignment="CENTER">
-    <Label text="Add Assignment" style="-fx-font-size: 20px; -fx-font-weight: bold;" />
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddAssignmentController"
+            stylesheets="@styles.css" styleClass="gradient-pane">
 
-    <Label text="Description:" />
-    <TextField fx:id="descriptionAssignmentField" promptText="Enter assignment description" />
+    <VBox spacing="15" alignment="CENTER" prefWidth="500" prefHeight="600" styleClass="form-container"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
-    <Label text="Status:" />
-    <TextField fx:id="statusAssignmentField" promptText="Enter assignment status" />
+        <Label text="Add Assignment" styleClass="form-title" />
 
-    <Label text="User ID:" />
-    <TextField fx:id="idUserField" promptText="Enter user ID" />
+        <Label text="Description:" styleClass="form-label"/>
+        <TextField fx:id="descriptionAssignmentField" promptText="Enter assignment description" styleClass="form-input"/>
 
-    <Label text="Select Mechanics:" />
-    <ListView fx:id="mechanicListView" prefHeight="150.0" prefWidth="300.0" />
+        <Label text="Status:" styleClass="form-label"/>
+        <TextField fx:id="statusAssignmentField" promptText="Enter assignment status" styleClass="form-input"/>
 
+        <Label text="User ID:" styleClass="form-label"/>
+        <TextField fx:id="idUserField" promptText="Enter user ID" styleClass="form-input"/>
 
+        <Label text="Select Mechanics:" styleClass="form-label"/>
+        <ListView fx:id="mechanicListView" prefHeight="150" styleClass="form-listview"/>
 
-    <Button fx:id="saveButton" text="Save" onAction="#saveAssignment" />
-    <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" />
-</VBox>
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="saveButton" text="Save" onAction="#saveAssignment" styleClass="primary-button"/>
+            <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" styleClass="secondary-button"/>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

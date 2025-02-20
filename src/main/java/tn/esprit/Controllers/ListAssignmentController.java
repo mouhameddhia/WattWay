@@ -77,7 +77,7 @@ public class ListAssignmentController {
             Parent root = loader.load();
 
             Stage stage = (Stage) assignmentsTableView.getScene().getWindow(); // Get the current window
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
             stage.setTitle("List of Mechanics");
         } catch (IOException e) {
             e.printStackTrace();

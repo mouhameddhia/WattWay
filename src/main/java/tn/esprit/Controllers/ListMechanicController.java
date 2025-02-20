@@ -140,7 +140,7 @@ public class ListMechanicController {
             Parent root = loader.load();
 
             Stage stage = (Stage) mechanicsTableView.getScene().getWindow(); // Get the current window
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
             stage.setTitle("List of Assignments");
         } catch (IOException e) {
             e.printStackTrace();

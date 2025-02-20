@@ -11,9 +11,10 @@ import java.util.Objects;
 public class MainFX extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ListMechanicInterface.fxml"))); // Ensure correct path
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/ListMechanicInterface.fxml")));
 
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(root, 1400, 800);
+        primaryStage.setResizable(false);
         primaryStage.setScene(scene);
         primaryStage.setTitle("Mechanic Management");
         primaryStage.show();

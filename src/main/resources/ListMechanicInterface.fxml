@@ -12,24 +12,36 @@
 
    <!-- Sidebar -->
    <VBox fx:id="sidebar" prefWidth="200.0" styleClass="sidebar" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
-      <Label text="Dashboard" styleClass="menu-label"/>
-      <Button text="Mechanics" fx:id="btnMechanics" styleClass="menu-button-active"/>
+      <Label text="Menu" styleClass="menu-label"/>
+      <Button text="Dashboard" styleClass="menu-button"/>
+      <Button text="Mechanics" fx:id="btnMechanics" styleClass="menu-button"/>
       <Button text="Assignments" fx:id="btnAssignments" styleClass="menu-button" onAction="#switchToAssignments"/>
+      <Button text="Billing" styleClass="menu-button"/>
+      <Button text="Warehouse" styleClass="menu-button"/>
+      <Button text="Users" styleClass="menu-button"/>
+      <Button text="Orders" styleClass="menu-button"/>
    </VBox>
 
    <!-- Main Content -->
-   <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="20.0">
+   <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="80.0">
       <VBox spacing="10">
          <Label text="List of Mechanics" styleClass="table-header"/>
-         <TableView fx:id="mechanicsTableView" prefHeight="300" prefWidth="550" styleClass="admin-table">
+         <TableView fx:id="mechanicsTableView" AnchorPane.leftAnchor="20.0"
+                    AnchorPane.rightAnchor="20.0"
+                    AnchorPane.topAnchor="20.0"
+                    AnchorPane.bottomAnchor="20.0"  styleClass="admin-table">
+            <!-- Ensures no extra empty column -->
+            <columnResizePolicy>
+               <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
             <columns>
-               <TableColumn fx:id="idMechanicColumn" text="Mechanic ID" />
-               <TableColumn fx:id="nameMechanicColumn" text="Name" />
-               <TableColumn fx:id="specialityMechanicColumn" text="Speciality" />
-               <TableColumn fx:id="actionColumn" text="Actions"/>
+               <TableColumn fx:id="idMechanicColumn" text="Mechanic ID" prefWidth="130"/>
+               <TableColumn fx:id="nameMechanicColumn" text="Name" prefWidth="200"/>
+               <TableColumn fx:id="specialityMechanicColumn" text="Speciality" prefWidth="420"/>
+               <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
             </columns>
          </TableView>
-         <Button text="Add Mechanic" onAction="#addMechanic" prefWidth="500" styleClass="menu-button"/>
+         <Button text="Add Mechanic" onAction="#addMechanic" prefWidth="930" styleClass="menu-button-active"/>
       </VBox>
    </HBox>
 

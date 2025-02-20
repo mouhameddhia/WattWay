@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
@@ -12,26 +13,42 @@
 
     <!-- Sidebar -->
     <VBox fx:id="sidebar" prefWidth="200.0" styleClass="sidebar" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
-        <Label text="Dashboard" styleClass="menu-label"/>
+        <Label text="Menu" styleClass="menu-label"/>
+        <Button text="Dashboard" styleClass="menu-button"/>
         <Button text="Mechanics" fx:id="btnMechanics" styleClass="menu-button" onAction="#switchToMechanics"/>
-        <Button text="Assignments" fx:id="btnAssignments" styleClass="menu-button-active"/>
+        <Button text="Assignments" fx:id="btnAssignments" styleClass="menu-button"/>
+        <Button text="Billing" styleClass="menu-button"/>
+        <Button text="Warehouse" styleClass="menu-button"/>
+        <Button text="Users" styleClass="menu-button"/>
+        <Button text="Orders" styleClass="menu-button"/>
     </VBox>
 
+    <!-- Title -->
+    <Label layoutX="220.0" layoutY="33.0" style="-fx-font-size: 20px; -fx-text-fill: white;"
+           text="Assignments Dashboard" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="33.0"/>
+
     <!-- Main Content -->
-    <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="20.0">
+    <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="80.0">
         <VBox spacing="10">
             <Label text="List of Assignments" styleClass="table-header"/>
-            <TableView fx:id="assignmentsTableView" prefHeight="300" prefWidth="550" styleClass="client-table">
+            <TableView fx:id="assignmentsTableView" AnchorPane.leftAnchor="20.0"
+                       AnchorPane.rightAnchor="20.0"
+                       AnchorPane.topAnchor="20.0"
+                       AnchorPane.bottomAnchor="20.0" styleClass="admin-table">
+                <!-- Ensures no extra empty column -->
+                <columnResizePolicy>
+                    <TableView fx:constant="UNCONSTRAINED_RESIZE_POLICY"/>
+                </columnResizePolicy>
                 <columns>
-                    <TableColumn fx:id="idAssignmentColumn" text="Assignment ID" />
-                    <TableColumn fx:id="descriptionAssignmentColumn" text="Description" />
-                    <TableColumn fx:id="statusAssignmentColumn" text="Status" />
-                    <TableColumn fx:id="idUserColumn" text="User ID" />
-                    <TableColumn fx:id="mechanicsColumn" text="Mechanics Assigned" />
-                    <TableColumn fx:id="actionColumn" text="Actions"/>
+                    <TableColumn fx:id="idAssignmentColumn" text="Assignment ID" prefWidth="130"/>
+                    <TableColumn fx:id="descriptionAssignmentColumn" text="Description" prefWidth="200"/>
+                    <TableColumn fx:id="statusAssignmentColumn" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="idUserColumn" text="User ID" prefWidth="120"/>
+                    <TableColumn fx:id="mechanicsColumn" text="Mechanics Assigned" prefWidth="180"/>
+                    <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
                 </columns>
             </TableView>
-            <Button text="Add Assignment" onAction="#addAssignment" prefWidth="500" styleClass="menu-button"/>
+            <Button text="Add Assignment" onAction="#addAssignment" prefWidth="930" styleClass="menu-button-active"/>
         </VBox>
     </HBox>
 
