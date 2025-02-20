@@ -26,7 +26,7 @@ public class MechanicServices implements IService<Mechanic>{
         String query = "INSERT INTO `mechanic`(`nameMechanic`, `specialityMechanic`) VALUES (?,?)";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1,mechanic.getNameMechanic());
-        ps.setString(2,mechanic.getSpecialityMechanic());
+        ps.setString(2,mechanic.getSpecialityMechanic().name());
         ps.executeUpdate();
         System.out.println("Mechanic added");
     }
@@ -45,7 +45,7 @@ public class MechanicServices implements IService<Mechanic>{
         String query = "UPDATE mechanic SET nameMechanic = ?, specialityMechanic = ? WHERE idMechanic = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, mechanic.getNameMechanic());
-        ps.setString(2, mechanic.getSpecialityMechanic());
+        ps.setString(2, mechanic.getSpecialityMechanic().name());
         ps.setInt(3, mechanic.getIdMechanic());
         ps.executeUpdate();
         System.out.println("Mechanic updated");
@@ -62,7 +62,10 @@ public class MechanicServices implements IService<Mechanic>{
             Mechanic mechanic = new Mechanic();
             mechanic.setIdMechanic(rs.getInt("idMechanic"));
             mechanic.setNameMechanic(rs.getString("nameMechanic"));
-            mechanic.setSpecialityMechanic(rs.getString("specialityMechanic"));
+            //mechanic.setSpecialityMechanic(rs.getString("specialityMechanic"));
+            String specialityString = rs.getString("specialityMechanic");
+            Mechanic.Speciality speciality = Mechanic.Speciality.valueOf(specialityString.toUpperCase());
+            mechanic.setSpecialityMechanic(speciality);
             mechanics.add(mechanic);
         }
 

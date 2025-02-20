@@ -2,27 +2,25 @@ package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.*;
 import tn.esprit.entities.Assignment;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
 import tn.esprit.services.MechanicServices;
+import tn.esprit.services.UserServices;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class UpdateAssignmentController {
 
     @FXML
     private TextField descriptionAssignmentField;
     @FXML
-    private TextField statusAssignmentField;
+    private ComboBox<Assignment.Status> statusAssignmentComboBox;
     @FXML
-    private TextField idUserField;
+    private ComboBox<Integer> userIdComboBox;
     @FXML
     private ListView<Mechanic> mechanicListView;
     @FXML
@@ -32,36 +30,60 @@ public class UpdateAssignmentController {
 
     private final AssignmentServices assignmentServices = new AssignmentServices();
     private final MechanicServices mechanicServices = new MechanicServices();
+    private final UserServices userServices = new UserServices();
     private Assignment assignment;
 
     public void initData(Assignment assignment) {
         this.assignment = assignment;
-        descriptionAssignmentField.setText(assignment.getDescriptionAssignment());
-        statusAssignmentField.setText(assignment.getStatusAssignment());
-        idUserField.setText(String.valueOf(assignment.getIdUser()));
 
+        // Set Description Field
+        descriptionAssignmentField.setText(assignment.getDescriptionAssignment());
+
+        // Populate Status ComboBox
+        statusAssignmentComboBox.getItems().addAll(Assignment.Status.values());
+        statusAssignmentComboBox.setValue(assignment.getStatusAssignment());  // ✅ Pre-select status
+
+        // Populate User ID ComboBox from Database
+        loadUserIds();
+
+        // Set the current User ID
+        userIdComboBox.setValue(assignment.getIdUser());
+
+        // Load Mechanics
         loadMechanics(assignment);
+    }
+
+    private void loadUserIds() {
+        try {
+            List<Integer> userIds = userServices.getAllUserIds();  // Fetch user IDs from DB
+            ObservableList<Integer> userIdList = FXCollections.observableArrayList(userIds);
+            userIdComboBox.setItems(userIdList);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private void loadMechanics(Assignment assignment) {
         try {
-            // Get all mechanics
             List<Mechanic> allMechanics = mechanicServices.returnList();
-            // Get mechanics assigned to this assignment
             List<Mechanic> assignedMechanics = assignmentServices.getMechanicsByAssignmentId(assignment.getIdAssignment());
 
-            // Convert to observable list
             ObservableList<Mechanic> mechanicsObservable = FXCollections.observableArrayList(allMechanics);
             mechanicListView.setItems(mechanicsObservable);
-            mechanicListView.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
+            mechanicListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 
-            // Preselect assigned mechanics
+            // Pre-select assigned mechanics
             for (Mechanic mechanic : assignedMechanics) {
-                mechanicListView.getSelectionModel().select(mechanic);
+                for (Mechanic listMechanic : mechanicListView.getItems()) {
+                    if (listMechanic.getIdMechanic() == mechanic.getIdMechanic()) {
+                        mechanicListView.getSelectionModel().select(listMechanic);
+                        break;
+                    }
+                }
             }
 
-            // Display mechanic info properly
-            mechanicListView.setCellFactory(lv -> new javafx.scene.control.ListCell<>() {
+            // Display mechanics properly in the ListView
+            mechanicListView.setCellFactory(lv -> new ListCell<>() {
                 @Override
                 protected void updateItem(Mechanic mechanic, boolean empty) {
                     super.updateItem(mechanic, empty);
@@ -78,37 +100,39 @@ public class UpdateAssignmentController {
         }
     }
 
+    private void showAlert(String title, String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     @FXML
     private void saveAssignment() {
         try {
-            // Get input values
             String description = descriptionAssignmentField.getText();
-            String status = statusAssignmentField.getText();
-            int idUser;
+            Assignment.Status status = statusAssignmentComboBox.getValue();
+            Integer userId = userIdComboBox.getValue();
 
-            // Validate if idUser is a valid integer
-            try {
-                idUser = Integer.parseInt(idUserField.getText());
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid User ID format.");
-                return; // Exit if not a valid number
+            if (description.isEmpty() || status == null || userId == null) {
+                showAlert("Missing Information", "Please fill all required fields.");
+                return;
             }
 
-            // Check if idUser exists in the user table
-            if (!assignmentServices.isUserExists(idUser)) {
-                System.out.println("User ID does not exist in the database.");
-                return; // Exit if user doesn't exist
+            // Check if the User ID exists
+            if (!userServices.isUserExists(userId)) {
+                showAlert("Invalid User", "The selected User ID does not exist.");
+                return;
             }
 
-            // Update assignment object
+            // Update assignment
             assignment.setDescriptionAssignment(description);
             assignment.setStatusAssignment(status);
-            assignment.setIdUser(idUser);
-
-            // Update assignment in the database
+            assignment.setIdUser(userId);
             assignmentServices.update(assignment);
 
-            // Update selected mechanics
+            // Update assigned mechanics
             List<Mechanic> selectedMechanics = mechanicListView.getSelectionModel().getSelectedItems();
             assignmentServices.updateAssignmentWithMechanics(assignment.getIdAssignment(), selectedMechanics);
 
@@ -117,8 +141,6 @@ public class UpdateAssignmentController {
             e.printStackTrace();
         }
     }
-
-
 
     @FXML
     private void cancel() {

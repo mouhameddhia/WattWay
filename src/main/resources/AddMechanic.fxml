@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddMechanicController"
             stylesheets="@styles.css" styleClass="gradient-pane">
@@ -19,11 +20,11 @@
         <TextField fx:id="nameMechanicField" promptText="Enter mechanic name" styleClass="form-input"/>
 
         <Label text="Speciality:" styleClass="form-label"/>
-        <TextField fx:id="specialityMechanicField" promptText="Enter mechanic speciality" styleClass="form-input"/>
+        <ComboBox fx:id="specialityMechanicComboBox" />
 
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="saveButton" text="Save" onAction="#saveMechanic" styleClass="primary-button"/>
-            <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" styleClass="secondary-button"/>
+            <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" styleClass="delete-button"/>
         </HBox>
 
     </VBox>

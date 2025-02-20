@@ -3,13 +3,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Assignment {
+    public enum Status {
+        PENDING,
+        COMPLETED;
+    }
     private int idAssignment;
     private String descriptionAssignment;
-    private String statusAssignment;
+    private Status statusAssignment;
     private int idUser;
     private List<Mechanic> mechanics;
 
-    public Assignment(int idAssignment, String descriptionAssignment, String statusAssignment, int idUser) {
+    public Assignment(int idAssignment, String descriptionAssignment, Status statusAssignment, int idUser) {
         this.idAssignment = idAssignment;
         this.descriptionAssignment = descriptionAssignment;
         this.statusAssignment = statusAssignment;
@@ -37,11 +41,11 @@ public class Assignment {
         this.descriptionAssignment = descriptionAssignment;
     }
 
-    public String getStatusAssignment() {
+    public Status getStatusAssignment() {
         return statusAssignment;
     }
 
-    public void setStatusAssignment(String statusAssignment) {
+    public void setStatusAssignment(Status statusAssignment) {
         this.statusAssignment = statusAssignment;
     }
 

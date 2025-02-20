@@ -51,6 +51,11 @@ public class ListMechanicController {
             private final Button deleteButton = new Button("Delete");
 
             {
+                updateButton.getStyleClass().add("primary-button");
+                deleteButton.getStyleClass().add("delete-button");
+
+                updateButton.setStyle("-fx-background-color: #00bba8; -fx-text-fill: white;");
+
                 updateButton.setOnAction(event -> {
                     Mechanic mechanic = getTableView().getItems().get(getIndex());
                     updateMechanic(mechanic);

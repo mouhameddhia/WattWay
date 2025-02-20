@@ -41,7 +41,7 @@
                <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
             </columns>
          </TableView>
-         <Button text="Add Mechanic" onAction="#addMechanic" prefWidth="930" styleClass="menu-button-active"/>
+         <Button text="Add Mechanic" onAction="#addMechanic" prefWidth="950" styleClass="menu-button-active"/>
       </VBox>
    </HBox>
 

@@ -48,7 +48,7 @@
                     <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
                 </columns>
             </TableView>
-            <Button text="Add Assignment" onAction="#addAssignment" prefWidth="930" styleClass="menu-button-active"/>
+            <Button text="Add Assignment" onAction="#addAssignment" prefWidth="950" styleClass="menu-button-active"/>
         </VBox>
     </HBox>
 

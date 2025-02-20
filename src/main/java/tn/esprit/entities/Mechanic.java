@@ -3,25 +3,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Mechanic {
+
+    public enum Speciality {
+        ELECTRICIAN,
+        MECHANIC,
+        SOFTWARE
+    }
     private int idMechanic;
     private String nameMechanic;
-    private String specialityMechanic;
+    private Speciality specialityMechanic;
     private List<Assignment> assignments;
 
+
+
     // Constructor
-    public Mechanic(int idMechanic, String nameMechanic, String specialityMechanic) {
+    public Mechanic(int idMechanic, String nameMechanic, Speciality specialityMechanic) {
         this.idMechanic = idMechanic;
         this.nameMechanic = nameMechanic;
         this.specialityMechanic = specialityMechanic;
         this.assignments = new ArrayList<>();
     }
-    public Mechanic(String nameMechanic, String specialityMechanic) {
+    public Mechanic(String nameMechanic, Speciality specialityMechanic) {
         this.nameMechanic = nameMechanic;
         this.specialityMechanic = specialityMechanic;
     }
     public Mechanic() {
         this.assignments = new ArrayList<>();
     }
+
 
     public int getIdMechanic() {
         return idMechanic;
@@ -39,15 +48,16 @@ public class Mechanic {
         this.nameMechanic = nameMechanic;
     }
 
-    public String getSpecialityMechanic() {
+    public Speciality getSpecialityMechanic() {
         return specialityMechanic;
     }
 
-    public void setSpecialityMechanic(String specialityMechanic) {
+    public void setSpecialityMechanic(Speciality specialityMechanic) {
         this.specialityMechanic = specialityMechanic;
     }
 
     public List<Assignment> getAssignments() { return assignments ;}
+
 
     public void setAssignment(List<Assignment> assignments) {
         this.assignments = assignments;

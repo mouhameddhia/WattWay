@@ -178,12 +178,16 @@ public class ListAssignmentController {
         ObservableList<Assignment> assignments = FXCollections.observableArrayList(assignmentServices.returnList());
         assignmentsTableView.setItems(assignments);
 
-        // ✅ Corrected Action Buttons Setup
         actionColumn.setCellFactory(param -> new TableCell<>() {
             private final Button updateButton = new Button("Update");
             private final Button deleteButton = new Button("Delete");
 
             {
+                updateButton.getStyleClass().add("primary-button");
+                deleteButton.getStyleClass().add("delete-button");
+
+                updateButton.setStyle("-fx-background-color: #00bba8; -fx-text-fill: white;");
+
                 updateButton.setOnAction(event -> {
                     Assignment assignment = getTableView().getItems().get(getIndex());
                     updateAssignment(assignment);

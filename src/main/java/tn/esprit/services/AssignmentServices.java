@@ -31,7 +31,7 @@ public class AssignmentServices implements IService<Assignment> {
         String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idUser`) VALUES (?,?,?)";
         PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, assignment.getDescriptionAssignment());
-        ps.setString(2, assignment.getStatusAssignment());
+        ps.setString(2, assignment.getStatusAssignment().name());
         ps.setInt(3, assignment.getIdUser());
         ps.executeUpdate();
 
@@ -71,7 +71,7 @@ public class AssignmentServices implements IService<Assignment> {
         String query = "UPDATE assignment SET descriptionAssignment = ?, statusAssignment = ?, idUser = ? WHERE idAssignment = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, assignment.getDescriptionAssignment());
-        ps.setString(2, assignment.getStatusAssignment());
+        ps.setString(2, assignment.getStatusAssignment().name());
         ps.setInt(3, assignment.getIdUser());
         ps.setInt(4, assignment.getIdAssignment());
         ps.executeUpdate();
@@ -105,10 +105,17 @@ public class AssignmentServices implements IService<Assignment> {
             Assignment assignment = new Assignment();
             assignment.setIdAssignment(rs.getInt("idAssignment"));
             assignment.setDescriptionAssignment(rs.getString("descriptionAssignment"));
-            assignment.setStatusAssignment(rs.getString("statusAssignment"));
-            assignment.setIdUser(rs.getInt("idUser"));
+            String statusStr = rs.getString("statusAssignment");
+            Assignment.Status status;
+            try {
+                status = Assignment.Status.valueOf(statusStr); // Convert String to Enum
+            } catch (IllegalArgumentException e) {
+                status = Assignment.Status.PENDING; // Default to PENDING if value is invalid
+                System.err.println("Warning: Invalid status '" + statusStr + "' found in DB, defaulting to PENDING.");
+            }
+            assignment.setStatusAssignment(status);
 
-            // Fetch mechanics and set them
+            assignment.setIdUser(rs.getInt("idUser"));
             List<Mechanic> mechanics = getMechanicsByAssignmentId(assignment.getIdAssignment());
             assignment.setMechanics(mechanics);
 
@@ -132,7 +139,12 @@ public class AssignmentServices implements IService<Assignment> {
             Mechanic mechanic = new Mechanic();
             mechanic.setIdMechanic(rs.getInt("idMechanic"));
             mechanic.setNameMechanic(rs.getString("nameMechanic"));
-            mechanic.setSpecialityMechanic(rs.getString("specialityMechanic"));
+            String specialityString = rs.getString("specialityMechanic").toUpperCase();
+            try {
+                mechanic.setSpecialityMechanic(Mechanic.Speciality.valueOf(specialityString));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Invalid speciality found in DB : " + specialityString);
+            }
             mechanics.add(mechanic);
         }
 
@@ -157,18 +169,6 @@ public class AssignmentServices implements IService<Assignment> {
 
         insertStmt.executeBatch();
         System.out.println("Assignment updated with new mechanics.");
-    }
-    public boolean isUserExists(int idUser) throws SQLException {
-        String query = "SELECT COUNT(*) FROM user WHERE idUser = ?";
-        try (PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setInt(1, idUser);
-            try (ResultSet rs = ps.executeQuery()) {
-                if (rs.next()) {
-                    return rs.getInt(1) > 0;
-                }
-            }
-        }
-        return false;
     }
 
 

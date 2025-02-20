@@ -216,5 +216,32 @@
 .secondary-button:hover {
     -fx-background-color: #C62828;
 }
+.primary-button {
+    -fx-background-color: #00bba8;  /* Green color */
+    -fx-text-fill: white;           /* White text */
+    -fx-font-weight: bold;          /* Bold text */
+    -fx-padding: 5px 10px;          /* Padding */
+    -fx-border-radius: 5px;         /* Rounded corners */
+    -fx-cursor: hand;               /* Pointer cursor */
+}
+
+/* Add a hover effect */
+.primary-button:hover {
+    -fx-background-color: #006e63; /* Darker green on hover */
+}
+
+/* Style the delete button */
+.delete-button {
+    -fx-background-color: #d9534f;  /* Red color */
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;          /* Padding */
+    -fx-border-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.delete-button:hover {
+    -fx-background-color: #c9302c; /* Darker red on hover */
+}
 
 
