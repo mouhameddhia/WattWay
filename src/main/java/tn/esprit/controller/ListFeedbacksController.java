@@ -1,5 +1,6 @@
 package tn.esprit.controller;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -50,13 +51,26 @@ public class ListFeedbacksController {
         feedbackContainer.getChildren().clear();
         int end = Math.min(currentIndex + 3, feedbackList.size());
 
+        UserServices userServices = new UserServices();
+
         for (int i = currentIndex; i < end; i++) {
             Feedback feedback = feedbackList.get(i);
 
             VBox feedbackBox = new VBox();
+            String clientName;
+            if (loggedInClient != null && feedback.getIdUser() == loggedInClient.getIdUser()) {
+                clientName = "You"; // If the feedback is from the logged-in user
+            } else {
+                // Fetch the client's name from the database
+                clientName = userServices.getClientNameById(feedback.getIdUser());
+            }
+
+            // Add the client's name or "You" to the feedback box
+            feedbackBox.getChildren().add(new Label("Posted by: " + clientName));
             feedbackBox.getChildren().add(new Label(feedback.getContentFeedback()));
             feedbackBox.getChildren().add(new Label("Rating: " + feedback.getRatingFeedback()));
-            String clientName;
+
+            // Add the Delete button for the logged-in user's feedbacks
             if (loggedInClient != null && feedback.getIdUser() == loggedInClient.getIdUser()) {
                 Button deleteButton = new Button("Delete");
                 deleteButton.setOnAction(e -> deleteFeedback(feedback.getIdFeedback()));
@@ -124,10 +138,6 @@ public class ListFeedbacksController {
             System.out.println("Error loading AddAdmin.fxml: " + e.getMessage());
         }
     }
-
-
-
-
 
 
 

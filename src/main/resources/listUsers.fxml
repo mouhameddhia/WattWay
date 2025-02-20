@@ -9,11 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<?import javafx.util.Callback?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.control.TableCell?>
-<AnchorPane fx:id="anchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="gradient-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.ListUsersController"> <!-- Apply the gradient class -->
-
+<AnchorPane fx:id="anchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="gradient-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.ListUsersController">
     <!-- Sidebar -->
     <VBox fx:id="sidebar" prefWidth="200.0" styleClass="sidebar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <Label styleClass="menu-label" text="Menu" />
@@ -53,6 +49,13 @@
             </graphic>
             <text>Orders</text>
         </Button>
+        <!-- Add Feedback Button -->
+        <Button onAction="#handleFeedbacks" styleClass="menu-button">
+            <graphic>
+                <Label styleClass="icon" text="" /> <!-- Feedback icon -->
+            </graphic>
+            <text>Feedbacks</text>
+        </Button>
         <VBox.margin>
             <Insets left="10" top="10" />
         </VBox.margin>
@@ -72,8 +75,6 @@
             <TableColumn fx:id="colAdminFirstName" styleClass="table-header" text="First Name" />
             <TableColumn fx:id="colAdminLastName" styleClass="table-header" text="Last Name" />
             <TableColumn fx:id="colAdminRole" styleClass="table-header" text="Function" />
-
-            <!-- Delete Button Column -->
             <TableColumn fx:id="colAdminDelete" text="Delete" />
         </columns>
         <columnResizePolicy>
@@ -91,8 +92,6 @@
             <TableColumn fx:id="colClientPhone" prefWidth="68.53326416015625" styleClass="table-header" text="Phone" />
             <TableColumn fx:id="colClientPayment" styleClass="table-header" text="Payment" />
             <TableColumn fx:id="colClientAddress" styleClass="table-header" text="Address" />
-
-            <!-- Delete Button Column -->
             <TableColumn fx:id="colClientDelete" text="Delete" />
         </columns>
         <columnResizePolicy>
@@ -100,12 +99,10 @@
         </columnResizePolicy>
     </TableView>
 
-
-
     <Label layoutX="224.0" layoutY="407.0" prefHeight="70.0" prefWidth="106.0" style="-fx-font-size: 16px; -fx-font-weight: bold;" text="Clients" textFill="WHITE">
-      <font>
-         <Font size="28.0" />
-      </font>
-   </Label>
-    <Button text="Add Admin" layoutX="10" layoutY="420" onAction="#handleAddAdmin"/>
+        <font>
+            <Font size="28.0" />
+        </font>
+    </Label>
+    <Button layoutX="240.0" layoutY="478.0" onAction="#handleAddAdmin" text="Add Admin" />
 </AnchorPane>

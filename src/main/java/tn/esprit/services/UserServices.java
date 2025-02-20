@@ -268,6 +268,32 @@ public class UserServices implements IService<User> {
     }
 
 
+    public String getClientNameById(int idUser) {
+        String clientName = "Unknown"; // Default value
+        String query = "SELECT firstNameUser, lastNameUser FROM User WHERE idUser = ?";
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, idUser);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    String firstName = rs.getString("firstNameUser");
+                    String lastName = rs.getString("lastNameUser");
+                    clientName = firstName + " " + lastName;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error fetching client name: " + e.getMessage());
+        }
+        return clientName;
+    }
+
+
+
+
+
+
+
+
+
 
 
 

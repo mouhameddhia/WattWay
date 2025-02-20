@@ -241,6 +241,30 @@ public class ListUsersController {
         adminTable.setItems(adminList);
     }
 
+    @FXML
+    private void handleFeedbacks(ActionEvent event) {
+        try {
+            // Load the manageFeedbacks FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/manageFeedbacks.fxml"));
+            Parent root = loader.load();
+
+            // Create a new stage for the manageFeedbacks window
+            Stage feedbackStage = new Stage();
+            feedbackStage.setTitle("Manage Feedbacks");
+            feedbackStage.setScene(new Scene(root));
+
+            // Show the new stage (non-modal by default)
+            feedbackStage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert("Error", "Failed to load the manage feedbacks page.");
+        }
+    }
+
+    private void showAlert(String error, String s) {
+    }
+
+
 
 
 

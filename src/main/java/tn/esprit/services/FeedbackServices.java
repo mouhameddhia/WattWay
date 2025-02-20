@@ -7,7 +7,9 @@ import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class FeedbackServices implements IService<Feedback> {
 
@@ -120,7 +122,47 @@ public class FeedbackServices implements IService<Feedback> {
     }
 
 
+
+
+
+
+    public List<Map<String, Object>> getAllWithUserNames() {
+        List<Map<String, Object>> feedbackList = new ArrayList<>();
+        String query = "SELECT f.idFeedback, f.contentFeedback, f.ratingFeedback, f.dateFeedback, u.firstNameUser, u.lastNameUser " +
+                "FROM feedback f " +
+                "JOIN user u ON f.idUser = u.idUser";
+        try (PreparedStatement ps = con.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+            while (rs.next()) {
+                Map<String, Object> feedbackMap = new HashMap<>();
+                feedbackMap.put("idFeedback", rs.getInt("idFeedback"));
+                feedbackMap.put("contentFeedback", rs.getString("contentFeedback"));
+                feedbackMap.put("ratingFeedback", rs.getInt("ratingFeedback"));
+                feedbackMap.put("dateFeedback", rs.getDate("dateFeedback"));
+                feedbackMap.put("userName", rs.getString("firstNameUser") + " " + rs.getString("lastNameUser"));
+                feedbackList.add(feedbackMap);
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving feedbacks with user names: " + e.getMessage());
+        }
+        return feedbackList;
+    }
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

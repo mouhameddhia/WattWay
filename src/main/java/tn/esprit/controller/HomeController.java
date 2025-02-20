@@ -72,7 +72,7 @@ public class HomeController {
     private void handleLogout(ActionEvent event) {
         try {
             // Load the login FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/tn/esprit/ressources/login.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
             Parent root = loader.load();
 
             // Optionally, if you need to reset any login controller settings, do that here
