@@ -5,8 +5,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2221e61-b9fa-4aff-8130-63913b869d83" name="Changes" comment="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)">
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddCar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddWarehouse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/BrowseCar.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/CarInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RentBill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RepairCarInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBill.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBillUser.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBillUserInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/MainFx.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AddCar.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/AddWarehouse.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/BrowseCar.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/CarInterface.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/26886.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/54123.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/678116-calendar-512.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/710296.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/ava13c3ac53812cde1b88.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/pngtree-image-icon---vector-loading-download-and-upload-png-image_1701257.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/RentBill.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/RepairCarInterface.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ShowBill.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUser.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUserInterface.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/addSubmission.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/submissions.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Bill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BillServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BillServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/CarServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/CarServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/WarehouseServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/WarehouseServices.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +55,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -74,6 +110,9 @@
   }
 }</component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -89,6 +128,7 @@
   "keyToString": {
     "Application.Main.executor": "Run",
     "Downloaded.Files.Path.Enabled": "false",
+    "Maven.WarehouseManagement [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
     "Repository.Attach.Sources": "false",
@@ -96,7 +136,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "WarehouseManagement",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/harou/IdeaProjects/WarehouseManagement",
+    "last_opened_file_path": "C:/Users/harou/IdeaProjects/WarehouseManagement/src/main/resources",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -105,10 +145,21 @@
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\harou\IdeaProjects\WarehouseManagement\src\main\resources" />
+      <recent name="C:\Users\harou\IdeaProjects\WarehouseManagement\src\main\resources\Font" />
+      <recent name="C:\Users\harou\IdeaProjects\WarehouseManagement\src\main\resources\Images" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\harou\IdeaProjects\WarehouseManagement\src\main\resources" />
+      <recent name="C:\Users\harou\IdeaProjects\WarehouseManagement\src\main\java\resources" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="tn.esprit.main.Main" />
@@ -129,14 +180,6 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.22855.74" />
-        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.22855.74" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -151,6 +194,15 @@
       <workItem from="1739148755273" duration="3000" />
       <workItem from="1739148781192" duration="647000" />
       <workItem from="1739150276433" duration="1180000" />
+      <workItem from="1739521443656" duration="4852000" />
+      <workItem from="1739529165452" duration="1452000" />
+      <workItem from="1739731836760" duration="2502000" />
+      <workItem from="1739736641122" duration="8503000" />
+      <workItem from="1739787189949" duration="7772000" />
+      <workItem from="1739878198020" duration="27787000" />
+      <workItem from="1739959366407" duration="30198000" />
+      <workItem from="1740047194357" duration="15298000" />
+      <workItem from="1740076578801" duration="11927000" />
     </task>
     <task id="LOCAL-00001" summary="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)">
       <option name="closed" value="true" />
@@ -208,5 +260,9 @@
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)" />
     <option name="LAST_COMMIT_MESSAGE" value="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

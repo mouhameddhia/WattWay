@@ -8,6 +8,7 @@ public class Car {
     private float priceCar;
     private String statusCar;
     private int kilometrageCar;
+    private String imgCar="";
     private int idWarehouse;
 
     //CONSTRUCTORS
@@ -77,6 +78,14 @@ public class Car {
         this.kilometrageCar = kilometrageCar;
     }
 
+    public String getImgCar() {
+        return imgCar;
+    }
+
+    public void setImgCar(String imgCar) {
+        this.imgCar = imgCar;
+    }
+
     public int getIdWarehouse() {
         return idWarehouse;
     }
@@ -84,11 +93,7 @@ public class Car {
         this.idWarehouse = idWarehouse;
     }
     public void setStatusCar(String statusCar) {
-        if (statusCar.equals("available") || statusCar.equals("under repair") || statusCar.equals("rented")) {
-            this.statusCar = statusCar;
-        } else {
-            throw new IllegalArgumentException("Status must be one of these (available, under repair, rented)");
-        }
+        this.statusCar = statusCar;
     }
     // OVERRIDES
 
@@ -99,7 +104,7 @@ public class Car {
                 " Model : " + modelCar + "\n" +
                 " Brand : " + brandCar + "\n" +
                 " Year : " + yearCar + "\n" +
-                " Price : " + priceCar + "\n" +
+                " Price : " + priceCar + " DT" + "\n" +
                 " Car status : " + statusCar + "\n" +
                 " Car kilometrage : " + kilometrageCar + "\n" +
                 " Inside warehouse : " + idWarehouse + "\n" ;

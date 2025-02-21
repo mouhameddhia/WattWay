@@ -17,6 +17,11 @@ public class Main {
         //WAREHOUSE
         Warehouse w = new Warehouse("Nabeul","Rue Ghana",3010,50);
         WarehouseServices ws = new WarehouseServices();
+        try {
+            System.out.println(ws.getWarehouseIdByAddress("Rue de la jeunesse, Ariana, 2083"));
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         //CREATE
 //        try {
 //            ws.add(w);
@@ -98,12 +103,12 @@ public class Main {
 //            System.out.println(e.getMessage());
 //        }
         //RETRIEVE
-        try {
-            List<Bill> bills=bs.retrieve();
-            System.out.println(bills);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
+//        try {
+//            List<Bill> bills=bs.retrieve();
+//            System.out.println(bills);
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//        }
         //UPDATE
 
 //        try {

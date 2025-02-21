@@ -1,0 +1,180 @@
+/* Root styles and variables */
+.root {
+    -fx-background-color: linear-gradient(to bottom, #132EC2, #1BB8A8);
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+/* Main VBox container */
+.vbox {
+    -fx-background-color: rgba(15, 23, 42, 0.85);
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 10);
+}
+.hbox {
+    -fx-background-color: #132EC2;
+    -fx-padding: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+}
+
+/* Search/Filter Section Styles */
+.search-section {
+    -fx-background-color: rgba(30, 41, 59, 0.8);
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-min-height: 80;
+}
+
+.search-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.modern-text-field {
+    -fx-background-color: rgba(51, 65, 85, 0.6);
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #94a3b8;
+    -fx-border-color: transparent;
+    -fx-padding: 10 15;
+    -fx-font-size: 14px;
+}
+
+.modern-text-field:focused {
+    -fx-background-color: rgba(51, 65, 85, 0.8);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 10, 0, 0, 0);
+}
+
+/* Button Styles */
+.action-button {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.action-button:hover {
+    -fx-background-color: #2563eb;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-translate-y: -1;
+}
+
+/* Submission Card Styles */
+.submission-card {
+    -fx-background-color: rgba(30, 41, 59, 0.9);
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-padding: 25;
+    -fx-max-width: 400;
+    -fx-min-width: 400;
+}
+
+.submission-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 20, 0, 0, 6);
+    -fx-translate-y: -2;
+    -fx-background-color: rgba(40, 121, 248, 0.9);
+}
+
+.submission-card .label {
+    -fx-text-fill: #e2e8f0;
+}
+
+.submission-card .label-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+/* Response Card Styles */
+.response-card {
+    -fx-background-color: rgba(51, 65, 85, 0.6);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(71, 85, 105, 0.3);
+    -fx-border-radius: 8;
+    -fx-padding: 15;
+}
+
+/* ScrollPane Styles */
+.modern-scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-min-height: 600;
+    -fx-pref-height: 800;
+}
+
+.modern-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.modern-flow-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 30;
+    -fx-hgap: 30;
+    -fx-vgap: 30;
+    -fx-alignment: center;
+}
+
+/* Urgency indicators with glow effect */
+.urgency-high {
+    -fx-effect: dropshadow(gaussian, #ef4444, 10, 0, 0, 0);
+}
+
+.urgency-medium {
+    -fx-effect: dropshadow(gaussian, #f97316, 10, 0, 0, 0);
+}
+
+.urgency-low {
+    -fx-effect: dropshadow(gaussian, #22c55e, 10, 0, 0, 0);
+}
+
+/* Button variants */
+.button-delete {
+    -fx-background-color: #ef4444;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.button-delete:hover {
+    -fx-background-color: #dc2626;
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.3), 15, 0, 0, 4);
+}
+
+.button-update {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.button-update:hover {
+    -fx-background-color: #2563eb;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.3), 15, 0, 0, 4);
+}
+
+/* Scrollbar Styling */
+.modern-scroll-pane .scroll-bar:vertical,
+.modern-scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.modern-scroll-pane .scroll-bar:vertical .thumb,
+.modern-scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 5;
+}
+
+.modern-scroll-pane .scroll-bar:vertical .thumb:hover,
+.modern-scroll-pane .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Make sure the stage is maximized in your controller */

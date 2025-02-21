@@ -63,6 +63,41 @@ public class WarehouseServices implements Iservice<Warehouse> {
         }
         return warehouses;
     }
+    public int getWarehouseIdByAddress(String address) throws SQLException {
+        int wid=-1;
+        String[] addressParts = address.split(",\\s*");
+        String query = "SELECT* FROM WAREHOUSE WHERE city=? AND street=? AND postalCode=?";
+        PreparedStatement prstmt = conn.prepareStatement(query);
+        prstmt.setString(1, addressParts[1]);
+        prstmt.setString(2, addressParts[0]);
+        prstmt.setInt(3, Integer.parseInt(addressParts[2]));
+        ResultSet res = prstmt.executeQuery();
+        while (res.next()){
+            wid=res.getInt("idWarehouse");
+        }
+        return wid;
+
+    }
+    public String getWarehouseAddressById(int idWarehouse) throws SQLException {
+        StringBuilder address = new StringBuilder();
+        String query = "SELECT street, city, postalCode FROM WAREHOUSE WHERE idWarehouse = ?";
+        PreparedStatement prstmt = conn.prepareStatement(query);
+        prstmt.setInt(1, idWarehouse);
+        ResultSet res = prstmt.executeQuery();
+
+        if (res.next()) {
+            address.append(res.getString("street"));
+            address.append(", ");
+            address.append(res.getString("city"));
+            address.append(", ");
+            address.append(res.getInt("postalCode"));
+        } else {
+            // If no warehouse is found with the given ID
+            return "Address not found";
+        }
+        return address.toString();
+    }
+
 
     // OPERATIONAL METHODS
     public boolean checkCar(Car car){

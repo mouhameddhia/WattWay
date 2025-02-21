@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" prefWidth="400.0" styleClass="root" stylesheets="@addSubmission.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.RentBill">
+   <children>
+      <AnchorPane layoutX="-1.0" prefHeight="115.0" prefWidth="400.0" style="-fx-background-color: #132EC2;" styleClass="form-header" stylesheets="@addSubmission.css">
+         <children>
+            <ImageView fitHeight="85.0" fitWidth="174.0" layoutX="6.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Images/473701518_443535068727837_5572574659540551110_n-removebg-preview.png" />
+               </image>
+            </ImageView>
+         </children>
+         <effect>
+            <DropShadow />
+         </effect>
+      </AnchorPane>
+      <AnchorPane layoutX="45.0" layoutY="174.0" prefHeight="364.0" prefWidth="256.0" style="-fx-background-color: #0A1F44;" styleClass="form-container" stylesheets="@addSubmission.css">
+         <children>
+            <TextField fx:id="daysRentCar" layoutX="106.0" layoutY="127.0" prefHeight="25.0" prefWidth="60.0" />
+            <TextField fx:id="totalAmountBill" editable="false" layoutX="62.0" layoutY="232.0" />
+            <Label layoutX="56.0" layoutY="60.0" maxWidth="222.0" prefHeight="43.0" prefWidth="193.0" styleClass="field-label" stylesheets="@addSubmission.css" text="For how many days do you wish to rent this car for" textFill="#e6e0e0" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="63.0" layoutY="206.0" maxWidth="222.0" prefHeight="21.0" prefWidth="151.0" styleClass="field-label" stylesheets="@addSubmission.css" text="You will be charged" textFill="#e6e0e0" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Label>
+            <Button layoutX="96.0" layoutY="294.0" mnemonicParsing="false" onAction="#addBillOnClick" styleClass="submit-button" stylesheets="@addSubmission.css" text="Proceed" />
+            <Label layoutX="171.0" layoutY="128.0" maxWidth="222.0" prefHeight="21.0" prefWidth="34.0" styleClass="field-label" stylesheets="@addSubmission.css" text="days" textFill="#e6e0e0" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="exitMessage" layoutX="14.0" layoutY="315.0" prefHeight="35.0" prefWidth="113.0" text="Thank you,  you may close this window" textFill="#e6e0e0" visible="false" wrapText="true" />
+            <Label layoutX="216.0" layoutY="234.0" maxWidth="222.0" prefHeight="21.0" prefWidth="34.0" styleClass="field-label" stylesheets="@addSubmission.css" text="TND" textFill="#e6e0e0" wrapText="true">
+               <font>
+                  <Font name="System Italic" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+      <Label layoutX="144.0" layoutY="132.0" prefHeight="43.0" prefWidth="113.0" styleClass="form-header" stylesheets="@addSubmission.css" text="Rent a car">
+         <font>
+            <Font name="System Italic" size="29.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
