@@ -1,6 +1,7 @@
 package tn.esprit.Controllers;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.*;
 import tn.esprit.entities.Assignment;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
@@ -12,11 +13,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableCell;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -39,6 +37,22 @@ public class ListAssignmentController {
     private TableColumn<Assignment, Void> actionColumn;
 
     private final AssignmentServices assignmentServices;
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private void searchAssignments() throws SQLException {
+        String searchText = searchField.getText().toLowerCase();
+
+        if (searchText.isEmpty()) {
+            assignmentsTableView.setItems(FXCollections.observableArrayList(assignmentServices.returnList()));
+        } else {
+            ObservableList<Assignment> filteredList = assignmentsTableView.getItems()
+                    .filtered(a -> a.getDescriptionAssignment().toLowerCase().contains(searchText));
+            assignmentsTableView.setItems(filteredList);
+        }
+    }
+
 
     @FXML
     private void addAssignment() {
@@ -161,7 +175,7 @@ public class ListAssignmentController {
     */
     @FXML
     private void initialize() throws SQLException {
-        idAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("idAssignment"));
+        //idAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("idAssignment"));
         descriptionAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionAssignment"));
         statusAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("statusAssignment"));
         idUserColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));

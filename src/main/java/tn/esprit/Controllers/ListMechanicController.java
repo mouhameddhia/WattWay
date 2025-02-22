@@ -1,5 +1,6 @@
 package tn.esprit.Controllers;
 
+import javafx.scene.control.*;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.MechanicServices;
 import javafx.collections.FXCollections;
@@ -10,11 +11,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.TableCell;
+
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -32,6 +30,22 @@ public class ListMechanicController {
     private TableColumn<Mechanic, Void> actionColumn;
 
     private final MechanicServices mechanicServices;
+    @FXML
+    private TextField searchField;
+
+    @FXML
+    private void searchMechanics() throws SQLException {
+        String searchText = searchField.getText().toLowerCase();
+
+        if (searchText.isEmpty()) {
+            mechanicsTableView.setItems(FXCollections.observableArrayList(mechanicServices.returnList()));
+        } else {
+            ObservableList<Mechanic> filteredList = mechanicsTableView.getItems()
+                    .filtered(m -> m.getNameMechanic().toLowerCase().contains(searchText));
+            mechanicsTableView.setItems(filteredList);
+        }
+    }
+
 
     public ListMechanicController() {
         this.mechanicServices = new MechanicServices();
@@ -39,7 +53,7 @@ public class ListMechanicController {
 
     @FXML
     private void initialize() throws SQLException {
-        idMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("idMechanic"));
+        //idMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("idMechanic"));
         nameMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("nameMechanic"));
         specialityMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("specialityMechanic"));
 

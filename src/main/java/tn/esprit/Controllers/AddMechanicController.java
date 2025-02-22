@@ -53,6 +53,10 @@ public class AddMechanicController {
             showAlert("Invalid Name", "Mechanic name must contain only letters and spaces.");
             return;
         }
+        if (mechanicServices.isMechanicNameTaken(name)) {
+            showAlert("Duplicate Name", "A mechanic with this name already exists. Please choose another name.");
+            return;
+        }
 
         //Mechanic newMechanic = new Mechanic();
         //newMechanic.setNameMechanic(name);

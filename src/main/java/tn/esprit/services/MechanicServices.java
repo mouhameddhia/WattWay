@@ -71,4 +71,17 @@ public class MechanicServices implements IService<Mechanic>{
 
         return mechanics;
     }
+    public boolean isMechanicNameTaken(String name) throws SQLException {
+        String query = "SELECT COUNT(*) FROM mechanic WHERE nameMechanic = ?";
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, name);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1) > 0;
+                }
+            }
+        }
+        return false;
+    }
+
 }
