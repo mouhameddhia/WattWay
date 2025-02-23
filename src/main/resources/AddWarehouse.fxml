@@ -9,8 +9,9 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.web.WebView?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="gradient-pane" stylesheets="@styles.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.AddWarehouse">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="gradient-pane" stylesheets="@stylesZ.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.AddWarehouse">
    <children>
       <AnchorPane prefHeight="768.0" prefWidth="200.0" styleClass="sidebar" stylesheets="@styles.css">
          <children>
@@ -23,25 +24,25 @@
             <Button layoutX="62.0" layoutY="317.0" mnemonicParsing="false" onAction="#openAddCar" prefWidth="76.0" styleClass="menu-button" stylesheets="@styles.css" text="Car" />
             <Button layoutX="62.0" layoutY="381.0" mnemonicParsing="false" onAction="#openShowBill" prefWidth="76.0" styleClass="menu-button" stylesheets="@styles.css" text="Bill" />
          </children></AnchorPane>
-      <Label layoutX="700.0" layoutY="84.0" styleClass="form-title" stylesheets="@styles.css" text="Add a Warehouse" textFill="#1800a1">
+      <Label layoutX="700.0" layoutY="84.0" styleClass="form-title" stylesheets="@stylesZ.css" text="Add a Warehouse" textFill="#1800a1">
          <font>
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <Label layoutX="333.0" layoutY="176.0" styleClass="form-label" stylesheets="@styles.css" text="Warehouse Address">
+      <Label layoutX="331.0" layoutY="217.0" styleClass="form-label" stylesheets="@stylesZ.css" text="Warehouse Address">
          <font>
             <Font name="System Italic" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="cityWarehouse" alignment="CENTER" layoutX="332.0" layoutY="213.0" promptText="City" styleClass="form-input" stylesheets="@styles.css" />
-      <TextField fx:id="streetWarehouse" alignment="CENTER" layoutX="572.0" layoutY="213.0" promptText="Street" styleClass="form-input" stylesheets="@styles.css" />
-      <TextField fx:id="postalCodeWarehouse" alignment="CENTER" layoutX="830.0" layoutY="213.0" promptText="Postal Code" styleClass="form-input" stylesheets="@styles.css" />
-      <Label layoutX="331.0" layoutY="296.0" styleClass="form-label" stylesheets="@styles.css" text="Warehouse Capacity">
+      <TextField fx:id="cityWarehouse" alignment="CENTER" layoutX="550.0" layoutY="209.0" promptText="City" styleClass="form-input" stylesheets="@stylesZ.css" />
+      <TextField fx:id="streetWarehouse" alignment="CENTER" layoutX="790.0" layoutY="209.0" promptText="Street" styleClass="form-input" stylesheets="@stylesZ.css" />
+      <TextField fx:id="postalCodeWarehouse" alignment="CENTER" layoutX="1048.0" layoutY="209.0" promptText="Postal Code" styleClass="form-input" stylesheets="@stylesZ.css" />
+       <Label layoutX="331.0" layoutY="296.0" styleClass="form-label" stylesheets="@stylesZ.css" text="Warehouse Capacity">
          <font>
             <Font name="System Italic" size="21.0" />
          </font>
       </Label>
-      <TextField fx:id="capacityWarehouse" alignment="TOP_CENTER" layoutX="332.0" layoutY="336.0" promptText="Capacity" styleClass="form-input" stylesheets="@styles.css" />
+      <TextField fx:id="capacityWarehouse" alignment="TOP_CENTER" layoutX="332.0" layoutY="336.0" promptText="Capacity" styleClass="form-input" stylesheets="@stylesZ.css" />
       <TableView fx:id="tableViewWarehouse" layoutX="275.0" layoutY="498.0" prefHeight="194.0" prefWidth="973.0" styleClass="admin-table" stylesheets="@styles.css">
         <columns>
           <TableColumn fx:id="tableViewCityWarehouse" editable="false" prefWidth="179.0" text="City" />
@@ -55,5 +56,6 @@
       </TableView>
       <Button layoutX="332.0" layoutY="423.0" mnemonicParsing="false" onAction="#addWarehouseOnClick" styleClass="primary-button" stylesheets="@styles.css" text="Add" />
       <Button layoutX="438.0" layoutY="423.0" mnemonicParsing="false" onAction="#clearElementsWarehouse" styleClass="secondary-button" stylesheets="@styles.css" text="Clear" />
+      <WebView fx:id="webViewMap" layoutX="554.0" layoutY="271.0" prefHeight="200.0" prefWidth="663.0" />
    </children>
 </AnchorPane>

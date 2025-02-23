@@ -101,6 +101,7 @@ public class RepairCarInterface {
 
     @FXML
     void uploadImgCar(ActionEvent event) {
+        CarServices cs = new CarServices();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Select an Image");
 
@@ -110,6 +111,11 @@ public class RepairCarInterface {
 
         if (selectedFile != null) {
             imgCar.setText(selectedFile.toURI().toString().substring(6,selectedFile.toURI().toString().length()));
+            Car car = new Car();
+            car=cs.recognizeCar(cs.uploadImageIMGBB(imgCar.getText()));
+            brandCar.setText(car.getBrandCar());
+            modelCar.setText(car.getModelCar());
+            yearCar.setText(Integer.toString(car.getYearCar()));
             loadImageFromPath(selectedFile.toURI().toString().substring(6,selectedFile.toURI().toString().length()));
         }
     }

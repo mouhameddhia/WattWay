@@ -5,43 +5,32 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2221e61-b9fa-4aff-8130-63913b869d83" name="Changes" comment="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)">
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddCar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddWarehouse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/BrowseCar.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/CarInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RentBill.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RepairCarInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBill.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBillUser.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBillUserInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/MainFx.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AddCar.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/AddWarehouse.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/BrowseCar.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/CarInterface.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/26886.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/54123.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/678116-calendar-512.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/710296.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/ava13c3ac53812cde1b88.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Images/pngtree-image-icon---vector-loading-download-and-upload-png-image_1701257.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/RentBill.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/RepairCarInterface.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ShowBill.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUser.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUserInterface.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/addSubmission.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/styles.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/submissions.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Assets/map.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_13_2025_11_56_PM_[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Bill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Bill.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/entities/Car.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddCar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddCar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddWarehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddWarehouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RepairCarInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RepairCarInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/main/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/MainFx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BillServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BillServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/CarServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/CarServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/Iservice.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/WarehouseServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/WarehouseServices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/utils/Wattway.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AddCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AddCar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/AddWarehouse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AddWarehouse.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/BrowseCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BrowseCar.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/CarInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CarInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RentBill.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RentBill.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/RepairCarInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RepairCarInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ShowBill.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShowBill.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ShowBillUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUser.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/ShowBillUserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUserInterface.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/addSubmission.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/submissions.css" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,31 +113,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Main.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "false",
-    "Maven.WarehouseManagement [org.openjfx:javafx-maven-plugin:0.0.8:run].executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "WarehouseManagement",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/harou/IdeaProjects/WarehouseManagement/src/main/resources",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Maven.WarehouseManagement [org.openjfx:javafx-maven-plugin:0.0.8:run].executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;WarehouseManagement&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/harou/IdeaProjects/WarehouseManagement/src/main/resources&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\harou\IdeaProjects\WarehouseManagement\src\main\resources" />
@@ -202,7 +191,8 @@
       <workItem from="1739878198020" duration="27787000" />
       <workItem from="1739959366407" duration="30198000" />
       <workItem from="1740047194357" duration="15298000" />
-      <workItem from="1740076578801" duration="11927000" />
+      <workItem from="1740076578801" duration="13638000" />
+      <workItem from="1740317060124" duration="19532000" />
     </task>
     <task id="LOCAL-00001" summary="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)">
       <option name="closed" value="true" />
@@ -219,6 +209,11 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="d1c89525-b8fd-4737-8bf8-fa73b8ffad8a" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="RECENT_FILTERS">
       <map>
         <entry key="Branch">
@@ -251,6 +246,11 @@
                 </map>
               </option>
             </State>
+          </value>
+        </entry>
+        <entry key="d1c89525-b8fd-4737-8bf8-fa73b8ffad8a">
+          <value>
+            <State />
           </value>
         </entry>
       </map>

@@ -6,7 +6,7 @@ import tn.esprit.entities.Warehouse;
 import tn.esprit.services.BillServices;
 import tn.esprit.services.CarServices;
 import tn.esprit.services.WarehouseServices;
-import tn.esprit.utils.Wattway;
+import tn.esprit.utils.MyDatabase;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

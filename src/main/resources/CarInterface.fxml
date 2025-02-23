@@ -11,22 +11,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#showButtonsCarInterface" onMouseExited="#hideButtonsCarInterface" prefHeight="550.0" prefWidth="430.0" styleClass="vbox" stylesheets="@submissions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.CarInterface">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#showButtonsCarInterface" onMouseExited="#hideButtonsCarInterface" prefHeight="550.0" prefWidth="430.0" styleClass="vbox" stylesheets="@submissionsZ.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.CarInterface">
    <children>
-      <HBox prefHeight="299.0" prefWidth="475.0" stylesheets="@submissions.css">
+      <HBox prefHeight="299.0" prefWidth="475.0" stylesheets="@submissionsZ.css">
          <children>
             <ImageView fx:id="imgCar" fitHeight="279.0" fitWidth="430.0" pickOnBounds="true">
                <image>
-                  <Image url="@Images/pngtree-image-icon---vector-loading-download-and-upload-png-image_1701257.jpg" />
+                  <Image url="@images/Profilepictures/pngtree-image-icon---vector-loading-download-and-upload-png-image_1701257.jpg" />
                </image>
             </ImageView>
-            <VBox prefHeight="160.0" prefWidth="175.0" stylesheets="@submissions.css">
+            <VBox prefHeight="160.0" prefWidth="175.0" stylesheets="@submissionsZ.css">
                <children>
                   <HBox prefHeight="125.0" prefWidth="175.0" />
                   <HBox prefHeight="125.0" prefWidth="83.0" />
                </children>
             </VBox>
-            <VBox prefHeight="160.0" prefWidth="175.0" stylesheets="@submissions.css">
+            <VBox prefHeight="160.0" prefWidth="175.0" stylesheets="@submissionsZ.css">
                <children>
                   <HBox prefHeight="125.0" prefWidth="175.0" />
                   <HBox prefHeight="125.0" prefWidth="91.0" />
@@ -34,27 +34,27 @@
             </VBox>
          </children>
       </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hbox" stylesheets="@submissions.css">
+      <HBox prefHeight="100.0" prefWidth="200.0" styleClass="hbox" stylesheets="@submissionsZ.css">
          <children>
-            <VBox prefHeight="125.0" prefWidth="376.0" stylesheets="@submissions.css">
+            <VBox prefHeight="125.0" prefWidth="376.0" stylesheets="@submissionsZ.css">
                <children>
                   <HBox prefHeight="145.0" prefWidth="203.0">
                      <children>
                         <ImageView fitHeight="34.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/54123.png" />
+                              <Image url="@images/Profilepictures/54123.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="brandCar" alignment="CENTER" prefHeight="56.0" prefWidth="175.0" stylesheets="@submissions.css" text="Brand" textFill="WHITE">
+                        <Label fx:id="brandCar" alignment="CENTER" prefHeight="56.0" prefWidth="175.0" stylesheets="@submissionsZ.css" text="Brand" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman Bold Italic" size="26.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="48.0" prefWidth="203.0" styleClass="hbox" stylesheets="@submissions.css">
+                  <HBox prefHeight="48.0" prefWidth="203.0" styleClass="hbox" stylesheets="@submissionsZ.css">
                      <children>
-                        <Label fx:id="yearCar" alignment="BASELINE_CENTER" prefHeight="64.0" prefWidth="270.0" stylesheets="@submissions.css" text="Year" textFill="WHITE">
+                        <Label fx:id="yearCar" alignment="BASELINE_CENTER" prefHeight="64.0" prefWidth="270.0" stylesheets="@submissionsZ.css" text="Year" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman Bold Italic" size="26.0" />
                            </font></Label>
@@ -62,33 +62,33 @@
                   </HBox>
                </children>
             </VBox>
-            <VBox prefHeight="93.0" prefWidth="369.0" stylesheets="@submissions.css">
+            <VBox prefHeight="93.0" prefWidth="369.0" stylesheets="@submissionsZ.css">
                <children>
-                  <HBox prefHeight="49.0" prefWidth="197.0" styleClass="hbox" stylesheets="@submissions.css">
+                  <HBox prefHeight="49.0" prefWidth="197.0" styleClass="hbox" stylesheets="@submissionsZ.css">
                      <children>
                         <ImageView fitHeight="40.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/26886.png" />
+                              <Image url="@images/Profilepictures/26886.png" />
                            </image>
                         </ImageView>
-                        <Label fx:id="modelCar" alignment="CENTER" prefHeight="46.0" prefWidth="296.0" stylesheets="@submissions.css" text="Model" textFill="WHITE">
+                        <Label fx:id="modelCar" alignment="CENTER" prefHeight="46.0" prefWidth="296.0" stylesheets="@submissionsZ.css" text="Model" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman Bold Italic" size="26.0" />
                            </font>
                         </Label>
                      </children>
                   </HBox>
-                  <HBox prefHeight="77.0" prefWidth="197.0" styleClass="hbox" stylesheets="@submissions.css">
+                  <HBox prefHeight="77.0" prefWidth="197.0" styleClass="hbox" stylesheets="@submissionsZ.css">
                      <children>
                         <ImageView fitHeight="23.0" fitWidth="44.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@Images/710296.png" />
+                              <Image url="@images/Profilepictures/710296.png" />
                            </image>
                            <cursor>
                               <Cursor fx:constant="MOVE" />
                            </cursor>
                         </ImageView>
-                        <Label fx:id="kilometrageCar" alignment="BASELINE_CENTER" prefHeight="127.0" prefWidth="268.0" stylesheets="@submissions.css" text="Kilometrage" textFill="WHITE">
+                        <Label fx:id="kilometrageCar" alignment="BASELINE_CENTER" prefHeight="127.0" prefWidth="268.0" stylesheets="@submissionsZ.css" text="Kilometrage" textFill="WHITE">
                            <font>
                               <Font name="Times New Roman Bold Italic" size="26.0" />
                            </font></Label>
@@ -101,9 +101,9 @@
             <DropShadow />
          </effect>
       </HBox>
-      <HBox prefHeight="71.0" prefWidth="450.0" styleClass="hbox" stylesheets="@submissions.css">
+      <HBox prefHeight="71.0" prefWidth="450.0" styleClass="hbox" stylesheets="@submissionsZ.css">
          <children>
-            <Label fx:id="priceCar" alignment="BASELINE_CENTER" prefHeight="29.0" prefWidth="271.0" style="-fx-background-color: #e6ee0;" stylesheets="@submissions.css" text="Price" textFill="WHITE">
+            <Label fx:id="priceCar" alignment="BASELINE_CENTER" prefHeight="29.0" prefWidth="271.0" style="-fx-background-color: #e6ee0;" stylesheets="@submissionsZ.css" text="Price" textFill="WHITE">
                <font>
                   <Font name="Times New Roman Bold" size="23.0" />
                </font>
@@ -120,19 +120,19 @@
             <DropShadow />
          </effect>
       </HBox>
-      <HBox prefHeight="96.0" prefWidth="400.0" styleClass="hbox" stylesheets="@submissions.css">
+      <HBox prefHeight="96.0" prefWidth="400.0" styleClass="hbox" stylesheets="@submissionsZ.css">
          <children>
-            <VBox prefHeight="91.0" prefWidth="348.0" stylesheets="@submissions.css">
+            <VBox prefHeight="91.0" prefWidth="348.0" stylesheets="@submissionsZ.css">
                <children>
-                  <Button fx:id="buttonBuyCar" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#addBillBuyOnClick" prefHeight="82.0" prefWidth="206.0" styleClass="action-button" stylesheets="@submissions.css" text="Buy" textAlignment="CENTER" visible="false">
+                  <Button fx:id="buttonBuyCar" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#addBillBuyOnClick" prefHeight="82.0" prefWidth="206.0" styleClass="action-button" stylesheets="@submissionsZ.css" text="Buy" textAlignment="CENTER" visible="false">
                      <font>
                         <Font name="System Bold" size="30.0" />
                      </font></Button>
                </children>
             </VBox>
-            <VBox prefHeight="85.0" prefWidth="343.0" stylesheets="@submissions.css">
+            <VBox prefHeight="85.0" prefWidth="343.0" stylesheets="@submissionsZ.css">
                <children>
-                  <Button fx:id="buttonRentCar" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#addBillRentOnClick" prefHeight="81.0" prefWidth="222.0" styleClass="action-button" stylesheets="@submissions.css" text="Rent" textAlignment="CENTER" visible="false">
+                  <Button fx:id="buttonRentCar" alignment="BASELINE_CENTER" mnemonicParsing="false" onAction="#addBillRentOnClick" prefHeight="81.0" prefWidth="222.0" styleClass="action-button" stylesheets="@submissionsZ.css" text="Rent" textAlignment="CENTER" visible="false">
                      <VBox.margin>
                         <Insets />
                      </VBox.margin>

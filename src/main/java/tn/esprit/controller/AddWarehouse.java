@@ -1,7 +1,10 @@
 package tn.esprit.controller;
-
+import javafx.concurrent.Worker;
+import netscape.javascript.JSObject;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +17,18 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
 import javafx.stage.Stage;
+import org.json.JSONObject;
 import tn.esprit.entities.Warehouse;
 import tn.esprit.services.WarehouseServices;
-
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.sql.SQLException;
 
 
@@ -55,8 +65,19 @@ public class AddWarehouse {
     @FXML
     private TableColumn<Warehouse, Void> tableViewImportWarehouse;
     @FXML
+    private WebView webViewMap;
+    @FXML
     public void initialize() {
         WarehouseServices ws = new WarehouseServices();
+        WebEngine webEngine = webViewMap.getEngine();
+        File file = new File("src/main/resources/Assets/map.html");
+        webEngine.load(file.toURI().toString());
+        webEngine.getLoadWorker().stateProperty().addListener((obs, oldState, newState) -> {
+            if (newState == Worker.State.SUCCEEDED) {
+                JSObject window = (JSObject) webEngine.executeScript("window");
+                window.setMember("javaApp", this);
+            }
+        });
         try {
             ObservableList<Warehouse> observableList = FXCollections.observableList(ws.retrieve());
             tableViewWarehouse.setItems(observableList);
@@ -184,6 +205,7 @@ public class AddWarehouse {
 
     @FXML
     public void addWarehouseOnClick(ActionEvent event) {
+        WarehouseServices ws = new WarehouseServices();
         Warehouse warehouse = new Warehouse();
         warehouse.setCity(cityWarehouse.getText());
         warehouse.setStreet(streetWarehouse.getText());
@@ -195,7 +217,6 @@ public class AddWarehouse {
             warehouse.setCapacityWarehouse(-1);
         else
             warehouse.setCapacityWarehouse(Integer.parseInt(capacityWarehouse.getText()));
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         if (!verifWarehouseDetails(warehouse).equals("")) {
 
@@ -204,7 +225,6 @@ public class AddWarehouse {
             alert.setContentText(verifWarehouseDetails(warehouse));
             alert.showAndWait();
         } else {
-            WarehouseServices ws = new WarehouseServices();
             try {
                 ws.add(warehouse);
                 initialize();
@@ -221,6 +241,8 @@ public class AddWarehouse {
 
     public String verifWarehouseDetails(Warehouse warehouse) {
         StringBuilder error = new StringBuilder();
+        String address=warehouse.getStreet()+", "+ warehouse.getCity() +", "+warehouse.getPostalCode();
+        WarehouseServices ws = new WarehouseServices();
         if (warehouse.getCity() == null || warehouse.getCity().isEmpty()) {
             error.append("\nCity cannot be empty.");
         } else if (!warehouse.getCity().matches("[a-zA-Z]+")) {
@@ -236,6 +258,13 @@ public class AddWarehouse {
         }
         if (warehouse.getCapacityWarehouse() < 0) {
             error.append("\nWarehouse capacity must be a positive number.");
+        }
+        try {
+            if(ws.checkWarehouseExists(address)){
+                error.append("\nWarehouse already exists.");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
         return error.toString();
     }
@@ -291,5 +320,51 @@ public class AddWarehouse {
             throw new RuntimeException(e);
         }
     }
+    public void sendCoordinates(double lat, double lng) {
+        Platform.runLater(() -> {
+            fetchAddressFromCoordinates(lat, lng);
+        });
+    }
+    private void fetchAddressFromCoordinates(double lat, double lng) {
+        String url = "https://nominatim.openstreetmap.org/reverse?lat=" + lat + "&lon=" + lng + "&format=json&accept-language=en";
+
+        new Thread(() -> {
+            try {
+                HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
+                conn.setRequestMethod("GET");
+                conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+
+                BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                StringBuilder response = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    response.append(line);
+                }
+                reader.close();
+
+                JSONObject jsonResponse = new JSONObject(response.toString());
+                JSONObject address = jsonResponse.getJSONObject("address");
+
+                String city = address.optString("city", address.optString("town", address.optString("village", "Unknown City")));
+                String street = address.optString("road", "Unknown Street");
+                String postalCode = address.optString("postcode", "Unknown Postal Code");
+                Platform.runLater(() -> {
+                    cityWarehouse.setText(city);
+                    streetWarehouse.setText(street);
+                    postalCodeWarehouse.setText(postalCode);
+                });
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                Platform.runLater(() -> {
+                    cityWarehouse.setText("Error");
+                    streetWarehouse.setText("Error");
+                    postalCodeWarehouse.setText("Error");
+                });
+            }
+        }).start();
+    }
+
+
 }
 

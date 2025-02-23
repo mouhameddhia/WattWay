@@ -3,19 +3,19 @@ package tn.esprit.services;
 
 import tn.esprit.entities.Car;
 import tn.esprit.entities.Warehouse;
-import tn.esprit.utils.Wattway;
+import tn.esprit.utils.MyDatabase;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WarehouseServices implements Iservice<Warehouse> {
+public class WarehouseServices implements IServiceH<Warehouse> {
     private Connection conn;
     Warehouse warehouse;
 
     //CONSTRUCTORS
     public WarehouseServices(){
-        conn= Wattway.getInstance().getConn();
+        conn= MyDatabase.getInstance().getCon();
     }
     //CRUD
 
@@ -38,8 +38,10 @@ public class WarehouseServices implements Iservice<Warehouse> {
         stmt.executeUpdate(query);
         System.out.println("Warehouse has been successfully updated");
     }
-
     @Override
+    public void addP(Warehouse warehouse) throws SQLException {}
+    @Override
+    public void delete(Warehouse warehouse)throws SQLException{}
     public void delete(int idWarehouse) throws SQLException {
         String query="DELETE FROM `warehouse` WHERE `idWarehouse` = ?";
         PreparedStatement prstmt = conn.prepareStatement(query);
@@ -97,8 +99,28 @@ public class WarehouseServices implements Iservice<Warehouse> {
         }
         return address.toString();
     }
-
-
+    public int getCapacityByWarehouseId(int idWarehouse)throws  SQLException{
+        String query="SELECT capacityWarehouse FROM warehouse where idWarehouse='"+idWarehouse+"'";
+        Statement stmt=conn.createStatement();
+        ResultSet res = stmt.executeQuery(query);
+        if(res.next()){
+            return res.getInt("capacityWarehouse");
+        }
+        return 0;
+    }
+    public boolean checkWarehouseExists(String address) throws SQLException {
+        String[] addressParts = address.split(",\\s*");
+        String query="SELECT * FROM WAREHOUSE WHERE city=? AND street=? AND postalCode=?";
+        PreparedStatement prstmt = conn.prepareStatement(query);
+        prstmt.setString(1, addressParts[1]);
+        prstmt.setString(2, addressParts[0]);
+        prstmt.setInt(3, Integer.parseInt(addressParts[2]));
+        ResultSet res = prstmt.executeQuery();
+        if (res.next()) {
+            return true;
+        }
+        return false;
+    }
     // OPERATIONAL METHODS
     public boolean checkCar(Car car){
         return warehouse.getCars().contains(car);
@@ -112,5 +134,8 @@ public class WarehouseServices implements Iservice<Warehouse> {
         if (checkCar(car)){
             warehouse.getCars().remove(car);
         }
+    }
+    public List<Warehouse> returnList() throws SQLException{
+        return null;
     }
 }

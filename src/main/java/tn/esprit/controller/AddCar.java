@@ -30,7 +30,8 @@ import java.util.List;
 import java.util.Objects;
 
 public class AddCar {
-
+    @FXML
+    private Button recognizerButton;
     private String selectedWarehouse="";
     @FXML
     private TextField imgCar;
@@ -185,12 +186,22 @@ public class AddCar {
                             alert.showAndWait();
                         } else {
                             try {
-                                cs.update(car);
-                                initialize();
-                                alert.setTitle("Success");
-                                alert.setHeaderText("Car service");
-                                alert.setContentText("Car has been updated successfully");
-                                alert.showAndWait();
+                                int idWarehouse = warehouseServices.getWarehouseIdByAddress(selectedWarehouse);
+                                if(cs.getNumberCarsByWarehouse(idWarehouse)<warehouseServices.getCapacityByWarehouseId(idWarehouse)) {
+                                    car.setIdWarehouse(idWarehouse);
+                                    cs.add(car);
+                                    initialize();
+                                    alert.setTitle("Success");
+                                    alert.setHeaderText("Car service");
+                                    alert.setContentText("Car has been updated successfully");
+                                    alert.showAndWait();
+                                }
+                                else{
+                                    alert.setTitle("Fatal error");
+                                    alert.setHeaderText("Car service");
+                                    alert.setContentText("Warehouse reached maximum number of cars");
+                                    alert.showAndWait();
+                                }
                             } catch (SQLException e) {
                                 throw new RuntimeException(e);
                             }
@@ -262,6 +273,8 @@ public class AddCar {
     }
     @FXML
     void addCarOnClick(ActionEvent event) {
+        CarServices cs = new CarServices();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
         WarehouseServices warehouseServices = new WarehouseServices();
         Car car = new Car();
         car.setImgCar(imgCar.getText());
@@ -281,23 +294,33 @@ public class AddCar {
         else
             car.setKilometrageCar(Integer.parseInt(kilometrageCar.getText()));
         if (!Objects.equals(verifCarDetails(car), "")){
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Fatal error");
             alert.setHeaderText("Cannot add car");
             alert.setContentText(verifCarDetails(car));
             alert.showAndWait();
         }
         else{
-            CarServices cs = new CarServices();
             car.setStatusCar("available");
             try {
                 if(selectedWarehouse!="") {
-                    car.setIdWarehouse(warehouseServices.getWarehouseIdByAddress(selectedWarehouse));
-                    cs.add(car);
-                    initialize();
+                    int idWarehouse = warehouseServices.getWarehouseIdByAddress(selectedWarehouse);
+                    if(cs.getNumberCarsByWarehouse(idWarehouse)<warehouseServices.getCapacityByWarehouseId(idWarehouse)) {
+                        car.setIdWarehouse(idWarehouse);
+                        cs.add(car);
+                        initialize();
+                        alert.setTitle("Success");
+                        alert.setHeaderText("Car service");
+                        alert.setContentText("Car has been added successfully");
+                        alert.showAndWait();
+                    }
+                    else {
+                        alert.setTitle("Fatal error");
+                        alert.setHeaderText("Car service");
+                        alert.setContentText("Warehouse reached maximum of cars");
+                        alert.showAndWait();
+                    }
                 }
                 else{
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
                     alert.setTitle("Fatal error");
                     alert.setHeaderText("Cannot add car");
                     alert.setContentText("No warehouse selected, A car must be added to the lot");
@@ -359,6 +382,8 @@ public class AddCar {
         if (selectedFile != null) {
             imgCar.setText(selectedFile.toURI().toString().substring(6,selectedFile.toURI().toString().length()));
             loadImageFromPath(selectedFile.toURI().toString().substring(6,selectedFile.toURI().toString().length()));
+            recognizerButton.setVisible(true);
+
         }
     }
 
@@ -384,7 +409,16 @@ public class AddCar {
             throw new RuntimeException(e);
         }
     }
-
+    @FXML
+    void setFieldsAI(ActionEvent event) {
+        CarServices cs = new CarServices();
+        Car car = new Car();
+        car=cs.recognizeCar(cs.uploadImageIMGBB(imgCar.getText()));
+        brandCar.setText(car.getBrandCar());
+        modelCar.setText(car.getModelCar());
+        yearCar.setText(Integer.toString(car.getYearCar()));
+        recognizerButton.setVisible(false);
+    }
     @FXML
     void openAddWarehouse(ActionEvent event) {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/AddWarehouse.fxml"));

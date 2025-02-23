@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="root" stylesheets="@submissions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.BrowseCar">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="root" stylesheets="@submissionsZ.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.BrowseCar">
    <children>
       <AnchorPane prefHeight="83.0" prefWidth="1366.0" style="-fx-background-color: #132EC2;">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@Images/473701518_443535068727837_5572574659540551110_n-removebg-preview.png" />
+                  <Image url="@images/Profilepictures/473701518_443535068727837_5572574659540551110_n-removebg-preview.png" />
                </image>
             </ImageView>
             <Button fx:id="repairCarButton" layoutX="404.0" layoutY="54.0" mnemonicParsing="false" onAction="#openRepairCarInterface" styleClass="menu-button" stylesheets="@styles.css" text="Repair Your Car" />

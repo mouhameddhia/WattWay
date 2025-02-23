@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="root" stylesheets="@addSubmission.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.RepairCarInterface">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="root" stylesheets="@addSubmissionZ.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.RepairCarInterface">
    <children>
-      <AnchorPane layoutX="1.0" prefHeight="83.0" prefWidth="1366.0" style="-fx-background-color: #132EC2;" styleClass="navbar" stylesheets="@warehouseModule.css">
+      <AnchorPane layoutX="1.0" prefHeight="83.0" prefWidth="1366.0" style="-fx-background-color: #132EC2;" styleClass="navbar" stylesheets="@addSubmissionZ.css">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="14.0" layoutY="-4.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -23,49 +23,49 @@
             <DropShadow />
          </effect>
       </AnchorPane>
-      <Label layoutX="468.0" layoutY="180.0" styleClass="field-label" stylesheets="@warehouseModule.css" text="Great to have you, @User, we guarantee a top quality service" textFill="#0a1f44">
+      <Label layoutX="468.0" layoutY="180.0" styleClass="field-label" stylesheets="@addSubmissionZ.css" text="Great to have you, @User, we guarantee a top quality service" textFill="#0a1f44">
          <font>
             <Font size="26.0" />
          </font>
       </Label>
-      <Label layoutX="525.0" layoutY="206.0" styleClass="field-label" stylesheets="@addSubmission.css" text="Please fill this form, all inputs are mandatory" textFill="#0a1f44">
+      <Label layoutX="525.0" layoutY="206.0" styleClass="field-label" stylesheets="@addSubmissionZ.css" text="Please fill this form, all inputs are mandatory" textFill="#0a1f44">
          <font>
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Label>
-      <AnchorPane layoutX="140.0" layoutY="243.0" prefHeight="465.0" prefWidth="1088.0" style="-fx-background-color: #0A1F44;" styleClass="form-container" stylesheets="@addSubmission.css">
+      <AnchorPane layoutX="140.0" layoutY="243.0" prefHeight="465.0" prefWidth="1088.0" style="-fx-background-color: #0A1F44;" styleClass="form-container" stylesheets="@addSubmissionZ.css">
          <children>
-            <Label layoutX="170.0" layoutY="27.0" styleClass="form-header" stylesheets="@addSubmission.css" text="Enter your car details (Brand, model) and submit one photo of your car" textFill="#e6e0e0">
+            <Label layoutX="170.0" layoutY="27.0" styleClass="form-header" stylesheets="@addSubmissionZ.css" text="Enter your car details (Brand, model) and submit one photo of your car" textFill="#e6e0e0">
                <font>
                   <Font name="System Italic" size="21.0" />
                </font>
             </Label>
-            <TextField fx:id="brandCar" layoutX="349.0" layoutY="90.0" prefHeight="25.0" prefWidth="391.0" promptText="e.g. Volkswagen, Tesla" styleClass="text-field" stylesheets="@addSubmission.css" />
-            <TextField fx:id="modelCar" layoutX="349.0" layoutY="146.0" prefHeight="25.0" prefWidth="391.0" promptText="e.g. Golf EV, Model Y" styleClass="text-field" stylesheets="@addSubmission.css" />
-            <TextField fx:id="imgCar" layoutX="349.0" layoutY="202.0" prefHeight="25.0" prefWidth="391.0" styleClass="text-field" stylesheets="@addSubmission.css" />
-            <Button layoutX="750.0" layoutY="202.0" mnemonicParsing="false" onAction="#uploadImgCar" styleClass="date-picker" stylesheets="@addSubmission.css" text="Upload" />
-            <Label layoutX="303.0" layoutY="94.0" prefHeight="17.0" prefWidth="39.0" text=" Brand" textFill="#e6e0e0">
+            <TextField fx:id="brandCar" layoutX="360.0" layoutY="142.0" prefHeight="25.0" prefWidth="391.0" promptText="e.g. Volkswagen, Tesla" styleClass="text-field" stylesheets="@addSubmissionZ.css" />
+            <TextField fx:id="modelCar" layoutX="360.0" layoutY="198.0" prefHeight="25.0" prefWidth="391.0" promptText="e.g. Golf EV, Model Y" styleClass="text-field" stylesheets="@addSubmissionZ.css" />
+            <TextField fx:id="imgCar" layoutX="337.0" layoutY="91.0" prefHeight="25.0" prefWidth="391.0" styleClass="text-field" stylesheets="@addSubmissionZ.css" />
+            <Button layoutX="738.0" layoutY="91.0" mnemonicParsing="false" onAction="#uploadImgCar" styleClass="date-picker" stylesheets="@addSubmissionZ.css" text="Upload" />
+            <Label layoutX="314.0" layoutY="146.0" prefHeight="17.0" prefWidth="39.0" text=" Brand" textFill="#e6e0e0">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="306.0" layoutY="150.0" prefHeight="17.0" prefWidth="33.0" text="Model" textFill="#e6e0e0">
+            <Label layoutX="317.0" layoutY="202.0" prefHeight="17.0" prefWidth="33.0" text="Model" textFill="#e6e0e0">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="273.0" layoutY="206.0" prefHeight="17.0" prefWidth="83.0" text="Image of car" textFill="#e6e0e0">
+            <Label layoutX="261.0" layoutY="95.0" prefHeight="17.0" prefWidth="83.0" text="Image of car" textFill="#e6e0e0">
                <font>
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Label layoutX="355.0" layoutY="257.0" styleClass="field-label" stylesheets="@addSubmission.css" text="Check and enter your car condition for better analysis" textFill="#e6e0e0">
+            <Label layoutX="355.0" layoutY="257.0" styleClass="field-label" stylesheets="@addSubmissionZ.css" text="Check and enter your car condition for better analysis" textFill="#e6e0e0">
                <font>
                   <Font name="System Italic" size="21.0" />
                </font>
             </Label>
-            <TextField fx:id="yearCar" layoutX="349.0" layoutY="303.0" prefHeight="25.0" prefWidth="391.0" styleClass="text-field" stylesheets="@addSubmission.css" />
-            <TextField fx:id="kilometrageCar" layoutX="349.0" layoutY="353.0" prefHeight="25.0" prefWidth="391.0" styleClass="text-field" stylesheets="@addSubmission.css" />
+            <TextField fx:id="yearCar" layoutX="349.0" layoutY="303.0" prefHeight="25.0" prefWidth="391.0" styleClass="text-field" stylesheets="@addSubmissionZ.css" />
+            <TextField fx:id="kilometrageCar" layoutX="349.0" layoutY="353.0" prefHeight="25.0" prefWidth="391.0" styleClass="text-field" stylesheets="@addSubmissionZ.css" />
             <Label layoutX="261.0" layoutY="307.0" prefHeight="17.0" prefWidth="83.0" text="Year produced" textFill="#e6e0e0">
                <font>
                   <Font name="System Italic" size="12.0" />
@@ -76,19 +76,19 @@
                   <Font name="System Italic" size="12.0" />
                </font>
             </Label>
-            <Button layoutX="487.0" layoutY="396.0" mnemonicParsing="false" onAction="#addCar" styleClass="submit-button" stylesheets="@addSubmission.css" text="Submit" />
-            <Label layoutX="335.0" layoutY="87.0" text="*" textFill="RED" />
-            <Label layoutX="335.0" layoutY="142.0" text="*" textFill="RED" />
-            <Label layoutX="336.0" layoutY="198.0" text="*" textFill="RED" />
+            <Button layoutX="487.0" layoutY="396.0" mnemonicParsing="false" onAction="#addCar" styleClass="submit-button" stylesheets="@addSubmissionZ.css" text="Submit" />
+            <Label layoutX="346.0" layoutY="139.0" text="*" textFill="RED" />
+            <Label layoutX="346.0" layoutY="194.0" text="*" textFill="RED" />
+            <Label layoutX="324.0" layoutY="87.0" text="*" textFill="RED" />
             <Label layoutX="334.0" layoutY="299.0" text="*" textFill="RED" />
             <Label layoutX="331.0" layoutY="353.0" text="*" textFill="RED" />
             <ImageView fx:id="imageViewCar" fitHeight="150.0" fitWidth="200.0" layoutX="41.0" layoutY="148.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="labelThanks" layoutX="70.0" layoutY="408.0" styleClass="field-label" stylesheets="@addSubmissionZ.css" text="Thank you, our team will contact you as soon as possible!" textFill="#0a1f44" visible="false">
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <Label fx:id="labelThanks" layoutX="570.0" layoutY="706.0" text="Thank you, our team will contact you as soon as possible!" textFill="#0a1f44" visible="false">
-         <font>
-            <Font size="26.0" />
-         </font>
-      </Label>
    </children>
 </AnchorPane>
