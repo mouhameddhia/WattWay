@@ -8,22 +8,42 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.Pane?>
+
+<?import javafx.scene.control.TextArea?>
+<StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="tn.esprit.Controllers.ListSubmissionController" stylesheets="@submissions.css">
+    <VBox styleClass="vbox" spacing="20" maxWidth="1200">
+        <padding>
+            <Insets top="30" right="40" bottom="30" left="40"/>
+        </padding>
 
 
-<VBox prefHeight="447.0" prefWidth="798.0" spacing="15" stylesheets="@submissions.css" styleClass="vbox" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListSubmissionController">    <padding>
-        <Insets bottom="15" left="15" right="15" top="15" />
-    </padding>
 
-    <HBox alignment="CENTER_LEFT" prefHeight="93.0" prefWidth="768.0" spacing="15" style="-fx-background-color: white; -fx-padding: 12; -fx-background-radius: 8;">
-        <Label style="-fx-font-size: 14px; -fx-font-weight: bold;" text="User ID:" />
-        <TextField fx:id="userIdField" promptText="Enter user ID" style="-fx-pref-width: 200; -fx-padding: 5; -fx-font-size: 14px;" />
-        <Button onAction="#handleLoadSubmissions" style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 8 16;" text="Load Submissions" />
-        <Button text="Add Submission" onAction="#handleAddSubmission"
-                style="-fx-background-color: #2196F3; -fx-text-fill: white; -fx-font-weight: bold;" />
 
-    </HBox>
+        <HBox alignment="CENTER" spacing="15" styleClass="search-section">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+            <Label styleClass="search-label" text="User ID:"/>
+            <TextField fx:id="userIdField" promptText="Enter user ID" styleClass="modern-text-field"/>
+            <Button onAction="#handleLoadSubmissions" styleClass="action-button" text="Load Submissions"/>
+            <Button text="Add Submission" onAction="#handleAddSubmission" styleClass="action-button"/>
+        </HBox>
 
-    <ScrollPane fitToWidth="true" style="-fx-background: transparent;">
-        <FlowPane fx:id="submissionsContainer" hgap="20" style="-fx-padding: 10;" vgap="20" />
-    </ScrollPane>
-</VBox>
+        <ScrollPane fitToWidth="true" styleClass="modern-scroll-pane" VBox.vgrow="ALWAYS">
+            <FlowPane fx:id="submissionsContainer" styleClass="modern-flow-pane"
+                      alignment="CENTER" columnHalignment="CENTER"/>
+        </ScrollPane>
+
+        <!-- Pane for Car Animation -->
+        <Pane fx:id="carAnimationPane"
+              prefHeight="100"
+              prefWidth="800"
+              style="-fx-background-color: #f0f0f0;"
+              VBox.vgrow="NEVER"/>
+
+    </VBox>
+
+</StackPane>

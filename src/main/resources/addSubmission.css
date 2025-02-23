@@ -1,25 +1,29 @@
 .root {
-    -fx-background-color: #f0f2f5;
+    -fx-background-color: linear-gradient(to bottom, #132EC2, #1BB8A8);
+    -fx-font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 .form-container {
-    -fx-background-color: white;
+    -fx-background-color: linear-gradient(to bottom, #3C39D9, #0A1F44, #81CCC4);
     -fx-padding: 30;
-    -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-background-radius: 20;
+    -fx-border-color: rgba(255, 255, 255, 0.1);
+    -fx-border-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 10);
 }
 
 .form-header {
     -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1a237e;
+    -fx-text-fill: white;
     -fx-padding: 0 0 20 0;
 }
 
 .field-label {
-    -fx-font-size: 14px;
+    -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #2c3e50;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 2, 0, 0, 1);
 }
 
 .input-group {
@@ -29,44 +33,83 @@
 .description-field {
     -fx-pref-height: 100;
     -fx-font-size: 14px;
-    -fx-background-color: #f8f9fa;
-    -fx-background-radius: 5;
-    -fx-border-color: #dee2e6;
-    -fx-border-radius: 5;
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-radius: 8;
     -fx-padding: 10;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
 }
 
 .description-field:focused {
-    -fx-border-color: #2196F3;
-    -fx-background-color: white;
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 10, 0, 0, 0);
 }
 
-.text-field, .combo-box, .date-picker {
-    -fx-pref-height: 35;
-    -fx-font-size: 14px;
-    -fx-background-color: #f8f9fa;
-    -fx-background-radius: 5;
-    -fx-border-color: #dee2e6;
-    -fx-border-radius: 5;
+.text-field, .combo-box, .date-picker, .description-field {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+    -fx-background-radius: 10;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+    -fx-border-radius: 10;
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: rgba(255, 255, 255, 0.6);
 }
 
-
-.text-field:focused, .combo-box:focused, .date-picker:focused {
-    -fx-border-color: #2196F3;
-    -fx-background-color: white;
+.text-field:focused, .combo-box:focused, .date-picker:focused, .description-field:focused {
+    -fx-background-color: rgba(255, 255, 255, 0.15);
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.2), 10, 0, 0, 0);
 }
 
 .submit-button {
-    -fx-background-color: #2196F3;
+    -fx-background-color: rgba(255, 255, 255, 0.2);
     -fx-text-fill: white;
     -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-padding: 12 30;
-    -fx-background-radius: 5;
+    -fx-background-radius: 12;
     -fx-cursor: hand;
-    -fx-min-width: 150;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 8, 0, 0, 2);
 }
 
 .submit-button:hover {
-    -fx-background-color: #1976D2;
-} 
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 12, 0, 0, 4);
+    -fx-translate-y: -1;
+}
+/* Add these styles to your existing CSS file */
+.custom-alert {
+    -fx-background-color: #ff4444;
+}
+
+.custom-alert > *.button-bar > *.container {
+    -fx-background-color: #ff4444;
+}
+
+.custom-alert > *.label.content {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+
+/* Custom alert styles */
+.custom-alert {
+    -fx-background-color: #ff4444; /* Background color for the alert */
+}
+
+.custom-alert > .header-panel {
+    -fx-background-color: #cc0000; /* Background color for the header */
+}
+
+.custom-alert > .header-panel > .label {
+    -fx-font-size: 18px; /* Font size for the header label */
+    -fx-font-weight: bold; /* Bold font for the header */
+    -fx-text-fill: white; /* Text color for the header */
+}
+
+.custom-alert > .content {
+    -fx-font-size: 14px; /* Font size for the content */
+    -fx-text-fill: black; /* Text color for the content */
+}

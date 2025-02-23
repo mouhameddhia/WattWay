@@ -1,139 +1,206 @@
 /* Root styles and variables */
 .root {
-    -fx-background-color: linear-gradient(to bottom, #1a237e, #0d47a1);
+    -fx-background-color: linear-gradient(to bottom, #132EC2, #1BB8A8);
     -fx-font-family: 'Segoe UI', Arial, sans-serif;
 }
 
 /* Main VBox container */
 .vbox {
-    -fx-background-color: rgba(248, 249, 250, 0.95);
-    -fx-background-radius: 15;
-    -fx-padding: 20;
-    -fx-spacing: 20;
+    -fx-background-color: rgba(15, 23, 42, 0.85);
+    -fx-background-radius: 30;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 10);
 }
 
 /* Search/Filter Section Styles */
 .search-section {
-    -fx-background-color: white;
-    -fx-background-radius: 10;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-    -fx-padding: 15;
+    -fx-background-color: rgba(30, 41, 59, 0.8);
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-min-height: 80;
 }
 
-.text-field {
-    -fx-background-radius: 5;
-    -fx-border-radius: 5;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
-    -fx-padding: 8 12;
-    -fx-font-size: 14px;
-}
-
-.text-field:focused {
-    -fx-border-color: #2196F3;
-    -fx-effect: dropshadow(gaussian, rgba(33,150,243,0.1), 5, 0, 0, 0);
-}
-
-/* Button Styles */
-.button {
-    -fx-background-radius: 5;
-    -fx-cursor: hand;
-    -fx-padding: 8 16;
-    -fx-transition: all 0.2s ease-in-out;
-}
-
-.button:hover {
-    -fx-scale-x: 1.05;
-    -fx-scale-y: 1.05;
-}
-
-/* Primary Button */
-.button-primary {
-    -fx-background-color: #2196F3;
+.search-label {
     -fx-text-fill: white;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
 
-.button-primary:hover {
-    -fx-background-color: #1976D2;
-}
-
-/* Delete Button */
-.button-delete {
-    -fx-background-color: #f44336;
+.modern-text-field {
+    -fx-background-color: rgba(51, 65, 85, 0.6);
+    -fx-background-radius: 8;
     -fx-text-fill: white;
+    -fx-prompt-text-fill: #94a3b8;
+    -fx-border-color: transparent;
+    -fx-padding: 10 15;
+    -fx-font-size: 14px;
 }
 
-.button-delete:hover {
-    -fx-background-color: #d32f2f;
+.modern-text-field:focused {
+    -fx-background-color: rgba(51, 65, 85, 0.8);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.5), 10, 0, 0, 0);
 }
 
-/* Submissions Container */
-.scroll-pane {
-    -fx-background: transparent;
-    -fx-background-color: transparent;
+/* Button Styles */
+.action-button {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
 }
 
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-}
-
-.flow-pane {
-    -fx-background-color: transparent;
-    -fx-alignment: center;
-    -fx-column-halignment: center;
-    -fx-row-valignment: center;
-    -fx-hgap: 20;
-    -fx-vgap: 20;
-    -fx-padding: 20;
+.action-button:hover {
+    -fx-background-color: #2563eb;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-translate-y: -1;
 }
 
 /* Submission Card Styles */
 .submission-card {
-    -fx-background-color: white;
-    -fx-background-radius: 8;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-    -fx-padding: 15;
-    -fx-max-width: 320;
-    -fx-min-width: 320;
-    -fx-transition: all 0.2s ease-in-out;
+    -fx-background-color: rgba(30, 41, 59, 0.9);
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-padding: 25;
+    -fx-max-width: 400;
+    -fx-min-width: 400;
 }
 
 .submission-card:hover {
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 20, 0, 0, 6);
     -fx-translate-y: -2;
+    -fx-background-color: rgba(40, 121, 248, 0.9);
+}
+
+.submission-card .label {
+    -fx-text-fill: #e2e8f0;
+}
+
+.submission-card .label-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
 
 /* Response Card Styles */
 .response-card {
-    -fx-background-color: #f8f9fa;
-    -fx-background-radius: 6;
-    -fx-border-color: #dee2e6;
-    -fx-border-radius: 6;
-    -fx-padding: 10;
-    -fx-margin: 5 0 0 0;
+    -fx-background-color: rgba(51, 65, 85, 0.6);
+    -fx-background-radius: 8;
+    -fx-border-color: rgba(71, 85, 105, 0.3);
+    -fx-border-radius: 8;
+    -fx-padding: 15;
 }
 
-/* Labels */
-.label {
-    -fx-text-fill: #2c3e50;
+/* ScrollPane Styles */
+.modern-scroll-pane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+    -fx-min-height: 600;
+    -fx-pref-height: 800;
 }
 
-.label-header {
-    -fx-font-size: 16px;
-    -fx-font-weight: bold;
+.modern-scroll-pane > .viewport {
+    -fx-background-color: transparent;
 }
 
-/* Urgency indicators */
+.modern-flow-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 30;
+    -fx-hgap: 30;
+    -fx-vgap: 30;
+    -fx-alignment: center;
+}
+
+/* Urgency indicators with glow effect */
 .urgency-high {
-    -fx-fill: #ff5252;
+    -fx-effect: dropshadow(gaussian, #ef4444, 10, 0, 0, 0);
 }
-
 
 .urgency-medium {
-    -fx-fill: #ffa726;
+    -fx-effect: dropshadow(gaussian, #f97316, 10, 0, 0, 0);
 }
 
 .urgency-low {
-    -fx-fill: #66bb6a;
+    -fx-effect: dropshadow(gaussian, #22c55e, 10, 0, 0, 0);
+}
+
+/* Button variants */
+.button-delete {
+    -fx-background-color: #ef4444;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.button-delete:hover {
+    -fx-background-color: #dc2626;
+    -fx-effect: dropshadow(gaussian, rgba(239,68,68,0.3), 15, 0, 0, 4);
+}
+
+.button-update {
+    -fx-background-color: #3b82f6;
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+}
+
+.button-update:hover {
+    -fx-background-color: #2563eb;
+    -fx-effect: dropshadow(gaussian, rgba(59,130,246,0.3), 15, 0, 0, 4);
+}
+
+/* Scrollbar Styling */
+.modern-scroll-pane .scroll-bar:vertical,
+.modern-scroll-pane .scroll-bar:horizontal {
+    -fx-background-color: transparent;
+}
+
+.modern-scroll-pane .scroll-bar:vertical .thumb,
+.modern-scroll-pane .scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-background-radius: 5;
+}
+
+.modern-scroll-pane .scroll-bar:vertical .thumb:hover,
+.modern-scroll-pane .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Make sure the stage is maximized in your controller */
+
+.chatbot-section {
+    -fx-background-color: rgba(30, 41, 59, 0.9);
+    -fx-background-radius: 12;
+    -fx-padding: 15;
+}
+
+.chatbot-label {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.chat-area {
+    -fx-background-color: rgba(51, 65, 85, 0.6);
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.chat-input {
+    -fx-background-color: rgba(51, 65, 85, 0.6);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.chat-button {
+    -fx-background-color: #3b82f6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.chat-button:hover {
+    -fx-background-color: #2563eb;
 }

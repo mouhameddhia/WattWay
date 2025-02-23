@@ -9,8 +9,10 @@ public class Response {
     private TYPERESPONSE typeResponse;
     private int idUser;
     private int idSubmission;
+    private Submission submission; // Reference to the associated submission
 
-
+    public Response(String aiMessage, String aiGenerated, int idSubmission) {
+    }
 
 
     public enum TYPERESPONSE {ACKNOWLEDGMENT, RESOLUTION, CLARIFICATIONREQUEST}

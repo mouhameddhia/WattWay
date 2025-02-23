@@ -6,8 +6,8 @@ import tn.esprit.entities.Submission;
 import tn.esprit.services.SubmissionServices;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.Arrays;
 
 public class UpdateSubmissionController {
 
@@ -17,8 +17,6 @@ public class UpdateSubmissionController {
     @FXML private DatePicker dateSubmissionField;
     @FXML private TextField carIdField;
     @FXML private TextField userIdField;
-
-
 
     private Submission submission;
     private final SubmissionServices submissionServices = new SubmissionServices();
@@ -31,19 +29,15 @@ public class UpdateSubmissionController {
 
     @FXML
     public void initialize() {
-        // Initialize combo boxes with enum values
+        // Maintain original visibility settings
+        statusComboBox.setVisible(false);
+        urgencyComboBox.setVisible(false);
+
         statusComboBox.getItems().setAll(
                 Submission.STATUS.PENDING.toString(),
                 Submission.STATUS.APPROVED.toString(),
                 Submission.STATUS.RESPONDED.toString()
-
         );
-        statusComboBox.setVisible(false);
-
-        urgencyComboBox.setVisible(false);
-
-
-
 
         urgencyComboBox.getItems().setAll(
                 Submission.URGENCYLEVEL.LOW.toString(),
@@ -66,6 +60,10 @@ public class UpdateSubmissionController {
 
     @FXML
     private void handleUpdateSubmission() {
+        if (!validateInput()) {
+            return;
+        }
+
         try {
             updateSubmissionFromForm();
             submissionServices.update(submission);
@@ -73,6 +71,64 @@ public class UpdateSubmissionController {
         } catch (Exception e) {
             showAlert("Update Error", "Error updating submission: " + e.getMessage());
         }
+    }
+
+    private boolean validateInput() {
+        // Validate description
+        if (descriptionField.getText().isEmpty()) {
+            showAlert("Validation Error", "Description cannot be empty");
+            return false;
+        }
+        if (descriptionField.getText().length() > 255) {
+            showAlert("Validation Error", "Description cannot exceed 255 characters");
+            return false;
+        }
+
+        // Validate date
+        if (dateSubmissionField.getValue() == null) {
+            showAlert("Validation Error", "Please select a date");
+            return false;
+        }
+        if (dateSubmissionField.getValue().isAfter(LocalDate.now())) {
+            showAlert("Validation Error", "Date cannot be in the future");
+            return false;
+        }
+
+        // Validate car ID
+        try {
+            int carId = Integer.parseInt(carIdField.getText());
+            if (carId <= 0) {
+                showAlert("Validation Error", "Car ID must be a positive number");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Validation Error", "Invalid Car ID format");
+            return false;
+        }
+
+        // Validate user ID
+        try {
+            int userId = Integer.parseInt(userIdField.getText());
+            if (userId <= 0) {
+                showAlert("Validation Error", "User ID must be a positive number");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            showAlert("Validation Error", "Invalid User ID format");
+            return false;
+        }
+
+        // Validate hidden combobox values
+        if (statusComboBox.getValue() == null) {
+            showAlert("Validation Error", "Invalid status value");
+            return false;
+        }
+        if (urgencyComboBox.getValue() == null) {
+            showAlert("Validation Error", "Invalid urgency level");
+            return false;
+        }
+
+        return true;
     }
 
     private void updateSubmissionFromForm() {

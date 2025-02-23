@@ -1,11 +1,13 @@
 package tn.esprit.Controllers;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import tn.esprit.entities.Response;
 import tn.esprit.entities.Response.TYPERESPONSE;
 import tn.esprit.services.ResponseServices;
@@ -13,6 +15,7 @@ import tn.esprit.services.ResponseServices;
 import java.sql.SQLException;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.util.function.UnaryOperator;
 
 public class AddResponseController {
 
@@ -22,14 +25,61 @@ public class AddResponseController {
     @FXML private TextField userIdField;
     @FXML private TextField submissionIdField;
 
+
+    private String pendingMessage = null;
+
     @FXML
     void initialize() {
-        // Initialize ComboBox with enum values
-        typeComboBox.getItems().addAll(
-                TYPERESPONSE.ACKNOWLEDGMENT,
-                TYPERESPONSE.RESOLUTION,
-                TYPERESPONSE.CLARIFICATIONREQUEST
-        );
+        // ComboBox initialization
+        typeComboBox.getItems().addAll(TYPERESPONSE.values());
+        if (messageField == null) {
+            System.out.println("messageField is null in initialize!");
+        }
+        // Add this block
+        if (pendingMessage != null && messageField != null) {
+            messageField.setText(pendingMessage);
+            pendingMessage = null;
+            System.out.println("Applied pending message: " + messageField.getText());
+        }
+        // DatePicker configuration
+        datePicker.setValue(LocalDate.now());
+
+        // Input restrictions
+        configureTextFields();
+
+        // Make submission ID non-editable
+        submissionIdField.setEditable(false);
+
+        System.out.println("AddResponseController initialized");
+        if (messageField == null) {
+            System.out.println("messageField is null in initialize!");
+        }
+    }
+
+    private void configureTextFields() {
+        // Message field: 255 characters limit
+        messageField.setTextFormatter(new TextFormatter<>(lengthFilter(255)));
+
+        // User ID: numeric only
+        userIdField.setTextFormatter(new TextFormatter<>(numericFilter()));
+    }
+
+    private UnaryOperator<TextFormatter.Change> lengthFilter(int maxLength) {
+        return change -> {
+            if (change.getControlNewText().length() <= maxLength) {
+                return change;
+            }
+            return null;
+        };
+    }
+
+    private UnaryOperator<TextFormatter.Change> numericFilter() {
+        return change -> {
+            if (change.getText().matches("\\d*")) {
+                return change;
+            }
+            return null;
+        };
     }
 
     @FXML
@@ -48,7 +98,6 @@ public class AddResponseController {
 
                 rs.add(response);
 
-
                 showAlert(Alert.AlertType.INFORMATION, "Success",
                         "Response added successfully!");
                 clearFields();
@@ -56,31 +105,47 @@ public class AddResponseController {
             } catch (SQLException e) {
                 showAlert(Alert.AlertType.ERROR, "Database Error",
                         "Error adding response: " + e.getMessage());
-            } catch (NumberFormatException e) {
-                showAlert(Alert.AlertType.ERROR, "Input Error",
-                        "Invalid number format in ID fields");
             }
         }
     }
 
     private boolean validateFields() {
-        if (messageField.getText().isEmpty() ||
-                datePicker.getValue() == null ||
-                typeComboBox.getValue() == null ||
-                userIdField.getText().isEmpty() ||
-                submissionIdField.getText().isEmpty()) {
+        // Empty field check
+        if (messageField.getText().isEmpty() || datePicker.getValue() == null
+                || typeComboBox.getValue() == null || userIdField.getText().isEmpty()) {
 
             showAlert(Alert.AlertType.ERROR, "Validation Error",
-                    "Please fill all fields");
+                    "Please fill all required fields");
             return false;
         }
 
+        // Message length check
+        if (messageField.getText().length() > 255) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error",
+                    "Message cannot exceed 255 characters");
+            return false;
+        }
+
+        // Date validation
+        if (datePicker.getValue().isAfter(LocalDate.now())) {
+            showAlert(Alert.AlertType.ERROR, "Validation Error",
+                    "Date cannot be in the future");
+            return false;
+        }
+
+        // ID validation
         try {
-            Integer.parseInt(userIdField.getText());
-            Integer.parseInt(submissionIdField.getText());
+            int userId = Integer.parseInt(userIdField.getText());
+            int submissionId = Integer.parseInt(submissionIdField.getText());
+
+            if (userId <= 0 || submissionId <= 0) {
+                showAlert(Alert.AlertType.ERROR, "Validation Error",
+                        "IDs must be positive numbers");
+                return false;
+            }
         } catch (NumberFormatException e) {
-            showAlert(Alert.AlertType.ERROR, "Input Error",
-                    "User ID and Submission ID must be numbers");
+            showAlert(Alert.AlertType.ERROR, "Validation Error",
+                    "Invalid number format in ID fields");
             return false;
         }
 
@@ -89,10 +154,9 @@ public class AddResponseController {
 
     private void clearFields() {
         messageField.clear();
-        datePicker.setValue(null);
+        datePicker.setValue(LocalDate.now());
         typeComboBox.getSelectionModel().clearSelection();
         userIdField.clear();
-        submissionIdField.clear();
     }
 
     private void showAlert(Alert.AlertType type, String title, String content) {
@@ -105,11 +169,31 @@ public class AddResponseController {
 
     @FXML
     void nextP(ActionEvent event) {
-        // Implement navigation logic if needed
+        // Navigation logic
         System.out.println("Next button clicked!");
     }
 
     public void setSubmissionId(int idSubmission) {
-        this.submissionIdField.setText(String.valueOf(idSubmission));
+        if (submissionIdField != null) {
+            submissionIdField.setText(String.valueOf(idSubmission));
+        }
     }
+
+
+    public void setGeneratedMessage(String message) {
+        System.out.println("Setting message: " + message);
+        if (messageField == null) {
+            System.out.println("messageField is null. Message stored: " + message);
+            pendingMessage = message;
+        } else {
+            Platform.runLater(() -> {
+                messageField.setText(message);
+                System.out.println("Message set to field: " + message);
+            });
+        }
+    }
+
+
 }
+
+

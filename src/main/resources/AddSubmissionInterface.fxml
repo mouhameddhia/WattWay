@@ -18,6 +18,7 @@
       <VBox>
          <Label text="Description" />
          <TextField fx:id="descriptionid" promptText="Enter your submission details..." styleClass="text-field, description-field" />
+
       </VBox>
 
       <HBox spacing="20">
