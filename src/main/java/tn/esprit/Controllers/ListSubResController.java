@@ -95,7 +95,7 @@ public class ListSubResController {
     void initialize() {
         submissionService = new SubmissionServices();
         responseService = new ResponseServices();
-        aiService = new AIResponseService("AIzaSyDmPbDHQxHwKEDH8mkuFBiUXm0aiNrdVC0");
+        aiService = new AIResponseService("");
         //urgencyLevelid.setVisible(false);
 
         initializeColumns();
