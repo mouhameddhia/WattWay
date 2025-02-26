@@ -23,8 +23,8 @@
         <Label text="Status:" styleClass="form-label"/>
         <ComboBox fx:id="statusAssignmentComboBox" styleClass="form-input"/>
 
-        <Label text="User ID:" styleClass="form-label"/>
-        <ComboBox fx:id="userIdComboBox" promptText="Select User ID" styleClass="form-input" />
+        <Label text="Car ID:" styleClass="form-label"/>
+        <ComboBox fx:id="carIdComboBox" promptText="Select Car ID" styleClass="form-input" />
 
         <Label text="Select Mechanics:" styleClass="form-label"/>
         <ListView fx:id="mechanicListView" prefHeight="150" styleClass="form-listview"/>

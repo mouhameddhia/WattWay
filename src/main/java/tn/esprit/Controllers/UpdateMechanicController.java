@@ -27,7 +27,6 @@ public class UpdateMechanicController {
 
     @FXML
     public void initialize() {
-        // ✅ Populate ComboBox with enum values
         specialityMechanicComboBox.getItems().addAll(Mechanic.Speciality.values());
     }
 

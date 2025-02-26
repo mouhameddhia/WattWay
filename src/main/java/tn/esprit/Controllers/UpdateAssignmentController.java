@@ -7,7 +7,7 @@ import tn.esprit.entities.Assignment;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
 import tn.esprit.services.MechanicServices;
-import tn.esprit.services.UserServices;
+import tn.esprit.services.CarServices;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ public class UpdateAssignmentController {
     @FXML
     private ComboBox<Assignment.Status> statusAssignmentComboBox;
     @FXML
-    private ComboBox<Integer> userIdComboBox;
+    private ComboBox<Integer> carIdComboBox;
     @FXML
     private ListView<Mechanic> mechanicListView;
     @FXML
@@ -30,7 +30,7 @@ public class UpdateAssignmentController {
 
     private final AssignmentServices assignmentServices = new AssignmentServices();
     private final MechanicServices mechanicServices = new MechanicServices();
-    private final UserServices userServices = new UserServices();
+    private final CarServices carServices = new CarServices();
     private Assignment assignment;
 
     public void initData(Assignment assignment) {
@@ -47,7 +47,7 @@ public class UpdateAssignmentController {
         loadUserIds();
 
         // Set the current User ID
-        userIdComboBox.setValue(assignment.getIdUser());
+        carIdComboBox.setValue(assignment.getIdCar());
 
         // Load Mechanics
         loadMechanics(assignment);
@@ -55,9 +55,9 @@ public class UpdateAssignmentController {
 
     private void loadUserIds() {
         try {
-            List<Integer> userIds = userServices.getAllUserIds();  // Fetch user IDs from DB
+            List<Integer> userIds = carServices.getAllCarIds();  // Fetch user IDs from DB
             ObservableList<Integer> userIdList = FXCollections.observableArrayList(userIds);
-            userIdComboBox.setItems(userIdList);
+            carIdComboBox.setItems(userIdList);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,23 +113,23 @@ public class UpdateAssignmentController {
         try {
             String description = descriptionAssignmentField.getText();
             Assignment.Status status = statusAssignmentComboBox.getValue();
-            Integer userId = userIdComboBox.getValue();
+            Integer carId = carIdComboBox.getValue();
 
-            if (description.isEmpty() || status == null || userId == null) {
+            if (description.isEmpty() || status == null || carId == null) {
                 showAlert("Missing Information", "Please fill all required fields.");
                 return;
             }
 
             // Check if the User ID exists
-            if (!userServices.isUserExists(userId)) {
-                showAlert("Invalid User", "The selected User ID does not exist.");
+            if (!carServices.isCarExists(carId)) {
+                showAlert("Invalid User", "The selected Car ID does not exist.");
                 return;
             }
 
             // Update assignment
             assignment.setDescriptionAssignment(description);
             assignment.setStatusAssignment(status);
-            assignment.setIdUser(userId);
+            assignment.setIdCar(carId);
             assignmentServices.update(assignment);
 
             // Update assigned mechanics

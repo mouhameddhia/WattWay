@@ -34,6 +34,7 @@
          <HBox spacing="8" alignment="CENTER" styleClass="search-container">
             <TextField fx:id="searchField" promptText="Search Mechanics..." styleClass="search-bar"/>
             <Button text="Search" onAction="#searchMechanics" styleClass="primary-button2"/>
+            <Button text="Add Mechanic" onAction="#addMechanic" styleClass="primary-button"/>
          </HBox>
          <TableView fx:id="mechanicsTableView" AnchorPane.leftAnchor="20.0"
                     AnchorPane.rightAnchor="20.0"
@@ -49,7 +50,7 @@
                <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
             </columns>
          </TableView>
-         <Button text="Add Mechanic" onAction="#addMechanic" prefWidth="950" styleClass="menu-button-active"/>
+
       </VBox>
    </HBox>
 

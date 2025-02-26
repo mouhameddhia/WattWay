@@ -2,10 +2,13 @@ package tn.esprit.Controllers;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.css.converter.StringConverter;
 import javafx.scene.control.*;
 import tn.esprit.entities.Assignment;
+import tn.esprit.entities.Car;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
+import tn.esprit.services.CarServices;
 import tn.esprit.services.UserServices;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
@@ -22,7 +25,7 @@ public class AddAssignmentController {
     @FXML
     private ComboBox<Assignment.Status> statusAssignmentComboBox;
     @FXML
-    private ComboBox<Integer> userIdComboBox;
+    private ComboBox<Car> carIdComboBox;
     @FXML
     private ListView<Mechanic> mechanicListView;
     @FXML
@@ -33,20 +36,15 @@ public class AddAssignmentController {
     private Button cancelButton;
 
     private final AssignmentServices assignmentServices = new AssignmentServices();
-    private final UserServices userServices = new UserServices();
+    private final CarServices carServices = new CarServices();
     private final MechanicServices mechanicServices = new MechanicServices();
 
     @FXML
     private void initialize() {
         loadMechanics();
         statusAssignmentComboBox.getItems().addAll(Assignment.Status.values());
-        try {
-            List<Integer> userIds = userServices.getAllUserIds();
-            ObservableList<Integer> userIdList = FXCollections.observableArrayList(userIds);
-            userIdComboBox.setItems(userIdList);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        //statusAssignmentComboBox.getItems().addAll(Assignment.Status.values());
+        loadCars();
 
         mechanicListView.getSelectionModel().setSelectionMode(javafx.scene.control.SelectionMode.MULTIPLE);
 
@@ -61,7 +59,35 @@ public class AddAssignmentController {
                 }
             }
         });
+        carIdComboBox.setCellFactory(lv -> new ListCell<Car>() {
+            @Override
+            protected void updateItem(Car car, boolean empty) {
+                super.updateItem(car, empty);
+                if (empty || car == null) {
+                    setText(null);
+                } else {
+                    setText(car.getModelCar() + " (" + car.getBrandCar() + ", " + car.getYearCar() + ")");
+                }
+            }
+        });
+
     }
+    private void loadCars() {
+        try {
+            List<Car> cars = carServices.getAllCarsUnderRepair();  
+            ObservableList<Car> carList = FXCollections.observableArrayList(cars);
+
+            if (carIdComboBox != null) {
+                carIdComboBox.setItems(carList);
+            } else {
+                System.err.println("Error: carIdComboBox is null!");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
     private void loadMechanics() {
         try {
@@ -102,15 +128,15 @@ public class AddAssignmentController {
     private void saveAssignment() {
         String description = descriptionAssignmentField.getText();
         Assignment.Status status = statusAssignmentComboBox.getValue();
-        Integer userId = userIdComboBox.getValue();
+        Car selectedCar = carIdComboBox.getValue();
         ObservableList<Mechanic> selectedMechanics = mechanicListView.getSelectionModel().getSelectedItems();
 
         if (description.isEmpty() || status == null  || selectedMechanics.isEmpty()) {
             showAlert("Empty","Please fill all fields.");
             return;
         }
-        if (userId == null) {
-            showAlert("Empty ID User","Please select ID User.");
+        if (selectedCar == null) {
+            showAlert("Empty ID Car","Please select ID Car.");
             return;
         }
 
@@ -120,7 +146,7 @@ public class AddAssignmentController {
             Assignment newAssignment = new Assignment();
             newAssignment.setDescriptionAssignment(description);
             newAssignment.setStatusAssignment(status);
-            newAssignment.setIdUser(userId);
+            newAssignment.setIdCar(selectedCar.getIdCar());
             newAssignment.setMechanics(new ArrayList<>(selectedMechanics));
 
             assignmentServices.addP(newAssignment);

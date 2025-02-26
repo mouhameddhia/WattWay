@@ -35,8 +35,9 @@
         <VBox spacing="10">
             <Label text="List of Assignments" styleClass="table-header"/>
             <HBox spacing="8" alignment="CENTER" styleClass="search-container">
-                <TextField fx:id="searchField" promptText="Search Mechanics..." styleClass="search-bar"/>
+                <TextField fx:id="searchField" promptText="Search Assignments..." styleClass="search-bar"/>
                 <Button text="Search" onAction="#searchAssignments" styleClass="primary-button2"/>
+                <Button text="Add Assignment" onAction="#addAssignment" styleClass="primary-button"/>
             </HBox>
             <TableView fx:id="assignmentsTableView" AnchorPane.leftAnchor="20.0"
                        AnchorPane.rightAnchor="20.0"
@@ -49,12 +50,12 @@
                 <columns>
                     <TableColumn fx:id="descriptionAssignmentColumn" text="Description" prefWidth="200"/>
                     <TableColumn fx:id="statusAssignmentColumn" text="Status" prefWidth="120"/>
-                    <TableColumn fx:id="idUserColumn" text="User ID" prefWidth="120"/>
+                    <TableColumn fx:id="carModelColumn" text="Car Model" prefWidth="180"/>
                     <TableColumn fx:id="mechanicsColumn" text="Mechanics Assigned" prefWidth="180"/>
                     <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
                 </columns>
             </TableView>
-            <Button text="Add Assignment" onAction="#addAssignment" prefWidth="950" styleClass="menu-button-active"/>
+
         </VBox>
     </HBox>
 

@@ -8,31 +8,31 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class AssignmentServices implements IService<Assignment> {
+public class AssignmentServices implements IService<Assignment>{
     private Connection conn;
 
     public AssignmentServices() {
         conn = MyDatabase.getInstance().getConnection();
     }
-
     @Override
     public void add(Assignment assignment) throws SQLException {
-        String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idUser`, `idMechanic`) VALUES ('"
+        String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idCar`) VALUES ('"
                 + assignment.getDescriptionAssignment() + "','"
-                + assignment.getStatusAssignment() + "',"
-                + assignment.getIdUser() + ",";
-                //+ assignment.getIdMechanic() + ")";
+                + assignment.getStatusAssignment().name() + "',"
+                + assignment.getIdCar() + ")";
+
         Statement stm = conn.createStatement();
         stm.executeUpdate(query);
-        System.out.println("Assignment added");
+        System.out.println("Assignment added successfully!");
     }
+
     @Override
     public void addP(Assignment assignment) throws SQLException {
-        String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idUser`) VALUES (?,?,?)";
+        String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idCar`) VALUES (?, ?, ?)";
         PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, assignment.getDescriptionAssignment());
         ps.setString(2, assignment.getStatusAssignment().name());
-        ps.setInt(3, assignment.getIdUser());
+        ps.setInt(3, assignment.getIdCar());
         ps.executeUpdate();
 
         // Get the generated assignment ID
@@ -46,7 +46,6 @@ public class AssignmentServices implements IService<Assignment> {
             }
         }
     }
-
 
     public void assignMechanicToAssignment(int assignmentId, int mechanicId) throws SQLException {
         String query = "INSERT INTO assignment_mechanics (assignment_id, mechanic_id) VALUES (?, ?)";
@@ -67,12 +66,11 @@ public class AssignmentServices implements IService<Assignment> {
 
     @Override
     public void update(Assignment assignment) throws SQLException {
-        // Update the assignment details
-        String query = "UPDATE assignment SET descriptionAssignment = ?, statusAssignment = ?, idUser = ? WHERE idAssignment = ?";
+        String query = "UPDATE assignment SET descriptionAssignment = ?, statusAssignment = ?, idCar = ? WHERE idAssignment = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, assignment.getDescriptionAssignment());
         ps.setString(2, assignment.getStatusAssignment().name());
-        ps.setInt(3, assignment.getIdUser());
+        ps.setInt(3, assignment.getIdCar());
         ps.setInt(4, assignment.getIdAssignment());
         ps.executeUpdate();
 
@@ -97,7 +95,9 @@ public class AssignmentServices implements IService<Assignment> {
     @Override
     public List<Assignment> returnList() throws SQLException {
         List<Assignment> assignments = new ArrayList<>();
-        String query = "SELECT * FROM assignment";
+        String query = "SELECT a.*, c.modelCar FROM assignment a " +
+                "JOIN car c ON a.idCar = c.idCar";
+
         Statement stm = conn.createStatement();
         ResultSet rs = stm.executeQuery(query);
 
@@ -105,17 +105,20 @@ public class AssignmentServices implements IService<Assignment> {
             Assignment assignment = new Assignment();
             assignment.setIdAssignment(rs.getInt("idAssignment"));
             assignment.setDescriptionAssignment(rs.getString("descriptionAssignment"));
+
+            // Handle status conversion
             String statusStr = rs.getString("statusAssignment");
-            Assignment.Status status;
             try {
-                status = Assignment.Status.valueOf(statusStr); // Convert String to Enum
+                assignment.setStatusAssignment(Assignment.Status.valueOf(statusStr));
             } catch (IllegalArgumentException e) {
-                status = Assignment.Status.PENDING; // Default to PENDING if value is invalid
+                assignment.setStatusAssignment(Assignment.Status.PENDING);
                 System.err.println("Warning: Invalid status '" + statusStr + "' found in DB, defaulting to PENDING.");
             }
-            assignment.setStatusAssignment(status);
 
-            assignment.setIdUser(rs.getInt("idUser"));
+            assignment.setIdCar(rs.getInt("idCar"));
+            assignment.setCarModel(rs.getString("modelCar")); // Store car model for display
+
+            // Fetch mechanics assigned to this assignment
             List<Mechanic> mechanics = getMechanicsByAssignmentId(assignment.getIdAssignment());
             assignment.setMechanics(mechanics);
 
@@ -139,17 +142,21 @@ public class AssignmentServices implements IService<Assignment> {
             Mechanic mechanic = new Mechanic();
             mechanic.setIdMechanic(rs.getInt("idMechanic"));
             mechanic.setNameMechanic(rs.getString("nameMechanic"));
+
+            // Convert speciality properly
             String specialityString = rs.getString("specialityMechanic").toUpperCase();
             try {
                 mechanic.setSpecialityMechanic(Mechanic.Speciality.valueOf(specialityString));
             } catch (IllegalArgumentException e) {
-                System.out.println("Invalid speciality found in DB : " + specialityString);
+                System.out.println("Invalid speciality found in DB: " + specialityString);
             }
+
             mechanics.add(mechanic);
         }
 
         return mechanics;
     }
+
     public void updateAssignmentWithMechanics(int assignmentId, List<Mechanic> mechanics) throws SQLException {
         // First, remove all existing mechanics for the assignment
         String deleteQuery = "DELETE FROM assignment_mechanics WHERE assignment_id = ?";
@@ -170,6 +177,4 @@ public class AssignmentServices implements IService<Assignment> {
         insertStmt.executeBatch();
         System.out.println("Assignment updated with new mechanics.");
     }
-
-
 }

@@ -10,14 +10,15 @@ public class Assignment {
     private int idAssignment;
     private String descriptionAssignment;
     private Status statusAssignment;
-    private int idUser;
+    private int idCar;
     private List<Mechanic> mechanics;
+    private String carModel;
 
-    public Assignment(int idAssignment, String descriptionAssignment, Status statusAssignment, int idUser) {
+    public Assignment(int idAssignment, String descriptionAssignment, Status statusAssignment, int idCar) {
         this.idAssignment = idAssignment;
         this.descriptionAssignment = descriptionAssignment;
         this.statusAssignment = statusAssignment;
-        this.idUser = idUser;
+        this.idCar = idCar;
         this.mechanics = new ArrayList<>();
     }
 
@@ -49,13 +50,11 @@ public class Assignment {
         this.statusAssignment = statusAssignment;
     }
 
-    public int getIdUser() {
-        return idUser;
-    }
+    public int getIdCar() { return idCar; }
+    public void setIdCar(int idCar) { this.idCar = idCar; }
 
-    public void setIdUser(int idUser) {
-        this.idUser = idUser;
-    }
+    public String getCarModel() { return carModel; }
+    public void setCarModel(String carModel) { this.carModel = carModel; }
 
     public List<Mechanic> getMechanics() {
         return mechanics;

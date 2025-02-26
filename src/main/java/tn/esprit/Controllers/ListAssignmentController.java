@@ -30,7 +30,7 @@ public class ListAssignmentController {
     @FXML
     private TableColumn<Assignment, String> statusAssignmentColumn;
     @FXML
-    private TableColumn<Assignment, Integer> idUserColumn;
+    private TableColumn<Assignment, Integer> carModelColumn;
     @FXML
     private TableColumn<Assignment, String> mechanicsColumn;
     @FXML
@@ -178,7 +178,7 @@ public class ListAssignmentController {
         //idAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("idAssignment"));
         descriptionAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionAssignment"));
         statusAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("statusAssignment"));
-        idUserColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
+        carModelColumn.setCellValueFactory(new PropertyValueFactory<>("carModel"));
 
         mechanicsColumn.setCellValueFactory(cellData -> {
             List<Mechanic> mechanics = cellData.getValue().getMechanics();
