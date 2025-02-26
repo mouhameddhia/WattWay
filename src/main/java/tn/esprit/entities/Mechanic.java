@@ -13,15 +13,21 @@ public class Mechanic {
     private String nameMechanic;
     private Speciality specialityMechanic;
     private List<Assignment> assignments;
+    private String imgMechanic;
+    private String emailMechanic;
+    private int carsRepaired;
 
 
 
     // Constructor
-    public Mechanic(int idMechanic, String nameMechanic, Speciality specialityMechanic) {
+    public Mechanic(int idMechanic, String nameMechanic, Speciality specialityMechanic, String imgMechanic, String emailMechanic, int carsRepaired) {
         this.idMechanic = idMechanic;
         this.nameMechanic = nameMechanic;
         this.specialityMechanic = specialityMechanic;
         this.assignments = new ArrayList<>();
+        this.imgMechanic = imgMechanic;
+        this.emailMechanic = emailMechanic;
+        this.carsRepaired = carsRepaired;
     }
     public Mechanic(String nameMechanic, Speciality specialityMechanic) {
         this.nameMechanic = nameMechanic;
@@ -57,6 +63,14 @@ public class Mechanic {
     }
 
     public List<Assignment> getAssignments() { return assignments ;}
+    public String getImgMechanic() { return imgMechanic; }
+    public void setImgMechanic(String imgMechanic) { this.imgMechanic = imgMechanic; }
+
+    public String getEmailMechanic() { return emailMechanic; }
+    public void setEmailMechanic(String emailMechanic) { this.emailMechanic = emailMechanic; }
+
+    public int getCarsRepaired() { return carsRepaired; }
+    public void setCarsRepaired(int carsRepaired) { this.carsRepaired = carsRepaired; }
 
 
     public void setAssignment(List<Assignment> assignments) {

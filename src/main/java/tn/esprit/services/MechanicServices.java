@@ -23,10 +23,13 @@ public class MechanicServices implements IService<Mechanic>{
 
     @Override
     public void addP(Mechanic mechanic) throws SQLException{
-        String query = "INSERT INTO `mechanic`(`nameMechanic`, `specialityMechanic`) VALUES (?,?)";
+        String query = "INSERT INTO `mechanic`(`nameMechanic`, `specialityMechanic`,`imgMechanic`, `emailMechanic`, `carsRepaired`) VALUES (?,?,?,?,?)";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1,mechanic.getNameMechanic());
         ps.setString(2,mechanic.getSpecialityMechanic().name());
+        ps.setString(3, mechanic.getImgMechanic());
+        ps.setString(4, mechanic.getEmailMechanic());
+        ps.setInt(5, mechanic.getCarsRepaired());
         ps.executeUpdate();
         System.out.println("Mechanic added");
     }
@@ -42,11 +45,14 @@ public class MechanicServices implements IService<Mechanic>{
 
     @Override
     public void update(Mechanic mechanic) throws SQLException {
-        String query = "UPDATE mechanic SET nameMechanic = ?, specialityMechanic = ? WHERE idMechanic = ?";
+        String query = "UPDATE mechanic SET nameMechanic = ?, specialityMechanic = ?, imgMechanic = ?, emailMechanic = ?, carsRepaired = ? WHERE idMechanic = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, mechanic.getNameMechanic());
         ps.setString(2, mechanic.getSpecialityMechanic().name());
-        ps.setInt(3, mechanic.getIdMechanic());
+        ps.setString(3, mechanic.getImgMechanic());
+        ps.setString(4, mechanic.getEmailMechanic());
+        ps.setInt(5, mechanic.getCarsRepaired());
+        ps.setInt(6, mechanic.getIdMechanic());
         ps.executeUpdate();
         System.out.println("Mechanic updated");
     }
@@ -66,6 +72,9 @@ public class MechanicServices implements IService<Mechanic>{
             String specialityString = rs.getString("specialityMechanic");
             Mechanic.Speciality speciality = Mechanic.Speciality.valueOf(specialityString.toUpperCase());
             mechanic.setSpecialityMechanic(speciality);
+            mechanic.setImgMechanic(rs.getString("imgMechanic"));
+            mechanic.setEmailMechanic(rs.getString("emailMechanic"));
+            mechanic.setCarsRepaired(rs.getInt("carsRepaired"));
             mechanics.add(mechanic);
         }
 

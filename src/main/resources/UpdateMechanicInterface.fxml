@@ -6,21 +6,32 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.image.ImageView?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateMechanicController"
             stylesheets="@styles.css" styleClass="gradient-pane">
 
-    <VBox spacing="15" alignment="CENTER" prefWidth="450" prefHeight="400" styleClass="form-container"
+    <VBox spacing="15" alignment="CENTER" prefWidth="450" prefHeight="500" styleClass="form-container"
           AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
-        <Label text="Update Mechanic" styleClass="form-title" />
+        <Label text="Update Mechanic" styleClass="form-title"/>
 
         <Label text="Mechanic Name:" styleClass="form-label"/>
         <TextField fx:id="nameMechanicField" promptText="Enter mechanic name" styleClass="form-input"/>
 
         <Label text="Speciality:" styleClass="form-label"/>
         <ComboBox fx:id="specialityMechanicComboBox"/>
+
+        <Label text="Email:" styleClass="form-label"/>
+        <TextField fx:id="emailMechanicField" promptText="Enter email" styleClass="form-input"/>
+
+        <Label text="Cars Repaired:" styleClass="form-label"/>
+        <TextField fx:id="carsRepairedField" promptText="Enter number of cars repaired" styleClass="form-input"/>
+
+        <Label text="Update Mechanic Image:" styleClass="form-label"/>
+        <Button fx:id="uploadImageButton" text="Choose Image" onAction="#uploadImage" styleClass="primary-button"/>
+        <ImageView fx:id="mechanicImageView" fitWidth="150" fitHeight="150"/>
 
         <HBox spacing="10" alignment="CENTER">
             <Button fx:id="saveButton" text="Save" onAction="#saveMechanic" styleClass="primary-button"/>

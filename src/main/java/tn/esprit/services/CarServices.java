@@ -26,7 +26,29 @@ public class CarServices  {
         return carIds;
     }
 
+    public Car getCarById(int idCar) throws SQLException {
+        String query = "SELECT * FROM car WHERE idCar = ?";
+        PreparedStatement ps = conn.prepareStatement(query);
+        ps.setInt(1, idCar);
+        ResultSet rs = ps.executeQuery();
 
+        if (rs.next()) {
+            return new Car(
+                    rs.getInt("idCar"),
+                    rs.getString("modelCar"),
+                    rs.getString("brandCar"),
+                    rs.getInt("yearCar"),
+                    rs.getFloat("priceCar"),
+                    rs.getString("statusCar"),
+                    //Car.Status.valueOf(rs.getString("statusCar").toUpperCase()),
+                    rs.getFloat("kilometrageCar"),
+                    rs.getInt("idWarehouse"),
+                    rs.getString("imgCar")
+            );
+        }
+
+        return null; // No car found with the given ID
+    }
     public boolean isCarExists(int idCar) throws SQLException {
         String query = "SELECT COUNT(*) FROM car WHERE idCar = ?";
         PreparedStatement ps = conn.prepareStatement(query);

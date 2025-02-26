@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowDetailsMechanicController"
+            stylesheets="@styles.css" styleClass="gradient-pane">
+
+    <VBox spacing="15" alignment="CENTER" prefWidth="500" prefHeight="500" styleClass="form-container"
+          AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
+          AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
+
+        <Label text="Mechanic Details" styleClass="form-title" />
+
+        <!-- Mechanic Image -->
+        <ImageView fx:id="mechanicImageView" fitWidth="150" fitHeight="150" />
+
+        <Label text="Name:" styleClass="form-label"/>
+        <Label fx:id="nameMechanicLabel" styleClass="form-label"/>
+
+        <Label text="Speciality:" styleClass="form-label"/>
+        <Label fx:id="specialityMechanicLabel" styleClass="form-label"/>
+
+        <Label text="Email:" styleClass="form-label"/>
+        <Label fx:id="emailMechanicLabel" styleClass="form-label"/>
+
+        <Label text="Cars Repaired:" styleClass="form-label"/>
+        <Label fx:id="carsRepairedLabel" styleClass="form-label"/>
+
+        <HBox spacing="10" alignment="CENTER">
+            <Button fx:id="closeButton" text="Close" onAction="#closeWindow" styleClass="delete-button"/>
+        </HBox>
+
+    </VBox>
+
+</AnchorPane>

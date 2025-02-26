@@ -12,7 +12,10 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -21,31 +24,21 @@ public class ListMechanicController {
     @FXML
     private TableView<Mechanic> mechanicsTableView;
     @FXML
-    private TableColumn<Mechanic, Integer> idMechanicColumn;
-    @FXML
     private TableColumn<Mechanic, String> nameMechanicColumn;
     @FXML
     private TableColumn<Mechanic, String> specialityMechanicColumn;
     @FXML
+    private TableColumn<Mechanic, String> emailMechanicColumn;
+    @FXML
+    private TableColumn<Mechanic, Integer> carsRepairedColumn;
+    @FXML
+    private TableColumn<Mechanic, String> imageColumn;
+    @FXML
     private TableColumn<Mechanic, Void> actionColumn;
-
-    private final MechanicServices mechanicServices;
     @FXML
     private TextField searchField;
 
-    @FXML
-    private void searchMechanics() throws SQLException {
-        String searchText = searchField.getText().toLowerCase();
-
-        if (searchText.isEmpty()) {
-            mechanicsTableView.setItems(FXCollections.observableArrayList(mechanicServices.returnList()));
-        } else {
-            ObservableList<Mechanic> filteredList = mechanicsTableView.getItems()
-                    .filtered(m -> m.getNameMechanic().toLowerCase().contains(searchText));
-            mechanicsTableView.setItems(filteredList);
-        }
-    }
-
+    private final MechanicServices mechanicServices;
 
     public ListMechanicController() {
         this.mechanicServices = new MechanicServices();
@@ -53,13 +46,39 @@ public class ListMechanicController {
 
     @FXML
     private void initialize() throws SQLException {
-        //idMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("idMechanic"));
         nameMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("nameMechanic"));
         specialityMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("specialityMechanic"));
+        emailMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("emailMechanic"));
+        carsRepairedColumn.setCellValueFactory(new PropertyValueFactory<>("carsRepaired"));
 
-        ObservableList<Mechanic> mechanics = FXCollections.observableArrayList(mechanicServices.returnList());
-        mechanicsTableView.setItems(mechanics);
+        // Display Image using ImageView
+        imageColumn.setCellFactory(param -> new TableCell<>() {
+            private final ImageView imageView = new ImageView();
 
+            @Override
+            protected void updateItem(String imagePath, boolean empty) {
+                super.updateItem(imagePath, empty);
+                if (empty || imagePath == null || imagePath.isEmpty()) {
+                    setGraphic(null);
+                } else {
+                    File file = new File(imagePath);
+                    if (file.exists()) {
+                        Image image = new Image(file.toURI().toString(), 50, 50, true, true);
+                        imageView.setImage(image);
+                        imageView.setFitWidth(50);
+                        imageView.setFitHeight(50);
+                        setGraphic(imageView);
+                    } else {
+                        setGraphic(null);
+                    }
+                }
+            }
+        });
+
+        // Load mechanics into the table
+        refreshMechanicsTable();
+
+        // Action buttons (Update & Delete)
         actionColumn.setCellFactory(param -> new TableCell<>() {
             private final Button updateButton = new Button("Update");
             private final Button deleteButton = new Button("Delete");
@@ -67,8 +86,6 @@ public class ListMechanicController {
             {
                 updateButton.getStyleClass().add("primary-button");
                 deleteButton.getStyleClass().add("delete-button");
-
-                updateButton.setStyle("-fx-background-color: #00bba8; -fx-text-fill: white;");
 
                 updateButton.setOnAction(event -> {
                     Mechanic mechanic = getTableView().getItems().get(getIndex());
@@ -96,11 +113,56 @@ public class ListMechanicController {
                 }
             }
         });
+        mechanicsTableView.setRowFactory(tv -> {
+            TableRow<Mechanic> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Mechanic mechanic = row.getItem();
+                    showMechanicDetails(mechanic);
+                }
+            });
+            return row;
+        });
+    }
+    private void showMechanicDetails(Mechanic mechanic) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowDetailsMechanic.fxml"));
+            Parent root = loader.load();
+
+            ShowDetailsMechanicController controller = loader.getController();
+            controller.initData(mechanic);
+
+            Stage stage = new Stage();
+            stage.setTitle("Mechanic Details");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void searchMechanics() throws SQLException {
+        String searchText = searchField.getText().toLowerCase();
+
+        if (searchText.isEmpty()) {
+            mechanicsTableView.setItems(FXCollections.observableArrayList(mechanicServices.returnList()));
+        } else {
+            ObservableList<Mechanic> filteredList = FXCollections.observableArrayList();
+            for (Mechanic m : mechanicServices.returnList()) {
+                if (m.getNameMechanic().toLowerCase().contains(searchText) ||
+                        m.getEmailMechanic().toLowerCase().contains(searchText) ||
+                        String.valueOf(m.getCarsRepaired()).contains(searchText)) {
+                    filteredList.add(m);
+                }
+            }
+            mechanicsTableView.setItems(filteredList);
+        }
     }
 
     private void updateMechanic(Mechanic mechanic) {
         try {
-            System.out.println(mechanic.toString());
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateMechanicInterface.fxml"));
             Parent root = loader.load();
             UpdateMechanicController controller = loader.getController();
@@ -152,13 +214,14 @@ public class ListMechanicController {
         ObservableList<Mechanic> updatedMechanics = FXCollections.observableArrayList(mechanicServices.returnList());
         mechanicsTableView.setItems(updatedMechanics);
     }
+
     @FXML
     private void switchToAssignments() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListAssignmentInterface.fxml"));
             Parent root = loader.load();
 
-            Stage stage = (Stage) mechanicsTableView.getScene().getWindow(); // Get the current window
+            Stage stage = (Stage) mechanicsTableView.getScene().getWindow();
             stage.getScene().setRoot(root);
             stage.setTitle("List of Assignments");
         } catch (IOException e) {

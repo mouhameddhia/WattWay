@@ -119,6 +119,8 @@ public class ListAssignmentController {
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -191,6 +193,16 @@ public class ListAssignmentController {
 
         ObservableList<Assignment> assignments = FXCollections.observableArrayList(assignmentServices.returnList());
         assignmentsTableView.setItems(assignments);
+        assignmentsTableView.setRowFactory(tv -> {
+            TableRow<Assignment> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    Assignment assignment = row.getItem();
+                    showAssignmentDetails(assignment);
+                }
+            });
+            return row;
+        });
 
         actionColumn.setCellFactory(param -> new TableCell<>() {
             private final Button updateButton = new Button("Update");
@@ -229,5 +241,23 @@ public class ListAssignmentController {
             }
         });
     }
+    private void showAssignmentDetails(Assignment assignment) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowDetailsAssignment.fxml"));
+            Parent root = loader.load();
+
+            ShowDetailsAssignmentController controller = loader.getController();
+            controller.initData(assignment);
+
+            Stage stage = new Stage();
+            stage.setTitle("Assignment Details");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 
 }

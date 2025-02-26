@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import tn.esprit.entities.Assignment;
+import tn.esprit.entities.Car;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
 import tn.esprit.services.MechanicServices;
@@ -20,7 +21,7 @@ public class UpdateAssignmentController {
     @FXML
     private ComboBox<Assignment.Status> statusAssignmentComboBox;
     @FXML
-    private ComboBox<Integer> carIdComboBox;
+    private ComboBox<Car> carIdComboBox;
     @FXML
     private ListView<Mechanic> mechanicListView;
     @FXML
@@ -33,7 +34,7 @@ public class UpdateAssignmentController {
     private final CarServices carServices = new CarServices();
     private Assignment assignment;
 
-    public void initData(Assignment assignment) {
+    public void initData(Assignment assignment) throws SQLException {
         this.assignment = assignment;
 
         // Set Description Field
@@ -41,23 +42,53 @@ public class UpdateAssignmentController {
 
         // Populate Status ComboBox
         statusAssignmentComboBox.getItems().addAll(Assignment.Status.values());
-        statusAssignmentComboBox.setValue(assignment.getStatusAssignment());  // ✅ Pre-select status
+        statusAssignmentComboBox.setValue(assignment.getStatusAssignment());
 
         // Populate User ID ComboBox from Database
-        loadUserIds();
+        loadCars();
 
-        // Set the current User ID
-        carIdComboBox.setValue(assignment.getIdCar());
+        Car selectedCar = carServices.getCarById(assignment.getIdCar());
+        carIdComboBox.setValue(selectedCar);
 
         // Load Mechanics
         loadMechanics(assignment);
     }
 
-    private void loadUserIds() {
+    private void loadCars() {
         try {
-            List<Integer> userIds = carServices.getAllCarIds();  // Fetch user IDs from DB
-            ObservableList<Integer> userIdList = FXCollections.observableArrayList(userIds);
-            carIdComboBox.setItems(userIdList);
+            List<Car> cars = carServices.getAllCarsUnderRepair();
+            ObservableList<Car> carList = FXCollections.observableArrayList(cars);
+
+            if (carIdComboBox != null) {
+                carIdComboBox.setItems(carList);
+
+                carIdComboBox.setCellFactory(lv -> new ListCell<>() {
+                    @Override
+                    protected void updateItem(Car car, boolean empty) {
+                        super.updateItem(car, empty);
+                        if (empty || car == null) {
+                            setText(null);
+                        } else {
+                            setText(car.getCarDisplayName()); // "Model (Brand, Year)"
+                        }
+                    }
+                });
+
+                carIdComboBox.setButtonCell(new ListCell<>() {
+                    @Override
+                    protected void updateItem(Car car, boolean empty) {
+                        super.updateItem(car, empty);
+                        if (empty || car == null) {
+                            setText(null);
+                        } else {
+                            setText(car.getCarDisplayName());
+                        }
+                    }
+                });
+
+            } else {
+                System.err.println("Error: carIdComboBox is null!");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -113,15 +144,16 @@ public class UpdateAssignmentController {
         try {
             String description = descriptionAssignmentField.getText();
             Assignment.Status status = statusAssignmentComboBox.getValue();
-            Integer carId = carIdComboBox.getValue();
+            //Integer carId = carIdComboBox.getValue();
+            Car selectedCar = carIdComboBox.getValue();
 
-            if (description.isEmpty() || status == null || carId == null) {
+            if (description.isEmpty() || status == null || selectedCar == null) {
                 showAlert("Missing Information", "Please fill all required fields.");
                 return;
             }
 
-            // Check if the User ID exists
-            if (!carServices.isCarExists(carId)) {
+
+            if (!carServices.isCarExists(selectedCar.getIdCar())) {
                 showAlert("Invalid User", "The selected Car ID does not exist.");
                 return;
             }
@@ -129,7 +161,7 @@ public class UpdateAssignmentController {
             // Update assignment
             assignment.setDescriptionAssignment(description);
             assignment.setStatusAssignment(status);
-            assignment.setIdCar(carId);
+            assignment.setIdCar(selectedCar.getIdCar());
             assignmentServices.update(assignment);
 
             // Update assigned mechanics
@@ -141,6 +173,7 @@ public class UpdateAssignmentController {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void cancel() {
