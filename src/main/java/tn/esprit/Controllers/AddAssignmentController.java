@@ -15,6 +15,7 @@ import javafx.stage.Stage;
 import tn.esprit.services.MechanicServices;
 
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +35,8 @@ public class AddAssignmentController {
     private Button saveButton;
     @FXML
     private Button cancelButton;
+    @FXML
+    private DatePicker datePicker;
 
     private final AssignmentServices assignmentServices = new AssignmentServices();
     private final CarServices carServices = new CarServices();
@@ -139,6 +142,11 @@ public class AddAssignmentController {
             showAlert("Empty ID Car","Please select ID Car.");
             return;
         }
+        if (datePicker.getValue() == null) {
+            showAlert("Invalid Date", "Please select an assignment date.");
+            return;
+        }
+        LocalDateTime selectedDate = datePicker.getValue().atStartOfDay();
 
         try {
             //int idUser = Integer.parseInt(idUserText);
@@ -148,6 +156,7 @@ public class AddAssignmentController {
             newAssignment.setStatusAssignment(status);
             newAssignment.setIdCar(selectedCar.getIdCar());
             newAssignment.setMechanics(new ArrayList<>(selectedMechanics));
+            newAssignment.setDateAssignment(selectedDate);
 
             assignmentServices.addP(newAssignment);
             closeWindow();

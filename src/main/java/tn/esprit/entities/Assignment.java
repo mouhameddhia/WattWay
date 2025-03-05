@@ -1,4 +1,5 @@
 package tn.esprit.entities;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ public class Assignment {
     private int idCar;
     private List<Mechanic> mechanics;
     private String carModel;
+    private LocalDateTime dateAssignment;
 
     public Assignment(int idAssignment, String descriptionAssignment, Status statusAssignment, int idCar) {
         this.idAssignment = idAssignment;
@@ -65,6 +67,13 @@ public class Assignment {
     }
     public void setMechanics(List<Mechanic> mechanics) {
         this.mechanics = mechanics;
+    }
+    public LocalDateTime getDateAssignment() {
+        return dateAssignment;
+    }
+
+    public void setDateAssignment(LocalDateTime dateAssignment) {
+        this.dateAssignment = dateAssignment;
     }
     /*
     // toString method

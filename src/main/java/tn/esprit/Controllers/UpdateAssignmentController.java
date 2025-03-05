@@ -11,21 +11,34 @@ import tn.esprit.services.MechanicServices;
 import tn.esprit.services.CarServices;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
+
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 
 public class UpdateAssignmentController {
 
     @FXML
     private TextField descriptionAssignmentField;
+
     @FXML
     private ComboBox<Assignment.Status> statusAssignmentComboBox;
+
     @FXML
     private ComboBox<Car> carIdComboBox;
+
     @FXML
     private ListView<Mechanic> mechanicListView;
+
+    @FXML
+    private DatePicker dateAssignmentPicker; // Add this line
+
     @FXML
     private Button saveButton;
+
     @FXML
     private Button cancelButton;
 
@@ -44,11 +57,16 @@ public class UpdateAssignmentController {
         statusAssignmentComboBox.getItems().addAll(Assignment.Status.values());
         statusAssignmentComboBox.setValue(assignment.getStatusAssignment());
 
-        // Populate User ID ComboBox from Database
+        // Populate Car ID ComboBox from Database
         loadCars();
 
         Car selectedCar = carServices.getCarById(assignment.getIdCar());
         carIdComboBox.setValue(selectedCar);
+
+        // Set DatePicker value
+        if (assignment.getDateAssignment() != null) {
+            dateAssignmentPicker.setValue(assignment.getDateAssignment().toLocalDate());
+        }
 
         // Load Mechanics
         loadMechanics(assignment);
@@ -144,14 +162,13 @@ public class UpdateAssignmentController {
         try {
             String description = descriptionAssignmentField.getText();
             Assignment.Status status = statusAssignmentComboBox.getValue();
-            //Integer carId = carIdComboBox.getValue();
             Car selectedCar = carIdComboBox.getValue();
+            LocalDate date = dateAssignmentPicker.getValue(); // Get the selected date
 
-            if (description.isEmpty() || status == null || selectedCar == null) {
+            if (description.isEmpty() || status == null || selectedCar == null || date == null) {
                 showAlert("Missing Information", "Please fill all required fields.");
                 return;
             }
-
 
             if (!carServices.isCarExists(selectedCar.getIdCar())) {
                 showAlert("Invalid User", "The selected Car ID does not exist.");
@@ -162,6 +179,8 @@ public class UpdateAssignmentController {
             assignment.setDescriptionAssignment(description);
             assignment.setStatusAssignment(status);
             assignment.setIdCar(selectedCar.getIdCar());
+            assignment.setDateAssignment(date.atStartOfDay()); // Convert LocalDate to LocalDateTime
+
             assignmentServices.update(assignment);
 
             // Update assigned mechanics
@@ -173,7 +192,6 @@ public class UpdateAssignmentController {
             e.printStackTrace();
         }
     }
-
 
     @FXML
     private void cancel() {

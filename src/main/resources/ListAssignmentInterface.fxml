@@ -28,8 +28,6 @@
     <Label layoutX="220.0" layoutY="33.0" style="-fx-font-size: 20px; -fx-text-fill: white;"
            text="Assignments Dashboard" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="33.0"/>
 
-
-
     <!-- Main Content -->
     <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="80.0">
         <VBox spacing="10">
@@ -52,12 +50,10 @@
                     <TableColumn fx:id="statusAssignmentColumn" text="Status" prefWidth="120"/>
                     <TableColumn fx:id="carModelColumn" text="Car Model" prefWidth="180"/>
                     <TableColumn fx:id="mechanicsColumn" text="Mechanics Assigned" prefWidth="180"/>
+                    <TableColumn fx:id="dateAssignmentColumn" text="Assignment Date" prefWidth="150"/> <!-- New Column -->
                     <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
                 </columns>
             </TableView>
-
         </VBox>
     </HBox>
-
-
 </AnchorPane>

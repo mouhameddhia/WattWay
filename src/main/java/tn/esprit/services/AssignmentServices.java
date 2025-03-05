@@ -28,12 +28,15 @@ public class AssignmentServices implements IService<Assignment>{
 
     @Override
     public void addP(Assignment assignment) throws SQLException {
-        String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idCar`) VALUES (?, ?, ?)";
+        String query = "INSERT INTO `assignment`(`descriptionAssignment`, `statusAssignment`, `idCar`,`dateAssignment`) VALUES (?,?,?,?)";
+        System.out.println("Executing query: " + query);
         PreparedStatement ps = conn.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, assignment.getDescriptionAssignment());
         ps.setString(2, assignment.getStatusAssignment().name());
         ps.setInt(3, assignment.getIdCar());
+        ps.setTimestamp(4, Timestamp.valueOf(assignment.getDateAssignment()));
         ps.executeUpdate();
+
 
         // Get the generated assignment ID
         ResultSet generatedKeys = ps.getGeneratedKeys();
@@ -45,6 +48,13 @@ public class AssignmentServices implements IService<Assignment>{
                 assignMechanicToAssignment(assignmentId, mechanic.getIdMechanic());
             }
         }
+        //schedule event in google calendar
+        try {
+            GoogleCalendarService.createEvent(assignment.getDescriptionAssignment(), assignment.getDateAssignment());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        System.out.println("Adding assignment: " + assignment.getDescriptionAssignment());
     }
 
     public void assignMechanicToAssignment(int assignmentId, int mechanicId) throws SQLException {
@@ -66,12 +76,14 @@ public class AssignmentServices implements IService<Assignment>{
 
     @Override
     public void update(Assignment assignment) throws SQLException {
-        String query = "UPDATE assignment SET descriptionAssignment = ?, statusAssignment = ?, idCar = ? WHERE idAssignment = ?";
+        // Update query to include dateAssignment
+        String query = "UPDATE assignment SET descriptionAssignment = ?, statusAssignment = ?, idCar = ?, dateAssignment = ? WHERE idAssignment = ?";
         PreparedStatement ps = conn.prepareStatement(query);
         ps.setString(1, assignment.getDescriptionAssignment());
         ps.setString(2, assignment.getStatusAssignment().name());
         ps.setInt(3, assignment.getIdCar());
-        ps.setInt(4, assignment.getIdAssignment());
+        ps.setTimestamp(4, Timestamp.valueOf(assignment.getDateAssignment())); // Set dateAssignment
+        ps.setInt(5, assignment.getIdAssignment());
         ps.executeUpdate();
 
         // Remove existing mechanic assignments for this assignment
@@ -81,8 +93,15 @@ public class AssignmentServices implements IService<Assignment>{
         for (Mechanic mechanic : assignment.getMechanics()) {
             assignMechanicToAssignment(assignment.getIdAssignment(), mechanic.getIdMechanic());
         }
+        try {
+            GoogleCalendarService.createEvent(assignment.getDescriptionAssignment(), assignment.getDateAssignment());
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Failed to create/update event in Google Calendar: " + e.getMessage());
+        }
 
-        System.out.println("Assignment updated with new mechanics.");
+        System.out.println("Assignment updated with new mechanics and date.");
+        System.out.println("Update assignment: " + assignment.getDescriptionAssignment());
     }
 
     public void removeMechanicsFromAssignment(int assignmentId) throws SQLException {
@@ -117,6 +136,14 @@ public class AssignmentServices implements IService<Assignment>{
 
             assignment.setIdCar(rs.getInt("idCar"));
             assignment.setCarModel(rs.getString("modelCar")); // Store car model for display
+
+            // Retrieve and set the dateAssignment field
+            Timestamp timestamp = rs.getTimestamp("dateAssignment");
+            if (timestamp != null) {
+                assignment.setDateAssignment(timestamp.toLocalDateTime());
+            } else {
+                assignment.setDateAssignment(null); // Handle null dates
+            }
 
             // Fetch mechanics assigned to this assignment
             List<Mechanic> mechanics = getMechanicsByAssignmentId(assignment.getIdAssignment());

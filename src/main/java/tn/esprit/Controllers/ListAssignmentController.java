@@ -14,31 +14,45 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import javafx.fxml.FXML;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 public class ListAssignmentController {
 
     @FXML
     private TableView<Assignment> assignmentsTableView;
-    @FXML
-    private TableColumn<Assignment, Integer> idAssignmentColumn;
+
     @FXML
     private TableColumn<Assignment, String> descriptionAssignmentColumn;
+
     @FXML
     private TableColumn<Assignment, String> statusAssignmentColumn;
+
     @FXML
-    private TableColumn<Assignment, Integer> carModelColumn;
+    private TableColumn<Assignment, String> carModelColumn;
+
     @FXML
     private TableColumn<Assignment, String> mechanicsColumn;
+
+    @FXML
+    private TableColumn<Assignment, String> dateAssignmentColumn; // New Column for Date
+
     @FXML
     private TableColumn<Assignment, Void> actionColumn;
 
     private final AssignmentServices assignmentServices;
+
     @FXML
     private TextField searchField;
+
+    public ListAssignmentController() {
+        this.assignmentServices = new AssignmentServices();
+    }
 
     @FXML
     private void searchAssignments() throws SQLException {
@@ -52,7 +66,6 @@ public class ListAssignmentController {
             assignmentsTableView.setItems(filteredList);
         }
     }
-
 
     @FXML
     private void addAssignment() {
@@ -73,10 +86,6 @@ public class ListAssignmentController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public ListAssignmentController() {
-        this.assignmentServices = new AssignmentServices();
     }
 
     private void refreshAssignmentsTable() throws SQLException {
@@ -100,8 +109,6 @@ public class ListAssignmentController {
 
     private void updateAssignment(Assignment assignment) {
         try {
-            System.out.println("Loading FXML from: " + getClass().getResource("/UpdateAssignment.fxml"));
-
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/UpdateAssignmentInterface.fxml"));
             Parent root = loader.load();
             UpdateAssignmentController controller = loader.getController();
@@ -130,58 +137,14 @@ public class ListAssignmentController {
         System.out.println("Deleted assignment with ID: " + assignment.getIdAssignment());
     }
 
-    /*
-        @FXML
-        private void initialize() throws SQLException {
-            idAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("idAssignment"));
-            descriptionAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionAssignment"));
-            statusAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("statusAssignment"));
-            idUserColumn.setCellValueFactory(new PropertyValueFactory<>("idUser"));
-            idMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("idMechanic"));
-
-            ObservableList<Assignment> assignments = FXCollections.observableArrayList(assignmentServices.returnList());
-            assignmentsTableView.setItems(assignments);
-
-            actionColumn.setCellFactory(param -> new TableCell<>() {
-                private final Button updateButton = new Button("Update");
-                private final Button deleteButton = new Button("Delete");
-
-                {
-                    updateButton.setOnAction(event -> {
-                        Assignment assignment = getTableView().getItems().get(getIndex());
-                        updateAssignment(assignment);
-                    });
-
-                    deleteButton.setOnAction(event -> {
-                        Assignment assignment = getTableView().getItems().get(getIndex());
-                        try {
-                            deleteAssignment(assignment);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        }
-                    });
-                }
-
-                @Override
-                protected void updateItem(Void item, boolean empty) {
-                    super.updateItem(item, empty);
-                    if (empty) {
-                        setGraphic(null);
-                    } else {
-                        HBox buttons = new HBox(10, updateButton, deleteButton);
-                        setGraphic(buttons);
-                    }
-                }
-            });
-        }
-    */
     @FXML
     private void initialize() throws SQLException {
-        //idAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("idAssignment"));
+        // Bind columns to Assignment model properties
         descriptionAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("descriptionAssignment"));
         statusAssignmentColumn.setCellValueFactory(new PropertyValueFactory<>("statusAssignment"));
         carModelColumn.setCellValueFactory(new PropertyValueFactory<>("carModel"));
 
+        // Bind the mechanics column to a list of mechanics
         mechanicsColumn.setCellValueFactory(cellData -> {
             List<Mechanic> mechanics = cellData.getValue().getMechanics();
             String mechanicNames = mechanics.stream()
@@ -191,8 +154,22 @@ public class ListAssignmentController {
             return new SimpleStringProperty(mechanicNames);
         });
 
+        // Bind the date column to a formatted string representation of the LocalDateTime
+        dateAssignmentColumn.setCellValueFactory(cellData -> {
+            LocalDateTime date = cellData.getValue().getDateAssignment();
+            if (date != null) {
+                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                return new SimpleStringProperty(formattedDate);
+            } else {
+                return new SimpleStringProperty("No Date");
+            }
+        });
+
+        // Load data into the table
         ObservableList<Assignment> assignments = FXCollections.observableArrayList(assignmentServices.returnList());
         assignmentsTableView.setItems(assignments);
+
+        // Set row factory to handle double-click events
         assignmentsTableView.setRowFactory(tv -> {
             TableRow<Assignment> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -204,6 +181,7 @@ public class ListAssignmentController {
             return row;
         });
 
+        // Set up the action column with update and delete buttons
         actionColumn.setCellFactory(param -> new TableCell<>() {
             private final Button updateButton = new Button("Update");
             private final Button deleteButton = new Button("Delete");
@@ -241,6 +219,7 @@ public class ListAssignmentController {
             }
         });
     }
+
     private void showAssignmentDetails(Assignment assignment) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowDetailsAssignment.fxml"));
@@ -257,7 +236,4 @@ public class ListAssignmentController {
             e.printStackTrace();
         }
     }
-
-
-
 }
