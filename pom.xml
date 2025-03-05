@@ -23,6 +23,10 @@
             <id>google-maven-central</id>
             <url>https://maven-central.storage-download.googleapis.com/maven2/</url>
         </repository>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -89,6 +93,20 @@
             <groupId>com.google.http-client</groupId>
             <artifactId>google-http-client-jackson2</artifactId>
             <version>1.39.2</version>
+        </dependency>
+
+        <!-- Vosk library -->
+        <dependency>
+            <groupId>com.alphacephei</groupId>
+            <artifactId>vosk</artifactId>
+            <version>0.3.45</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/libs/vosk-0.3.45.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>com.github.alphacep</groupId>
+            <artifactId>vosk-api</artifactId>
+            <version>v0.3.45</version>
         </dependency>
     </dependencies>
 

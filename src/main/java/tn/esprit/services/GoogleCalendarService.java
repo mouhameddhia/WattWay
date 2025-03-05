@@ -23,6 +23,7 @@ import java.security.GeneralSecurityException;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZoneOffset;
+import java.time.ZonedDateTime;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
@@ -65,17 +66,27 @@ public class GoogleCalendarService {
                     .setSummary("Mechanic Assignment")
                     .setDescription(description);
 
-            // Convert LocalDateTime to Date
-            Date startDate = Date.from(assignmentDate.atZone(ZoneId.systemDefault()).toInstant());
+            // Convert LocalDateTime to ZonedDateTime
+            ZonedDateTime startZonedDateTime = assignmentDate.atZone(ZoneId.systemDefault()).plusHours(8);
+
+            // Add 12 hours to the start date
+            ZonedDateTime endZonedDateTime = startZonedDateTime.plusHours(12);
+
+            // Convert ZonedDateTime to Date
+            Date startDate = Date.from(startZonedDateTime.toInstant());
+            Date endDate = Date.from(endZonedDateTime.toInstant());
 
             // Set the start and end times with the correct time zone
             String timeZone = "Africa/Lagos"; // Replace with your calendar's time zone
             EventDateTime start = new EventDateTime()
                     .setDateTime(new com.google.api.client.util.DateTime(startDate))
                     .setTimeZone(timeZone);
+            EventDateTime end = new EventDateTime()
+                    .setDateTime(new com.google.api.client.util.DateTime(endDate))
+                    .setTimeZone(timeZone);
 
             event.setStart(start);
-            event.setEnd(start); // Same start and end time
+            event.setEnd(end); // Set the end time to 12 hours after the start time
 
             // Set event visibility
             event.setVisibility("public");
@@ -95,6 +106,7 @@ public class GoogleCalendarService {
             } else {
                 System.err.println("Desktop browsing is not supported on this platform.");
             }
+
             // Retrieve the event to verify it was created successfully
             Event retrievedEvent = service.events().get(calendarId, createdEvent.getId()).execute();
             System.out.println("Retrieved Event: " + retrievedEvent.toString());
