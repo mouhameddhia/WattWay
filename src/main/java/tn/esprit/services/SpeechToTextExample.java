@@ -1,14 +1,18 @@
+/*
 package tn.esprit.services;
-import com.alphacephei.vosk.Model;
-import com.alphacephei.vosk.Recognizer;
+
+import org.vosk.Model;
+import org.vosk.Recognizer;
 import javax.sound.sampled.*;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+
 public class SpeechToTextExample {
     public static void main(String[] args) throws Exception {
         // Path to the Vosk model
-        String modelPath = "vosk-models/vosk-model-small-en-us-0.15";
+        System.load("libs/libvosk.dll");
+        String modelPath = "src/vosk-models/vosk-model-small-en-us-0.15";
 
         // Load the Vosk model
         Model model = new Model(modelPath);
@@ -43,3 +47,5 @@ public class SpeechToTextExample {
         System.out.println("Final: " + recognizer.getFinalResult());
     }
 }
+
+ */

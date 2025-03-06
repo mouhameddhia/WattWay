@@ -18,6 +18,7 @@ public class MainFX extends Application {
         primaryStage.setScene(scene);
         primaryStage.setTitle("Mechanic Management");
         primaryStage.show();
+
     }
 
     public static void main(String[] args) {

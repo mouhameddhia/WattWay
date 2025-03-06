@@ -103,11 +103,13 @@
             <scope>system</scope>
             <systemPath>${project.basedir}/libs/vosk-0.3.45.jar</systemPath>
         </dependency>
+
         <dependency>
-            <groupId>com.github.alphacep</groupId>
-            <artifactId>vosk-api</artifactId>
-            <version>v0.3.45</version>
+            <groupId>com.assemblyai</groupId>
+            <artifactId>assemblyai-java</artifactId>
+            <version>1.0.0</version> <!-- Use the latest version -->
         </dependency>
+        
     </dependencies>
 
     <build>

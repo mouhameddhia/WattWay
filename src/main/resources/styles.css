@@ -268,6 +268,16 @@
     -fx-padding: 6px 10px;
     -fx-font-size: 13px;
 }
+.mic-button {
+    -fx-background-color: #FF4444;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-pref-width: 40px;
+    -fx-pref-height: 30px;
+    -fx-background-radius: 15;
+}
 
-
+.mic-button:hover {
+    -fx-background-color: #CC0000;
+}
 
