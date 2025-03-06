@@ -216,5 +216,51 @@
 .secondary-button:hover {
     -fx-background-color: #C62828;
 }
+/* Chart */
+.chart {
+    -fx-background-color: transparent;
+}
+
+.chart-title {
+    -fx-text-fill: #0A1F44; /* Title color */
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+.chart-axis{
+    -fx-tick-label-fill: white;
+}
+
+.chart-plot-background {
+    -fx-background-color: #e6e0e0; /* Background color */
+}
+
+.axis {
+    -fx-tick-label-fill: #FFFFFF; /* Axis text color */
+    -fx-font-size: 12px;
+}
+
+.axis-label {
+    -fx-text-fill: #0A1F44; /* Axis labels color */
+    -fx-font-size: 14px;
+}
+
+.chart-series-line {
+    -fx-stroke: #132ec2; /* Line color */
+    -fx-stroke-width: 2px;
+}
+
+.default-color0.chart-line-symbol {
+    -fx-background-color: #132ec2, white; /* Point color */
+    -fx-background-radius: 5px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+}
+
+.chart-legend-item {
+    -fx-text-fill: white;
+}
 
 

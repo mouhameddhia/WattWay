@@ -48,7 +48,7 @@
                   <Font name="System Italic" size="15.0" />
                </font>
             </Label>
-            <Label fx:id="exitMessage" layoutX="77.0" layoutY="14.0" prefHeight="35.0" prefWidth="151.0" text="Thank you,  you may close this window" textFill="#e6e0e0" wrapText="true" />
+            <Label fx:id="exitMessage" layoutX="77.0" layoutY="14.0" prefHeight="35.0" prefWidth="151.0" text="Thank you,  you may close this window" textFill="#e6e0e0" visible="false" wrapText="true" />
          </children>
       </AnchorPane>
       <Label layoutX="144.0" layoutY="132.0" prefHeight="43.0" prefWidth="113.0" styleClass="form-header" stylesheets="@addSubmissionZ.css" text="Rent a car">

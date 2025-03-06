@@ -11,13 +11,25 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 20, 0, 0, 10);
 }
 .hbox {
-    -fx-background-color: #132EC2;
-    -fx-padding: 10px;
-    -fx-spacing: 10px;
-    -fx-alignment: center;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
+    -fx-background-color: #71797E;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 15, 0, 0, 4);/* Solid, clean background */
+    -fx-padding: 10px 20px; /* More balanced padding */
+    -fx-spacing: 10px; /* Consistent spacing */
+    -fx-alignment: center; /* Centered content */
+    -fx-border-radius: 10px; /* Prominent rounded corners */
+    -fx-background-radius: 10px; /* Consistent rounded background */
+    -fx-border: none; /* No border */ /* Subtle inner shadow for depth */
+    -fx-transition: all 0.3s ease; /* Smooth transition for hover effect */
 }
+
+.hbox:hover {
+    -fx-background-color: #3A58FF; /* Lighter blue background on hover */
+    -fx-effect: dropshadow( gaussian , rgba(0, 0, 0, 0.2), 6, 0.5, 0, 3 ); /* Shadow effect on hover */
+}
+
+
+
+
 
 /* Search/Filter Section Styles */
 .search-section {
@@ -73,12 +85,13 @@
     -fx-padding: 25;
     -fx-max-width: 400;
     -fx-min-width: 400;
+    -fx-transition: all 1s ease-in-out;
 }
 
 .submission-card:hover {
-    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 20, 0, 0, 6);
-    -fx-translate-y: -2;
-    -fx-background-color: rgba(40, 121, 248, 0.9);
+    -fx-effect: dropshadow(gaussian, rgba(59, 130, 246, 0.3), 20, 0, 0, 6); /* Shadow effect */
+    -fx-translate-y: -2; /* Slight upward movement */
+    -fx-background-color: rgba(40, 121, 248, 0.9); /* Background color change */
 }
 
 .submission-card .label {

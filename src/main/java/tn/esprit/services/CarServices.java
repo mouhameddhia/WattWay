@@ -4,6 +4,9 @@ import org.json.JSONObject;
 import tn.esprit.entities.Car;
 import tn.esprit.utils.MyDatabase;
 
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Paths;
@@ -13,17 +16,17 @@ import java.util.Base64;
 import java.util.List;
 import org.asynchttpclient.*;
 
-import java.io.File;
-import java.io.IOException;
+import javax.net.ssl.HttpsURLConnection;
 import java.nio.file.Files;
 import java.util.concurrent.CompletableFuture;
 
 public class CarServices implements IServiceH<Car>{
     private static final String API_URL = "https://vehicle-make-and-model-recognition.p.rapidapi.com/v1";
-    private static final String API_KEY = "0a864a91d7msha1d35de01910cc6p19f755jsn9f219a71c447";
+    private static final String API_KEY = "8d996c46famshfa9584cf9a9ebddp188e1ejsn150645c4287b";
     private static final String API_HOST = "vehicle-make-and-model-recognition.p.rapidapi.com";
     private static final String IMG_BB_API_KEY = "ca7d6d020ee239834d7d224b04a1dda8"; // Replace with your ImgBB API key
     private static final String IMG_BB_UPLOAD_URL = "https://api.imgbb.com/1/upload";
+    private static final String CSM_API_KEY = "F2Ea699820e99993C1D7e9512b891304";
     public CarServices() {}
     Connection conn= MyDatabase.getInstance().getCon();
     @Override
@@ -110,7 +113,116 @@ public class CarServices implements IServiceH<Car>{
         System.out.println("Car updated successfully");
 
     }
-
+    public List<Car> getCarsFilterYearASC() throws SQLException {
+        List<Car> cars = new ArrayList<>();
+        String sql = "select * from car WHERE statusCar = 'available' ORDER BY yearCar ASC";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            Car car = new Car();
+            car.setIdCar(rs.getInt("idCar"));
+            car.setModelCar(rs.getString("modelCar"));
+            car.setBrandCar(rs.getString("brandCar"));
+            car.setYearCar(rs.getInt("yearCar"));
+            car.setPriceCar(rs.getFloat("priceCar"));
+            car.setKilometrageCar(rs.getInt("kilometrageCar"));
+            car.setStatusCar(rs.getString("statusCar"));
+            car.setIdWarehouse(rs.getInt("idWarehouse"));
+            car.setImgCar(rs.getString("imgCar"));
+            cars.add(car);
+        }
+        return cars;
+    }
+    public List<Car> getCarsFilterYearDESC() throws SQLException {
+        List<Car> cars = new ArrayList<>();
+        String sql = "select * from car WHERE statusCar = 'available' ORDER BY yearCar DESC";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            Car car = new Car();
+            car.setIdCar(rs.getInt("idCar"));
+            car.setModelCar(rs.getString("modelCar"));
+            car.setBrandCar(rs.getString("brandCar"));
+            car.setYearCar(rs.getInt("yearCar"));
+            car.setPriceCar(rs.getFloat("priceCar"));
+            car.setKilometrageCar(rs.getInt("kilometrageCar"));
+            car.setStatusCar(rs.getString("statusCar"));
+            car.setIdWarehouse(rs.getInt("idWarehouse"));
+            car.setImgCar(rs.getString("imgCar"));
+            cars.add(car);
+        }
+        return cars;
+    }
+    public List<Car> getCarsFilterPriceDESC() throws SQLException {
+        List<Car> cars = new ArrayList<>();
+        String sql = "select * from car WHERE statusCar = 'available' ORDER BY priceCar DESC";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            Car car = new Car();
+            car.setIdCar(rs.getInt("idCar"));
+            car.setModelCar(rs.getString("modelCar"));
+            car.setBrandCar(rs.getString("brandCar"));
+            car.setYearCar(rs.getInt("yearCar"));
+            car.setPriceCar(rs.getFloat("priceCar"));
+            car.setKilometrageCar(rs.getInt("kilometrageCar"));
+            car.setStatusCar(rs.getString("statusCar"));
+            car.setIdWarehouse(rs.getInt("idWarehouse"));
+            car.setImgCar(rs.getString("imgCar"));
+            cars.add(car);
+        }
+        return cars;
+    }
+    public List<Car> getCarsFilterPriceASC() throws SQLException {
+        List<Car> cars = new ArrayList<>();
+        String sql = "SELECT * FROM car WHERE statusCar = 'available' ORDER BY priceCar ASC";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(sql);
+        while (rs.next()) {
+            Car car = new Car();
+            car.setIdCar(rs.getInt("idCar"));
+            car.setModelCar(rs.getString("modelCar"));
+            car.setBrandCar(rs.getString("brandCar"));
+            car.setYearCar(rs.getInt("yearCar"));
+            car.setPriceCar(rs.getFloat("priceCar"));
+            car.setKilometrageCar(rs.getInt("kilometrageCar"));
+            car.setStatusCar(rs.getString("statusCar"));
+            car.setIdWarehouse(rs.getInt("idWarehouse"));
+            car.setImgCar(rs.getString("imgCar"));
+            cars.add(car);
+        }
+        return cars;
+    }
+    public List<Car> getCarsByBrand(String brand) throws SQLException {
+        List<Car> cars = new ArrayList<>();
+        String query = "SELECT * FROM `car` WHERE statusCar = 'available' AND `brandCar`='" + brand + "'";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            Car car = new Car();
+            car.setIdCar(rs.getInt("idCar"));
+            car.setModelCar(rs.getString("modelCar"));
+            car.setBrandCar(rs.getString("brandCar"));
+            car.setYearCar(rs.getInt("yearCar"));
+            car.setPriceCar(rs.getFloat("priceCar"));
+            car.setKilometrageCar(rs.getInt("kilometrageCar"));
+            car.setStatusCar(rs.getString("statusCar"));
+            car.setIdWarehouse(rs.getInt("idWarehouse"));
+            car.setImgCar(rs.getString("imgCar"));
+            cars.add(car);
+        }
+        return cars;
+    }
+    public List<String> getAllBrands() throws SQLException{
+        List<String> brands = new ArrayList<>();
+        String query="SELECT brandCar FROM car WHERE 1";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while (rs.next()) {
+            brands.add(rs.getString("brandCar"));
+        }
+        return brands;
+    }
     @Override
     public void delete(Car car)throws SQLException{}
 

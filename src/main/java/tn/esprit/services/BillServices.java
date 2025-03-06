@@ -126,4 +126,37 @@ public class BillServices implements IServiceH<Bill>{
     public List<Bill> returnList() throws SQLException{
         return null;
     }
+    public List<Integer> getYearsBill() throws SQLException {
+        List<Integer> yearsBill=new ArrayList<>();
+        String query = "SELECT DISTINCT YEAR(dateBill)  AS year FROM bill";
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery(query);
+        while(rs.next()){
+            yearsBill.add(rs.getInt("year"));
+        }
+        return yearsBill;
+    }
+    public float sumBillByMonth(int year, int month) throws  SQLException{
+        String query ="SELECT SUM(totalAmountBill) AS totalAmountBill FROM bill WHERE YEAR(dateBill)=? AND MONTH(dateBill)=?";
+        PreparedStatement prstmt=conn.prepareStatement(query);
+        prstmt.setInt(1, year);
+        prstmt.setInt(2, month);
+        ResultSet rs=prstmt.executeQuery();
+        if(rs.next()){
+            return rs.getFloat("totalAmountBill");
+        }
+        return 0;
+
+    }
+    public float sumBillByYear(int year) throws  SQLException{
+        String query ="SELECT SUM(totalAmountBill) AS totalAmountBill FROM bill WHERE YEAR(dateBill)=?";
+        PreparedStatement prstmt=conn.prepareStatement(query);
+        prstmt.setInt(1, year);
+        ResultSet rs=prstmt.executeQuery();
+        if(rs.next()){
+            return rs.getFloat("totalAmountBill");
+        }
+        return 0;
+
+    }
 }

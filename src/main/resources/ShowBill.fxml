@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -17,7 +21,7 @@
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/Profilepictures/473701518_443535068727837_5572574659540551110_n-removebg-preview.png" />
+                  <Image url="@Images/473701518_443535068727837_5572574659540551110_n-removebg-preview.png" />
                </image>
             </ImageView>
             <Button layoutX="62.0" layoutY="240.0" mnemonicParsing="false" onAction="#openAddWarehouse" styleClass="menu-button" stylesheets="@stylesZ.css" text="Warehouse" />
@@ -30,7 +34,7 @@
             <Font name="System Bold" size="33.0" />
          </font>
       </Label>
-      <TableView fx:id="tableViewBill" layoutX="626.0" layoutY="149.0" prefHeight="217.0" prefWidth="710.0" styleClass="admin-table" stylesheets="@stylesZ.css">
+      <TableView fx:id="tableViewBill" layoutX="626.0" layoutY="118.0" prefHeight="217.0" prefWidth="710.0" styleClass="admin-table" stylesheets="@stylesZ.css">
         <columns>
             <TableColumn fx:id="tableViewClientNameBill" prefWidth="95.0" text="Client Name" />
           <TableColumn fx:id="tableViewDateBill" prefWidth="95.0" text="Date Created" />
@@ -41,7 +45,7 @@
             <TableColumn fx:id="tableViewUpdateBill" prefWidth="70.0" />
         </columns>
       </TableView>
-      <TableView fx:id="tableViewCar" layoutX="414.0" layoutY="398.0" prefHeight="104.0" prefWidth="827.0" styleClass="admin-table" stylesheets="@stylesZ.css">
+      <TableView fx:id="tableViewCar" layoutX="626.0" layoutY="365.0" prefHeight="104.0" prefWidth="710.0" styleClass="admin-table" stylesheets="@stylesZ.css">
          <columns>
             <TableColumn fx:id="tableViewBrandCar" prefWidth="77.0" text="Car Brand" />
             <TableColumn fx:id="tableViewModelCar" prefWidth="85.0" text="Car Model" />
@@ -52,8 +56,8 @@
             <TableColumn fx:id="tableViewStoredWarehouse" prefWidth="307.0" text="Stored in" />
          </columns>
       </TableView>
-      <ImageView fx:id="imageViewBill" fitHeight="225.0" fitWidth="376.0" layoutX="585.0" layoutY="519.0" pickOnBounds="true" preserveRatio="true" />
-      <AnchorPane fx:id="updateAnchorPane" layoutX="247.0" layoutY="149.0" prefHeight="25.0" prefWidth="179.0" styleClass="form-container" stylesheets="@stylesZ.css">
+      <ImageView fx:id="imageViewBill" fitHeight="257.0" fitWidth="319.0" layoutX="1011.0" layoutY="511.0" pickOnBounds="true" preserveRatio="true" />
+      <AnchorPane fx:id="updateAnchorPane" layoutX="625.0" layoutY="484.0" prefHeight="25.0" prefWidth="179.0" styleClass="form-container" stylesheets="@stylesZ.css">
          <children>
             <Button layoutX="108.0" layoutY="137.0" mnemonicParsing="false" onAction="#updateBill" styleClass="primary-button" stylesheets="@stylesZ.css" text="Make Changes" />
             <TextField fx:id="updateTotalAmountBill" alignment="CENTER" layoutX="48.0" layoutY="82.0" styleClass="form-input" stylesheets="@stylesZ.css" />
@@ -65,5 +69,15 @@
             <CheckBox fx:id="updateStatusBill" layoutX="229.0" layoutY="82.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="91.0" styleClass="form-input" stylesheets="@stylesZ.css" text="Paid" />
          </children>
       </AnchorPane>
+      <LineChart fx:id="lineChartBill" layoutX="205.0" layoutY="158.0" prefHeight="334.0" prefWidth="420.0" stylesheets="@stylesZ.css">
+        <xAxis>
+          <CategoryAxis side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis fx:id="chartBill" side="TOP" tickLabelFill="WHITE" />
+        </yAxis>
+      </LineChart>
+      <MenuButton fx:id="menuButtonYearBill" layoutX="455.0" layoutY="118.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="91.0" styleClass="form-input" stylesheets="@stylesZ.css" text="Year" />
+      <Label layoutX="262.0" layoutY="122.0" styleClass="form-title" stylesheets="@stylesZ.css" text="Income Analysis" />
    </children>
 </AnchorPane>

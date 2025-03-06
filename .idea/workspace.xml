@@ -5,32 +5,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c2221e61-b9fa-4aff-8130-63913b869d83" name="Changes" comment="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/Assets/map.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_2_13_2025_11_56_PM_[Changes]1/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddCar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddCar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddWarehouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/AddWarehouse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RepairCarInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RepairCarInterface.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/BrowseCar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/BrowseCar.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/CarInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/CarInterface.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RentBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/RentBill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBill.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBill.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBillUserInterface.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/controller/ShowBillUserInterface.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/main/MainFx.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/main/MainFx.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BillServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/BillServices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/CarServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/CarServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/Iservice.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/services/WarehouseServices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/tn/esprit/services/WarehouseServices.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/tn/esprit/utils/Wattway.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AddCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AddCar.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/AddWarehouse.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/AddWarehouse.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/BrowseCar.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/BrowseCar.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/CarInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/CarInterface.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/RentBill.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RentBill.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/RepairCarInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/RepairCarInterface.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ShowBill.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShowBill.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/ShowBillUser.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUser.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/ShowBillUserInterface.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/ShowBillUserInterface.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/addSubmission.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/styles.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/submissions.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/stylesZ.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/stylesZ.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/submissionsZ.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/submissionsZ.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -193,6 +184,16 @@
       <workItem from="1740047194357" duration="15298000" />
       <workItem from="1740076578801" duration="13638000" />
       <workItem from="1740317060124" duration="19532000" />
+      <workItem from="1740346741019" duration="217000" />
+      <workItem from="1740404529120" duration="240000" />
+      <workItem from="1740431760744" duration="1879000" />
+      <workItem from="1740490541491" duration="5409000" />
+      <workItem from="1740566373309" duration="3498000" />
+      <workItem from="1740701887711" duration="10091000" />
+      <workItem from="1741201274592" duration="4903000" />
+      <workItem from="1741217745215" duration="7888000" />
+      <workItem from="1741265938058" duration="8563000" />
+      <workItem from="1741276885776" duration="4121000" />
     </task>
     <task id="LOCAL-00001" summary="Connection with the database JDBC&#10;Warehouse module with CRUDs (Warehouse, Car and Bill)">
       <option name="closed" value="true" />

@@ -11,7 +11,7 @@ public class MainFx extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         CarServices cs = new CarServices();
-        Parent root= FXMLLoader.load(getClass().getResource("/AddWarehouse.fxml"));
+        Parent root= FXMLLoader.load(getClass().getResource("/BrowseCar.fxml"));
         Scene scene=new Scene(root);
         primaryStage.setScene(scene);
         primaryStage.show();

@@ -24,7 +24,7 @@ public class RentBill {
             try {
                 int days = Integer.parseInt(newValue);
                 if(days > 0){
-                    totalAmountBill.setText(String.format("%.2f", priceCar * 0.0025 * days));
+                    totalAmountBill.setText(String.format("%.2f", priceCar * 0.00025 * days * 1.02));
                 }
             } catch (NumberFormatException e) {
                 totalAmountBill.setText("0.00");

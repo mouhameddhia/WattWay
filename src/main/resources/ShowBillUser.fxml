@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="400.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.ShowBillUser">
+<AnchorPane prefHeight="768.0" prefWidth="615.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.controller.ShowBillUser">
    <children>
       <AnchorPane prefHeight="125.0" prefWidth="615.0" style="-fx-background-color: #132EC2;">
          <children>
@@ -18,7 +18,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <ScrollPane layoutY="124.0" prefHeight="275.0" prefWidth="615.0">
+      <ScrollPane layoutY="124.0" prefHeight="646.0" prefWidth="615.0">
          <content>
             <GridPane fx:id="gridPaneBill">
               <rowConstraints>

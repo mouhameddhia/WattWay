@@ -10,6 +10,9 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.LineChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
@@ -29,6 +32,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
 
 public class ShowBill {
 
@@ -72,6 +76,10 @@ public class ShowBill {
     private TableColumn<Car, Float> tableViewPriceCar;
     @FXML
     private CheckBox updateStatusBill;
+    @FXML
+    private LineChart<String, Float> lineChartBill;
+    @FXML
+    private MenuButton menuButtonYearBill;
     int importBillId=-1;
     LocalDate importDateId=null;
     int importCarId=-1;
@@ -80,11 +88,24 @@ public class ShowBill {
     @FXML
     private TableColumn<Bill, String> tableViewClientNameBill;
     public void initialize(){
+        BillServices bs = new BillServices();
+        try {
+            List<Integer> years= bs.getYearsBill();
+            for(Integer year:years){
+                MenuItem menuItem = new MenuItem(Integer.toString(year));
+                menuItem.setOnAction(event -> {
+                        menuButtonYearBill.setText(Integer.toString(year));
+                        updateLineChart(year);
+                });
+                menuButtonYearBill.getItems().add(menuItem);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
         imageViewBill.setImage(null);
         tableViewCar.setVisible(false);
         updateAnchorPane.setVisible(false);
         updateAnchorPane.setManaged(false);
-        BillServices bs = new BillServices();
         try {
             ObservableList<Bill> observableList = FXCollections.observableArrayList(bs.retrieve());
             tableViewBill.setItems(observableList);
@@ -322,5 +343,26 @@ public class ShowBill {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+    public void updateLineChart(int year) {
+        BillServices bs = new BillServices();
+        String[] months = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
+        XYChart.Series<String, Float> series = new XYChart.Series<>();
+        try {
+            series.setName("Total revenue in "+year+": "+bs.sumBillByYear(year)+"DT");
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        lineChartBill.getData().clear();
+        CategoryAxis xAxis = (CategoryAxis) lineChartBill.getXAxis();
+        xAxis.setCategories(FXCollections.observableArrayList("JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"));
+        for (int i = 0; i < 12; i++) {
+            try {
+                series.getData().add(new XYChart.Data<>(months[i], bs.sumBillByMonth(year, i + 1)));
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        lineChartBill.getData().add(series);
     }
 }
