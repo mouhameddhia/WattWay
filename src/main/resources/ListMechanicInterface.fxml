@@ -35,6 +35,7 @@
             <TextField fx:id="searchField" promptText="Search Mechanics..." styleClass="search-bar"/>
             <Button text="Search" onAction="#searchMechanics" styleClass="primary-button2"/>
             <Button text="Add Mechanic" onAction="#addMechanic" styleClass="primary-button"/>
+            <Button text="View Mechanic Statistics" onAction="#openMechanicStatistics" styleClass="primary-button"/>
          </HBox>
          <TableView fx:id="mechanicsTableView" AnchorPane.leftAnchor="20.0"
                     AnchorPane.rightAnchor="20.0"

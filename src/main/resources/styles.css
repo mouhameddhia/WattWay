@@ -281,3 +281,50 @@
     -fx-background-color: #CC0000;
 }
 
+/* Custom BarChart styling */
+.custom-bar-chart {
+    -fx-background-color: transparent; /* Let the underlying gradient show through */
+    -fx-legend-visible: true;
+    -fx-legend-side: bottom;
+}
+
+.custom-bar-chart .chart-plot-background {
+    -fx-background-color: transparent;
+}
+
+.custom-bar-chart .chart-title {
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.custom-bar-chart .chart-legend {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.custom-bar-chart .chart-legend-item-symbol {
+    -fx-background-color: #00bba8; /* Use your primary-button color */
+}
+
+.custom-bar-chart .default-color0.chart-bar {
+    -fx-bar-fill: #00bba8;
+}
+
+/* Style for axis labels and tick labels */
+.chart-axis .axis-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+.chart-axis .tick-label {
+    -fx-text-fill: white;
+}
+
+/* Optional: Adjust grid lines if needed */
+.custom-bar-chart .chart-horizontal-grid-lines,
+.custom-bar-chart .chart-vertical-grid-lines {
+    -fx-stroke: rgba(255, 255, 255, 0.2);
+}

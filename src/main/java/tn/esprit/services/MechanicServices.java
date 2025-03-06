@@ -93,4 +93,12 @@ public class MechanicServices implements IService<Mechanic>{
         return false;
     }
 
+    public void incrementCarsRepaired(int mechanicId) throws SQLException {
+        String sql = "UPDATE mechanic SET carsRepaired = carsRepaired + 1 WHERE idMechanic = ?";
+        PreparedStatement ps = conn.prepareStatement(sql);
+        ps.setInt(1, mechanicId);
+        ps.executeUpdate();
+        System.out.println("Incremented carsRepaired for mechanic with id " + mechanicId);
+    }
+
 }

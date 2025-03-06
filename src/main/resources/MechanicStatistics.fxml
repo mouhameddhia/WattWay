@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.MechanicStatisticsController"
+            stylesheets="@styles.css" styleClass="gradient-pane">
+    <BarChart fx:id="barChart" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0"
+              styleClass="custom-bar-chart">
+        <xAxis>
+            <CategoryAxis label="Mechanic Name" styleClass="chart-axis"/>
+        </xAxis>
+        <yAxis>
+            <NumberAxis label="Cars Repaired" styleClass="chart-axis"/>
+        </yAxis>
+    </BarChart>
+</AnchorPane>

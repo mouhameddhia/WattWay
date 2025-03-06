@@ -533,11 +533,11 @@ public class AddAssignmentController {
 
     // Example transcription method using AssemblyAI (adjust as needed)
     private void transcribeAudio(File audioFile) throws Exception {
-        String apiKey = "f2f3415e84d14db9b00c69a51b1726e1";
-        AssemblyAI client = AssemblyAI.builder()
-                .apiKey(apiKey)
-                .build();
-
+        String apiKey = loadApiKey();
+        if (apiKey == null || apiKey.isEmpty()) {
+            showAlert("Error", "AssemblyAI API key is missing. Please check the config.properties file.");
+            return;
+        }
         // Convert the file to a byte array
         byte[] audioBytes = Files.readAllBytes(audioFile.toPath());
 
