@@ -54,6 +54,8 @@ public class UpdateAssignmentController {
 
     @FXML
     private Button cancelButton;
+    @FXML
+    private TextField searchMechanicField;
 
     private final AssignmentServices assignmentServices = new AssignmentServices();
     private final MechanicServices mechanicServices = new MechanicServices();
@@ -97,7 +99,28 @@ public class UpdateAssignmentController {
 
         // Load Mechanics
         loadMechanics(assignment);
+        searchMechanicField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                filterMechanics(newValue);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
+    }
+    private void filterMechanics(String filter) throws SQLException {
+        List<Mechanic> mechanicsList = mechanicServices.returnList();
+        ObservableList<Mechanic> mechanicsObservable = FXCollections.observableArrayList(mechanicsList);
+
+        if (filter == null || filter.isEmpty()) {
+            // If search field is empty, show all mechanics
+            mechanicListView.setItems(mechanicsObservable);
+        } else {
+            // Filter list by name (case-insensitive)
+            ObservableList<Mechanic> filteredList = mechanicsObservable.filtered(mechanic ->
+                    mechanic.getNameMechanic().toLowerCase().contains(filter.toLowerCase()));
+            mechanicListView.setItems(filteredList);
+        }
     }
 
     private void loadCars() {

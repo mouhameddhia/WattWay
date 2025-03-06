@@ -13,8 +13,7 @@
 <?import javafx.scene.control.TextArea?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.AddAssignmentController"
             stylesheets="@styles.css" styleClass="gradient-pane">
-
-    <VBox spacing="15" alignment="CENTER" prefWidth="500" prefHeight="600" styleClass="form-container"
+    <VBox spacing="15" alignment="CENTER" prefWidth="500" prefHeight="700" styleClass="form-container"
           AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
@@ -40,14 +39,15 @@
             </Button>
         </HBox>
 
-
         <Label text="Status:" styleClass="form-label"/>
         <ComboBox fx:id="statusAssignmentComboBox" styleClass="form-input"/>
 
-        <Label text="Car ID:" styleClass="form-label"/>
+        <Label text="Select Car:" styleClass="form-label"/>
         <ComboBox fx:id="carIdComboBox" promptText="Select Car ID" styleClass="form-input" />
 
-        <Label text="Select Mechanics:" styleClass="form-label"/>
+        <Label text="Search Mechanic:" styleClass="form-label"/>
+        <TextField fx:id="searchMechanicField" promptText="Enter mechanic name" styleClass="form-input"/>
+
         <ListView fx:id="mechanicListView" prefHeight="150" styleClass="form-listview"/>
 
         <Label text="Assignment Date:" styleClass="form-label"/>
@@ -57,7 +57,5 @@
             <Button fx:id="saveButton" text="Save" onAction="#saveAssignment" styleClass="primary-button"/>
             <Button fx:id="cancelButton" text="Cancel" onAction="#cancel" styleClass="delete-button"/>
         </HBox>
-
     </VBox>
-
 </AnchorPane>

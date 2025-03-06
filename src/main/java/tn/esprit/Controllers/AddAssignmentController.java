@@ -53,6 +53,8 @@ public class AddAssignmentController {
     private Button cancelButton;
     @FXML
     private DatePicker datePicker;
+    @FXML
+    private TextField searchMechanicField;
 
 
 
@@ -113,7 +115,28 @@ public class AddAssignmentController {
                 }
             }
         });
+        searchMechanicField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                filterMechanics(newValue);
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
+    }
+    private void filterMechanics(String filter) throws SQLException {
+        List<Mechanic> mechanicsList = mechanicServices.returnList();
+        ObservableList<Mechanic> mechanicsObservable = FXCollections.observableArrayList(mechanicsList);
+
+        if (filter == null || filter.isEmpty()) {
+            // If search field is empty, show all mechanics
+            mechanicListView.setItems(mechanicsObservable);
+        } else {
+            // Filter list by name (case-insensitive)
+            ObservableList<Mechanic> filteredList = mechanicsObservable.filtered(mechanic ->
+                    mechanic.getNameMechanic().toLowerCase().contains(filter.toLowerCase()));
+            mechanicListView.setItems(filteredList);
+        }
     }
     private String loadApiKey() {
         try (InputStream input = getClass().getResourceAsStream("/config.properties")) {

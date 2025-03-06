@@ -1,5 +1,6 @@
 package tn.esprit.Controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,6 +16,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.ExportPDFService;
 import tn.esprit.services.MechanicServices;
@@ -106,10 +108,27 @@ public class ListMechanicController {
 
         // 3) Keep the action column for Update & Delete
         actionColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button updateButton = new Button("Update");
-            private final Button deleteButton = new Button("Delete");
+            private final Button updateButton = new Button();
+            private final Button deleteButton = new Button();
 
             {
+                // Load update icon from resources and set it to the update button
+                Image updateImage = new Image(getClass().getResourceAsStream("/icons/update-icon.png"));
+                ImageView updateIcon = new ImageView(updateImage);
+                updateIcon.setFitHeight(16); // Adjust icon height
+                updateIcon.setPreserveRatio(true);
+                updateButton.setGraphic(updateIcon);
+
+                // Load delete icon from resources and set it to the delete button
+                Image deleteImage = new Image(getClass().getResourceAsStream("/icons/delete-icon.png"));
+                ImageView deleteIcon = new ImageView(deleteImage);
+                deleteIcon.setFitHeight(16); // Adjust icon height
+                deleteIcon.setPreserveRatio(true);
+                deleteButton.setGraphic(deleteIcon);
+
+                // Optionally set preferred widths for the buttons
+                updateButton.setPrefWidth(50);
+                deleteButton.setPrefWidth(50);
                 updateButton.getStyleClass().add("primary-button");
                 deleteButton.getStyleClass().add("delete-button");
 
@@ -154,6 +173,14 @@ public class ListMechanicController {
 
         // Finally, load mechanics into the table
         refreshMechanicsTable();
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                searchMechanics();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void showMechanicDetails(Mechanic mechanic) {
@@ -247,17 +274,36 @@ public class ListMechanicController {
 
     @FXML
     private void switchToAssignments() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListAssignmentInterface.fxml"));
-            Parent root = loader.load();
+        // Get the current root node from an element in your current scene (e.g., mechanicsTableView)
+        Parent currentRoot = mechanicsTableView.getScene().getRoot();
 
-            Stage stage = (Stage) mechanicsTableView.getScene().getWindow();
-            stage.getScene().setRoot(root);
-            stage.setTitle("List of Assignments");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Create a fade out transition for the current scene
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(100), currentRoot);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.setOnFinished(event -> {
+            try {
+                // Load the new interface from FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListAssignmentInterface.fxml"));
+                Parent newRoot = loader.load();
+
+                // Get the stage and replace the scene root with the new interface
+                Stage stage = (Stage) currentRoot.getScene().getWindow();
+                stage.getScene().setRoot(newRoot);
+                stage.setTitle("List of Assignments");
+
+                // Create a fade in transition for the new scene
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(100), newRoot);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+                fadeIn.play();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        fadeOut.play();
     }
+
 
     @FXML
     private void openMechanicStatistics() {

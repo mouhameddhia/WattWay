@@ -13,6 +13,7 @@ import tn.esprit.entities.Mechanic;
 import tn.esprit.services.CarServices;
 
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 
 public class ShowDetailsAssignmentController {
 
@@ -40,6 +41,8 @@ public class ShowDetailsAssignmentController {
     private Label carKilometrageLabel;
     @FXML
     private ImageView carImageView;
+    @FXML
+    private Label dateLabel;
 
     private final CarServices carServices = new CarServices();
 
@@ -51,6 +54,9 @@ public class ShowDetailsAssignmentController {
         for (Mechanic mechanic : assignment.getMechanics()) {
             mechanicListView.getItems().add(mechanic.getNameMechanic() + " - " + mechanic.getSpecialityMechanic().name());
         }
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        String formattedDate = assignment.getDateAssignment().format(formatter);
+        dateLabel.setText(formattedDate);
 
         // Load and display car details
         try {

@@ -99,6 +99,11 @@ public class GoogleCalendarService {
             // Save the event ID in the assignment.
             assignment.setGoogleCalendarEventId(createdEvent.getId());
             // Then update your assignment in the database so the event ID is stored.
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(new URI(createdEvent.getHtmlLink()));
+            } else {
+                System.err.println("Desktop browsing is not supported on this platform.");
+            }
 
             return createdEvent;
         } catch (Exception e) {

@@ -10,7 +10,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ShowDetailsAssignmentController"
             stylesheets="@styles.css" styleClass="gradient-pane">
 
-    <VBox spacing="12" alignment="CENTER" prefWidth="550" prefHeight="500" styleClass="form-container"
+    <VBox spacing="12" alignment="CENTER" prefWidth="550" prefHeight="750" styleClass="form-container"
           AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
@@ -22,6 +22,9 @@
 
         <Label text="Status:" styleClass="form-label"/>
         <Label fx:id="statusLabel" styleClass="form-value"/>
+
+        <Label text="Assignment Date:" styleClass="form-label"/>
+        <Label fx:id="dateLabel" styleClass="form-value"/>
 
         <Label text="Mechanics Assigned:" styleClass="form-label"/>
         <ListView fx:id="mechanicListView" styleClass="form-list" prefHeight="80"/>

@@ -95,15 +95,6 @@
             <version>1.39.2</version>
         </dependency>
 
-        <!-- Vosk library -->
-        <dependency>
-            <groupId>com.alphacephei</groupId>
-            <artifactId>vosk</artifactId>
-            <version>0.3.45</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/libs/vosk-0.3.45.jar</systemPath>
-        </dependency>
-
         <dependency>
             <groupId>com.assemblyai</groupId>
             <artifactId>assemblyai-java</artifactId>
@@ -114,11 +105,7 @@
             <artifactId>pdfbox</artifactId>
             <version>2.0.27</version>
         </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-email</artifactId>

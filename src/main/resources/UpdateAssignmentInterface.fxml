@@ -13,7 +13,7 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.UpdateAssignmentController"
             stylesheets="@styles.css" styleClass="gradient-pane">
 
-    <VBox spacing="15" alignment="CENTER" prefWidth="500" prefHeight="600" styleClass="form-container"
+    <VBox spacing="15" alignment="CENTER" prefWidth="500" prefHeight="700" styleClass="form-container"
           AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0"
           AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0">
 
@@ -40,13 +40,15 @@
         <Label text="Status:" styleClass="form-label"/>
         <ComboBox fx:id="statusAssignmentComboBox" styleClass="form-input"/>
 
-        <Label text="Car ID:" styleClass="form-label"/>
+        <Label text="Select Car:" styleClass="form-label"/>
         <ComboBox fx:id="carIdComboBox" promptText="Select User ID" styleClass="form-input" />
 
         <Label text="Assignment Date:" styleClass="form-label"/> <!-- Add this line -->
         <DatePicker fx:id="dateAssignmentPicker" styleClass="form-input"/> <!-- Add this line -->
 
-        <Label text="Assign Mechanics:" styleClass="form-label"/>
+        <Label text="Search Mechanic:" styleClass="form-label"/>
+        <TextField fx:id="searchMechanicField" promptText="Enter mechanic name" styleClass="form-input"/>
+
         <ListView fx:id="mechanicListView" prefHeight="150" styleClass="form-listview"/>
 
         <HBox spacing="10" alignment="CENTER">

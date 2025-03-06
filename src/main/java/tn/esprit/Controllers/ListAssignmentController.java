@@ -1,7 +1,11 @@
 package tn.esprit.Controllers;
 
+import javafx.animation.FadeTransition;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.util.Duration;
 import tn.esprit.entities.Assignment;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
@@ -95,17 +99,36 @@ public class ListAssignmentController {
 
     @FXML
     private void switchToMechanics() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListMechanicInterface.fxml"));
-            Parent root = loader.load();
+        // Get the current root from an element in your current scene (e.g., assignmentsTableView)
+        Parent currentRoot = assignmentsTableView.getScene().getRoot();
 
-            Stage stage = (Stage) assignmentsTableView.getScene().getWindow(); // Get the current window
-            stage.getScene().setRoot(root);
-            stage.setTitle("List of Mechanics");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // Create a fade out transition for the current scene
+        FadeTransition fadeOut = new FadeTransition(Duration.millis(100), currentRoot);
+        fadeOut.setFromValue(1.0);
+        fadeOut.setToValue(0.0);
+        fadeOut.setOnFinished(event -> {
+            try {
+                // Load the new interface from FXML
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/ListMechanicInterface.fxml"));
+                Parent newRoot = loader.load();
+
+                // Get the stage and replace the scene root with the new interface
+                Stage stage = (Stage) currentRoot.getScene().getWindow();
+                stage.getScene().setRoot(newRoot);
+                stage.setTitle("List of Mechanics");
+
+                // Create a fade in transition for the new scene
+                FadeTransition fadeIn = new FadeTransition(Duration.millis(100), newRoot);
+                fadeIn.setFromValue(0.0);
+                fadeIn.setToValue(1.0);
+                fadeIn.play();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
+        fadeOut.play();
     }
+
 
     private void updateAssignment(Assignment assignment) {
         try {
@@ -158,7 +181,7 @@ public class ListAssignmentController {
         dateAssignmentColumn.setCellValueFactory(cellData -> {
             LocalDateTime date = cellData.getValue().getDateAssignment();
             if (date != null) {
-                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
+                String formattedDate = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 return new SimpleStringProperty(formattedDate);
             } else {
                 return new SimpleStringProperty("No Date");
@@ -183,10 +206,27 @@ public class ListAssignmentController {
 
         // Set up the action column with update and delete buttons
         actionColumn.setCellFactory(param -> new TableCell<>() {
-            private final Button updateButton = new Button("Update");
-            private final Button deleteButton = new Button("Delete");
+            private final Button updateButton = new Button();
+            private final Button deleteButton = new Button();
 
             {
+                // Load update icon from resources and set it to the update button
+                Image updateImage = new Image(getClass().getResourceAsStream("/icons/update-icon.png"));
+                ImageView updateIcon = new ImageView(updateImage);
+                updateIcon.setFitHeight(16); // Adjust icon height
+                updateIcon.setPreserveRatio(true);
+                updateButton.setGraphic(updateIcon);
+
+                // Load delete icon from resources and set it to the delete button
+                Image deleteImage = new Image(getClass().getResourceAsStream("/icons/delete-icon.png"));
+                ImageView deleteIcon = new ImageView(deleteImage);
+                deleteIcon.setFitHeight(16); // Adjust icon height
+                deleteIcon.setPreserveRatio(true);
+                deleteButton.setGraphic(deleteIcon);
+
+                // Optionally set preferred widths for the buttons
+                updateButton.setPrefWidth(50);
+                deleteButton.setPrefWidth(50);
                 updateButton.getStyleClass().add("primary-button");
                 deleteButton.getStyleClass().add("delete-button");
 
@@ -216,6 +256,13 @@ public class ListAssignmentController {
                     HBox buttons = new HBox(10, updateButton, deleteButton);
                     setGraphic(buttons);
                 }
+            }
+        });
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            try {
+                searchAssignments();
+            } catch (SQLException e) {
+                e.printStackTrace();
             }
         });
     }
