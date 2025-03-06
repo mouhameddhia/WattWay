@@ -28,16 +28,21 @@
           text="Mechanics Dashboard" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="33.0"/>
 
    <!-- Main Content -->
-   <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="80.0">
+   <HBox spacing="20"
+         alignment="TOP_CENTER"
+         AnchorPane.leftAnchor="220.0"
+         AnchorPane.rightAnchor="20.0"
+         AnchorPane.topAnchor="80.0"
+         AnchorPane.bottomAnchor="20.0">
       <VBox spacing="10">
-         <Label text="List of Mechanics" styleClass="table-header"/>
+
          <HBox spacing="8" alignment="CENTER" styleClass="search-container">
             <TextField fx:id="searchField" promptText="Search Mechanics..." styleClass="search-bar"/>
             <Button text="Search" onAction="#searchMechanics" styleClass="primary-button2"/>
             <Button text="Add Mechanic" onAction="#addMechanic" styleClass="primary-button"/>
             <Button text="View Mechanic Statistics" onAction="#openMechanicStatistics" styleClass="primary-button"/>
          </HBox>
-         <TableView fx:id="mechanicsTableView" AnchorPane.leftAnchor="20.0"
+         <TableView fx:id="mechanicsTableView" AnchorPane.leftAnchor="20.0" prefHeight="580" prefWidth="800"
                     AnchorPane.rightAnchor="20.0"
                     AnchorPane.topAnchor="20.0"
                     AnchorPane.bottomAnchor="20.0"  styleClass="admin-table">
@@ -45,12 +50,8 @@
                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
             </columnResizePolicy>
             <columns>
-               <TableColumn fx:id="nameMechanicColumn" text="Name" prefWidth="200"/>
-               <TableColumn fx:id="specialityMechanicColumn" text="Speciality" prefWidth="200"/>
-               <TableColumn fx:id="emailMechanicColumn" text="Email" prefWidth="250"/>
-               <TableColumn fx:id="carsRepairedColumn" text="Cars Repaired" prefWidth="120"/>
-               <TableColumn fx:id="imageColumn" text="Profile Image" prefWidth="100"/>
-               <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
+               <TableColumn fx:id="infoColumn" text="Mechanic" />
+               <TableColumn fx:id="actionColumn" text="Actions" />
             </columns>
          </TableView>
          <Button text="Export List PDF" fx:id="exportButton" onAction="#handleExportPDF" styleClass="primary-button2"/>

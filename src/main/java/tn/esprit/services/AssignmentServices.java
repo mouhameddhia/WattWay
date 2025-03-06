@@ -50,7 +50,7 @@ public class AssignmentServices implements IService<Assignment>{
         }
         //schedule event in google calendar
         try {
-            GoogleCalendarService.createEvent(assignment.getDescriptionAssignment(), assignment.getDateAssignment());
+            GoogleCalendarService.createEvent(assignment);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -94,7 +94,7 @@ public class AssignmentServices implements IService<Assignment>{
             assignMechanicToAssignment(assignment.getIdAssignment(), mechanic.getIdMechanic());
         }
         try {
-            GoogleCalendarService.createEvent(assignment.getDescriptionAssignment(), assignment.getDateAssignment());
+            GoogleCalendarService.createEvent(assignment);
         } catch (Exception e) {
             e.printStackTrace();
             System.err.println("Failed to create/update event in Google Calendar: " + e.getMessage());

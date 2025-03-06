@@ -10,17 +10,13 @@ import javafx.scene.control.*;
 import tn.esprit.entities.Assignment;
 import tn.esprit.entities.Car;
 import tn.esprit.entities.Mechanic;
-import tn.esprit.services.AssignmentServices;
-import tn.esprit.services.CarServices;
-import tn.esprit.services.UserServices;
+import tn.esprit.services.*;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
-import tn.esprit.services.MechanicServices;
+
+import java.io.*;
 import java.nio.file.Files;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -30,8 +26,8 @@ import com.assemblyai.api.resources.transcripts.types.Transcript;
 import com.assemblyai.api.resources.transcripts.types.TranscriptWord;
 import com.assemblyai.api.resources.transcripts.types.TranscriptSentence;
 
+import javax.mail.MessagingException;
 import javax.sound.sampled.*;
-import java.io.InputStream;
 import java.util.Properties;
 
 //import org.vosk.Model;
@@ -235,6 +231,31 @@ public class AddAssignmentController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        //send email
+        for (Mechanic mechanic : selectedMechanics) {
+            if (mechanic.getEmailMechanic() != null && !mechanic.getEmailMechanic().trim().isEmpty()) {
+                String subject = "New Assignment Notification";
+                String message = "Hello " + mechanic.getNameMechanic() + ",\n\n"
+                        + "You have been assigned a new assignment.\n\n"
+                        + "Description: " + descriptionAssignmentField.getText() + "\n"
+                        + "Assignment Date: " + selectedDate + "\n"
+                        + "Car: " + carIdComboBox.getValue().getCarDisplayName() + "\n\n"
+                        + "Please check your dashboard for more details.\n\n"
+                        + "Best regards,\n"
+                        + "Wattway Team";
+
+                try {
+                    EmailService.sendEmail(mechanic.getEmailMechanic(), subject, message);
+                } catch (MessagingException e) {
+                    e.printStackTrace();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+            } else {
+                System.out.println("Mechanic " + mechanic.getNameMechanic() + " has no email provided, skipping email notification.");
+            }
+        }
+
     }
 
 

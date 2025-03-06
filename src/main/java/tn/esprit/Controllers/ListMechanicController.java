@@ -1,48 +1,46 @@
 package tn.esprit.Controllers;
 
-import javafx.scene.control.*;
-import javafx.stage.FileChooser;
-import javafx.stage.Window;
-import tn.esprit.entities.Mechanic;
-import tn.esprit.services.ExportPDFService;
-import tn.esprit.services.MechanicServices;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
-import javafx.fxml.FXML;
-import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
+import tn.esprit.entities.Mechanic;
+import tn.esprit.services.ExportPDFService;
+import tn.esprit.services.MechanicServices;
 
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class ListMechanicController {
 
     @FXML
     private TableView<Mechanic> mechanicsTableView;
+
+    // We'll replace the multiple columns with a single "infoColumn" plus the existing "actionColumn"
     @FXML
-    private TableColumn<Mechanic, String> nameMechanicColumn;
-    @FXML
-    private TableColumn<Mechanic, String> specialityMechanicColumn;
-    @FXML
-    private TableColumn<Mechanic, String> emailMechanicColumn;
-    @FXML
-    private TableColumn<Mechanic, Integer> carsRepairedColumn;
-    @FXML
-    private TableColumn<Mechanic, String> imageColumn;
+    private TableColumn<Mechanic, Mechanic> infoColumn;
+
     @FXML
     private TableColumn<Mechanic, Void> actionColumn;
+
     @FXML
     private TextField searchField;
+
     @FXML
     private Button exportButton;
-
 
     private final MechanicServices mechanicServices;
 
@@ -52,39 +50,61 @@ public class ListMechanicController {
 
     @FXML
     private void initialize() throws SQLException {
-        nameMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("nameMechanic"));
-        specialityMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("specialityMechanic"));
-        emailMechanicColumn.setCellValueFactory(new PropertyValueFactory<>("emailMechanic"));
-        carsRepairedColumn.setCellValueFactory(new PropertyValueFactory<>("carsRepaired"));
+        // 1) Setup the "infoColumn" to display the entire Mechanic object
+        infoColumn.setCellValueFactory(param -> new ReadOnlyObjectWrapper<>(param.getValue()));
 
-        // Display Image using ImageView
-        imageColumn.setCellFactory(param -> new TableCell<>() {
-            private final ImageView imageView = new ImageView();
+        // 2) Create a custom cell that shows an avatar + name + email
+        infoColumn.setCellFactory(col -> new TableCell<Mechanic, Mechanic>() {
+            private final HBox container = new HBox(10);
+            private final ImageView avatarView = new ImageView();
+            private final VBox textContainer = new VBox(2);
+            private final Label nameLabel = new Label();
+            private final Label emailLabel = new Label();
+
+            {
+                // Make the avatar circular, 40x40
+                avatarView.setFitWidth(40);
+                avatarView.setFitHeight(40);
+                Circle clip = new Circle(20, 20, 20);
+                avatarView.setClip(clip);
+
+                // Example styling: bold white for name, gray for email
+                nameLabel.setStyle("-fx-font-weight: bold; -fx-text-fill: white;");
+                emailLabel.setStyle("-fx-text-fill: #aaaaaa;");
+
+                textContainer.getChildren().addAll(nameLabel, emailLabel);
+                container.getChildren().addAll(avatarView, textContainer);
+                container.setStyle("-fx-alignment: center-left;");
+            }
 
             @Override
-            protected void updateItem(String imagePath, boolean empty) {
-                super.updateItem(imagePath, empty);
-                if (empty || imagePath == null || imagePath.isEmpty()) {
+            protected void updateItem(Mechanic mechanic, boolean empty) {
+                super.updateItem(mechanic, empty);
+                if (empty || mechanic == null) {
                     setGraphic(null);
                 } else {
-                    File file = new File(imagePath);
-                    if (file.exists()) {
-                        Image image = new Image(file.toURI().toString(), 50, 50, true, true);
-                        imageView.setImage(image);
-                        imageView.setFitWidth(50);
-                        imageView.setFitHeight(50);
-                        setGraphic(imageView);
+                    nameLabel.setText(mechanic.getNameMechanic());
+                    emailLabel.setText(mechanic.getEmailMechanic());
+
+                    // Load the mechanic's avatar from mechanic.getImgMechanic()
+                    if (mechanic.getImgMechanic() != null && !mechanic.getImgMechanic().isEmpty()) {
+                        File file = new File(mechanic.getImgMechanic());
+                        if (file.exists()) {
+                            Image avatar = new Image(file.toURI().toString(), 40, 40, true, true);
+                            avatarView.setImage(avatar);
+                        } else {
+                            avatarView.setImage(null);
+                        }
                     } else {
-                        setGraphic(null);
+                        avatarView.setImage(null);
                     }
+
+                    setGraphic(container);
                 }
             }
         });
 
-        // Load mechanics into the table
-        refreshMechanicsTable();
-
-        // Action buttons (Update & Delete)
+        // 3) Keep the action column for Update & Delete
         actionColumn.setCellFactory(param -> new TableCell<>() {
             private final Button updateButton = new Button("Update");
             private final Button deleteButton = new Button("Delete");
@@ -119,6 +139,8 @@ public class ListMechanicController {
                 }
             }
         });
+
+        // 4) Double-click row -> showMechanicDetails
         mechanicsTableView.setRowFactory(tv -> {
             TableRow<Mechanic> row = new TableRow<>();
             row.setOnMouseClicked(event -> {
@@ -129,7 +151,11 @@ public class ListMechanicController {
             });
             return row;
         });
+
+        // Finally, load mechanics into the table
+        refreshMechanicsTable();
     }
+
     private void showMechanicDetails(Mechanic mechanic) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ShowDetailsMechanic.fxml"));
@@ -147,11 +173,9 @@ public class ListMechanicController {
         }
     }
 
-
     @FXML
     private void searchMechanics() throws SQLException {
         String searchText = searchField.getText().toLowerCase();
-
         if (searchText.isEmpty()) {
             mechanicsTableView.setItems(FXCollections.observableArrayList(mechanicServices.returnList()));
         } else {
@@ -207,7 +231,7 @@ public class ListMechanicController {
                 try {
                     refreshMechanicsTable();
                 } catch (SQLException e) {
-                    throw new RuntimeException(e);
+                    e.printStackTrace();
                 }
             });
             stage.show();
@@ -234,6 +258,7 @@ public class ListMechanicController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void openMechanicStatistics() {
         try {
@@ -247,25 +272,23 @@ public class ListMechanicController {
             e.printStackTrace();
         }
     }
+
     @FXML
     private void handleExportPDF() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Save Mechanics Report");
-
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
         fileChooser.getExtensionFilters().add(extFilter);
 
         Stage stage = (Stage) exportButton.getScene().getWindow();
 
-        // Show the save dialog
         File file = fileChooser.showSaveDialog(stage);
-
         if (file != null) {
             try {
-                // Call your export service with the chosen file path.
                 ExportPDFService exportService = new ExportPDFService();
                 exportService.exportMechanicsToPDF(file.getAbsolutePath());
-                Alert alert = new Alert(Alert.AlertType.INFORMATION, "PDF exported successfully to " + file.getAbsolutePath());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                        "PDF exported successfully to " + file.getAbsolutePath());
                 alert.showAndWait();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -274,7 +297,4 @@ public class ListMechanicController {
             }
         }
     }
-
-
-
 }

@@ -9,10 +9,10 @@
     <BarChart fx:id="barChart" layoutX="14.0" layoutY="14.0" prefHeight="400.0" prefWidth="600.0"
               styleClass="custom-bar-chart">
         <xAxis>
-            <CategoryAxis label="Mechanic Name" styleClass="chart-axis"/>
+            <CategoryAxis styleClass="chart-axis"/>
         </xAxis>
         <yAxis>
-            <NumberAxis label="Cars Repaired" styleClass="chart-axis"/>
+            <NumberAxis  styleClass="chart-axis"/>
         </yAxis>
     </BarChart>
 </AnchorPane>

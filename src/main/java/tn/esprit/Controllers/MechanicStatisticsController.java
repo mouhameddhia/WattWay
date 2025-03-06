@@ -8,9 +8,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.CategoryAxis;
+import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.MechanicServices;
 
@@ -31,7 +33,7 @@ public class MechanicStatisticsController {
             // Retrieve all mechanics from the database and add data to chart.
             List<Mechanic> mechanics = mechanicServices.returnList();
             XYChart.Series<String, Number> series = new XYChart.Series<>();
-            series.setName("Cars Repaired");
+            barChart.setLegendVisible(false);
 
             for (Mechanic mechanic : mechanics) {
                 XYChart.Data<String, Number> dataItem = new XYChart.Data<>(mechanic.getNameMechanic(), mechanic.getCarsRepaired());
@@ -42,6 +44,11 @@ public class MechanicStatisticsController {
             // Set the x-axis tick labels to white.
             CategoryAxis xAxis = (CategoryAxis) barChart.getXAxis();
             xAxis.setTickLabelFill(Color.WHITE);
+            NumberAxis yAxis = (NumberAxis) barChart.getYAxis();
+
+            yAxis.setMinorTickCount(0);
+            yAxis.setTickUnit(1);
+
 
             // Force CSS to be applied and layout to occur so that nodes are created.
             barChart.applyCss();

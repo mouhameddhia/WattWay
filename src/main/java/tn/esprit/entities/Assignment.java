@@ -15,6 +15,7 @@ public class Assignment {
     private List<Mechanic> mechanics;
     private String carModel;
     private LocalDateTime dateAssignment;
+    private String googleCalendarEventId;
 
     public Assignment(int idAssignment, String descriptionAssignment, Status statusAssignment, int idCar) {
         this.idAssignment = idAssignment;
@@ -74,6 +75,13 @@ public class Assignment {
 
     public void setDateAssignment(LocalDateTime dateAssignment) {
         this.dateAssignment = dateAssignment;
+    }
+    public String getGoogleCalendarEventId() {
+        return googleCalendarEventId;
+    }
+
+    public void setGoogleCalendarEventId(String googleCalendarEventId) {
+        this.googleCalendarEventId = googleCalendarEventId;
     }
     /*
     // toString method

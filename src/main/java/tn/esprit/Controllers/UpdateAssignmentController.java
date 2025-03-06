@@ -12,6 +12,7 @@ import tn.esprit.entities.Assignment;
 import tn.esprit.entities.Car;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.AssignmentServices;
+import tn.esprit.services.GoogleCalendarService;
 import tn.esprit.services.MechanicServices;
 import tn.esprit.services.CarServices;
 import javafx.fxml.FXML;
@@ -190,9 +191,9 @@ public class UpdateAssignmentController {
             String description = descriptionAssignmentField.getText();
             Assignment.Status status = statusAssignmentComboBox.getValue();
             Car selectedCar = carIdComboBox.getValue();
-            LocalDate date = dateAssignmentPicker.getValue(); // Get the selected date
+            LocalDate newDate = dateAssignmentPicker.getValue();
 
-            if (description.isEmpty() || status == null || selectedCar == null || date == null) {
+            if (description.isEmpty() || status == null || selectedCar == null || newDate == null) {
                 showAlert("Missing Information", "Please fill all required fields.");
                 return;
             }
@@ -201,6 +202,7 @@ public class UpdateAssignmentController {
                 showAlert("Invalid User", "The selected Car ID does not exist.");
                 return;
             }
+
             List<Mechanic> selectedMechanics = mechanicListView.getSelectionModel().getSelectedItems();
             assignmentServices.updateAssignmentWithMechanics(assignment.getIdAssignment(), selectedMechanics);
             if (status == Assignment.Status.COMPLETED) {
@@ -210,15 +212,26 @@ public class UpdateAssignmentController {
                 }
             }
 
-            // Update assignment
+            // Convert the new LocalDate to a LocalDateTime
+            LocalDateTime newDateTime = newDate.atStartOfDay();
+            LocalDateTime oldDateTime = assignment.getDateAssignment();
+            boolean dateChanged = !newDateTime.equals(oldDateTime);
+
+            // Update assignment details
             assignment.setDescriptionAssignment(description);
             assignment.setStatusAssignment(status);
             assignment.setIdCar(selectedCar.getIdCar());
-            assignment.setDateAssignment(date.atStartOfDay()); // Convert LocalDate to LocalDateTime
+            assignment.setDateAssignment(newDateTime);
+            // Only update the Google Calendar event if the date has changed.
+            if (dateChanged && assignment.getGoogleCalendarEventId() != null) {
+                GoogleCalendarService.updateEvent(assignment);
+                System.out.println("Google Calendar event updated.");
+            } else {
+                System.out.println("Google Calendar event not updated as the date remains the same or event id is missing.");
+            }
 
             assignmentServices.update(assignment);
 
-            // Update assigned mechanics
 
 
             closeWindow();
@@ -226,6 +239,7 @@ public class UpdateAssignmentController {
             e.printStackTrace();
         }
     }
+
 
     @FXML
     private void cancel() {

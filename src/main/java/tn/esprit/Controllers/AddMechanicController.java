@@ -1,6 +1,8 @@
 package tn.esprit.Controllers;
 
 import javafx.scene.control.ComboBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import tn.esprit.entities.Mechanic;
 import tn.esprit.services.MechanicServices;
@@ -30,6 +32,9 @@ public class AddMechanicController {
     private TextField carsRepairedField;
     @FXML
     private String imgMechanicPath;
+    @FXML
+    private ImageView mechanicImageView;
+
 
     private final MechanicServices mechanicServices = new MechanicServices();
 
@@ -55,9 +60,9 @@ public class AddMechanicController {
         String name = nameMechanicField.getText();
         String specialityString = specialityMechanicComboBox.getValue();
         String email = emailMechanicField.getText();
-        int carsRepaired = Integer.parseInt(carsRepairedField.getText());
+        int carsRepaired = 0;
 
-        if (name.isEmpty() || specialityString.isEmpty() || specialityString == null || specialityString.isEmpty() || email.isEmpty()) {
+        if (name.isEmpty() || specialityString == null || specialityString.isEmpty() || email.isEmpty()) {
             showAlert("Empty","Please fill the fields");
             return;
         }
@@ -113,6 +118,8 @@ public class AddMechanicController {
         if (file != null) {
             imgMechanicPath = file.getAbsolutePath();
             System.out.println("Selected Image: " + imgMechanicPath);
+            Image image = new Image(file.toURI().toString());
+            mechanicImageView.setImage(image);
         }
     }
 }

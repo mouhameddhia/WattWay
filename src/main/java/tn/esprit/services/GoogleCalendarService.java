@@ -14,6 +14,8 @@ import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
+import tn.esprit.entities.Assignment;
+
 import java.awt.Desktop;
 import java.net.URI;
 //import com.google.api.services.calendar.model.Reminders;
@@ -32,6 +34,7 @@ public class GoogleCalendarService {
     private static final String APPLICATION_NAME = "Wattway Assignment Scheduler";
     private static final JsonFactory JSON_FACTORY = GsonFactory.getDefaultInstance(); // Updated to GsonFactory
     private static final String TOKENS_DIRECTORY_PATH = "tokens";
+
 
     private static final List<String> SCOPES = Collections.singletonList(CalendarScopes.CALENDAR);
     private static final String CREDENTIALS_FILE_PATH = "/credentials.json"; // Your downloaded file
@@ -58,26 +61,24 @@ public class GoogleCalendarService {
                 .build();
     }
 
-    public static void createEvent(String description, LocalDateTime assignmentDate) {
+    public static Event createEvent(Assignment assignment) {
         try {
             Calendar service = getCalendarService();
 
             Event event = new Event()
                     .setSummary("Mechanic Assignment")
-                    .setDescription(description);
+                    .setDescription(assignment.getDescriptionAssignment());
 
-            // Convert LocalDateTime to ZonedDateTime
-            ZonedDateTime startZonedDateTime = assignmentDate.atZone(ZoneId.systemDefault()).plusHours(8);
-
-            // Add 12 hours to the start date
+            // Convert the assignment's date to start and end times.
+            ZonedDateTime startZonedDateTime = assignment.getDateAssignment()
+                    .atZone(ZoneId.systemDefault())
+                    .plusHours(8);
             ZonedDateTime endZonedDateTime = startZonedDateTime.plusHours(12);
 
-            // Convert ZonedDateTime to Date
             Date startDate = Date.from(startZonedDateTime.toInstant());
             Date endDate = Date.from(endZonedDateTime.toInstant());
 
-            // Set the start and end times with the correct time zone
-            String timeZone = "Africa/Lagos"; // Replace with your calendar's time zone
+            String timeZone = "Africa/Lagos";
             EventDateTime start = new EventDateTime()
                     .setDateTime(new com.google.api.client.util.DateTime(startDate))
                     .setTimeZone(timeZone);
@@ -86,37 +87,72 @@ public class GoogleCalendarService {
                     .setTimeZone(timeZone);
 
             event.setStart(start);
-            event.setEnd(end); // Set the end time to 12 hours after the start time
-
-            // Set event visibility
+            event.setEnd(end);
             event.setVisibility("public");
 
-            // Insert the event into the calendar
-            String calendarId = "emir.chouaib@gmail.com"; // Use the primary calendar
+            String calendarId = "emir.chouaib@gmail.com"; // or "primary"
             Event createdEvent = service.events().insert(calendarId, event).execute();
 
-            // Print the event details
-            System.out.println("Event details: " + createdEvent.toString());
+            System.out.println("Created Event: " + createdEvent);
             System.out.println("Event ID: " + createdEvent.getId());
-            System.out.println("Event Link: " + createdEvent.getHtmlLink());
-            System.out.println("Event Status: " + createdEvent.getStatus());
 
-            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
-                Desktop.getDesktop().browse(new URI(createdEvent.getHtmlLink()));
-            } else {
-                System.err.println("Desktop browsing is not supported on this platform.");
-            }
+            // Save the event ID in the assignment.
+            assignment.setGoogleCalendarEventId(createdEvent.getId());
+            // Then update your assignment in the database so the event ID is stored.
 
-            // Retrieve the event to verify it was created successfully
-            Event retrievedEvent = service.events().get(calendarId, createdEvent.getId()).execute();
-            System.out.println("Retrieved Event: " + retrievedEvent.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.err.println("Failed to create event: " + e.getMessage());
+            return createdEvent;
         } catch (Exception e) {
             e.printStackTrace();
-            System.err.println("An unexpected error occurred: " + e.getMessage());
+            return null;
         }
     }
+
+    public static void updateEvent(Assignment assignment) {
+        // This method assumes that assignment.getGoogleCalendarEventId() is not null.
+        try {
+            Calendar service = getCalendarService();
+            String calendarId = "emir.chouaib@gmail.com"; // or "primary"
+
+            // Retrieve the event using the stored event ID.
+            String eventId = assignment.getGoogleCalendarEventId();
+            if (eventId == null || eventId.isEmpty()) {
+                System.err.println("No Google Calendar event ID found.");
+                return;
+            }
+            Event event = service.events().get(calendarId, eventId).execute();
+
+            // Update event description
+            event.setDescription(assignment.getDescriptionAssignment());
+
+            // Calculate new start and end times based on the updated assignment date.
+            ZonedDateTime startZonedDateTime = assignment.getDateAssignment()
+                    .atZone(ZoneId.systemDefault())
+                    .plusHours(8);
+            ZonedDateTime endZonedDateTime = startZonedDateTime.plusHours(12);
+
+            Date startDate = Date.from(startZonedDateTime.toInstant());
+            Date endDate = Date.from(endZonedDateTime.toInstant());
+
+            String timeZone = "Africa/Lagos";
+            EventDateTime start = new EventDateTime()
+                    .setDateTime(new com.google.api.client.util.DateTime(startDate))
+                    .setTimeZone(timeZone);
+            EventDateTime end = new EventDateTime()
+                    .setDateTime(new com.google.api.client.util.DateTime(endDate))
+                    .setTimeZone(timeZone);
+
+            event.setStart(start);
+            event.setEnd(end);
+
+            // Update the event on Google Calendar.
+            Event updatedEvent = service.events().update(calendarId, eventId, event).execute();
+            System.out.println("Updated Event: " + updatedEvent);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Failed to update event: " + e.getMessage());
+        }
+    }
+
+
 
 }

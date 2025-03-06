@@ -26,9 +26,6 @@
         <Label text="Email:" styleClass="form-label"/>
         <TextField fx:id="emailMechanicField" promptText="Enter email" styleClass="form-input"/>
 
-        <Label text="Cars Repaired:" styleClass="form-label"/>
-        <TextField fx:id="carsRepairedField" promptText="Enter number of cars repaired" styleClass="form-input"/>
-
         <Label text="Upload Mechanic Image:" styleClass="form-label"/>
         <Button fx:id="uploadImageButton" text="Choose Image" onAction="#uploadImage" styleClass="primary-button"/>
         <ImageView fx:id="mechanicImageView" fitWidth="150" fitHeight="150"/>

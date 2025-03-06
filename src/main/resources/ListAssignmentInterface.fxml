@@ -10,7 +10,7 @@
 <?import javafx.scene.control.TextField?>
 
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="tn.esprit.Controllers.ListAssignmentController"
-            stylesheets="@styles.css" styleClass="gradient-pane">
+            stylesheets="@styles.css" styleClass="gradient-pane"  prefWidth="1000">
 
     <!-- Sidebar -->
     <VBox fx:id="sidebar" prefWidth="200.0" styleClass="sidebar" AnchorPane.topAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.bottomAnchor="0">
@@ -31,13 +31,12 @@
     <!-- Main Content -->
     <HBox spacing="20" alignment="TOP_LEFT" AnchorPane.leftAnchor="220.0" AnchorPane.topAnchor="80.0">
         <VBox spacing="10">
-            <Label text="List of Assignments" styleClass="table-header"/>
             <HBox spacing="8" alignment="CENTER" styleClass="search-container">
                 <TextField fx:id="searchField" promptText="Search Assignments..." styleClass="search-bar"/>
                 <Button text="Search" onAction="#searchAssignments" styleClass="primary-button2"/>
                 <Button text="Add Assignment" onAction="#addAssignment" styleClass="primary-button"/>
             </HBox>
-            <TableView fx:id="assignmentsTableView" AnchorPane.leftAnchor="20.0"
+            <TableView fx:id="assignmentsTableView" AnchorPane.leftAnchor="20.0" prefHeight="600"
                        AnchorPane.rightAnchor="20.0"
                        AnchorPane.topAnchor="20.0"
                        AnchorPane.bottomAnchor="20.0" styleClass="admin-table">
@@ -50,7 +49,7 @@
                     <TableColumn fx:id="statusAssignmentColumn" text="Status" prefWidth="120"/>
                     <TableColumn fx:id="carModelColumn" text="Car Model" prefWidth="180"/>
                     <TableColumn fx:id="mechanicsColumn" text="Mechanics Assigned" prefWidth="180"/>
-                    <TableColumn fx:id="dateAssignmentColumn" text="Assignment Date" prefWidth="150"/> <!-- New Column -->
+                    <TableColumn fx:id="dateAssignmentColumn" text="Assignment Date" prefWidth="150"/>
                     <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
                 </columns>
             </TableView>
