@@ -1,7 +1,10 @@
 package tn.esprit.Controllers;
 
 import javafx.scene.control.*;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import tn.esprit.entities.Mechanic;
+import tn.esprit.services.ExportPDFService;
 import tn.esprit.services.MechanicServices;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,6 +40,9 @@ public class ListMechanicController {
     private TableColumn<Mechanic, Void> actionColumn;
     @FXML
     private TextField searchField;
+    @FXML
+    private Button exportButton;
+
 
     private final MechanicServices mechanicServices;
 
@@ -241,5 +247,34 @@ public class ListMechanicController {
             e.printStackTrace();
         }
     }
+    @FXML
+    private void handleExportPDF() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Save Mechanics Report");
+
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("PDF Files (*.pdf)", "*.pdf");
+        fileChooser.getExtensionFilters().add(extFilter);
+
+        Stage stage = (Stage) exportButton.getScene().getWindow();
+
+        // Show the save dialog
+        File file = fileChooser.showSaveDialog(stage);
+
+        if (file != null) {
+            try {
+                // Call your export service with the chosen file path.
+                ExportPDFService exportService = new ExportPDFService();
+                exportService.exportMechanicsToPDF(file.getAbsolutePath());
+                Alert alert = new Alert(Alert.AlertType.INFORMATION, "PDF exported successfully to " + file.getAbsolutePath());
+                alert.showAndWait();
+            } catch (Exception e) {
+                e.printStackTrace();
+                Alert alert = new Alert(Alert.AlertType.ERROR, "Export failed: " + e.getMessage());
+                alert.showAndWait();
+            }
+        }
+    }
+
+
 
 }

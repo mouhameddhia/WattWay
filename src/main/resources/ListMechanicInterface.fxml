@@ -53,6 +53,7 @@
                <TableColumn fx:id="actionColumn" text="Actions" prefWidth="160"/>
             </columns>
          </TableView>
+         <Button text="Export List PDF" fx:id="exportButton" onAction="#handleExportPDF" styleClass="primary-button2"/>
       </VBox>
    </HBox>
 
