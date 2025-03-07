@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -154,6 +155,7 @@ public class ListMechanicController {
                     setGraphic(null);
                 } else {
                     HBox buttons = new HBox(10, updateButton, deleteButton);
+                    buttons.setAlignment(Pos.CENTER);
                     setGraphic(buttons);
                 }
             }
